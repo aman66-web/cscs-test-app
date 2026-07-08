@@ -25,4 +25,14 @@ export const config = {
      */
     "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
+  // The @supabase/ssr → supabase-js chain uses dynamic code (computed requires
+  // in the realtime transport) that Next.js's Edge bundler rejects by default,
+  // failing the Vercel deploy with "referencing unsupported modules". This
+  // whitelists the Supabase packages so the Edge bundler allows their dynamic
+  // code instead of failing the build. (Globs are relative to the app root;
+  // both forms cover hoisted and nested installs.)
+  unstable_allowDynamic: [
+    "/node_modules/@supabase/**",
+    "**/node_modules/@supabase/**",
+  ],
 };
