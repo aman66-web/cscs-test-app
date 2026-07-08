@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="A construction safety sign">
+  <rect width="400" height="300" fill="#EEF1FB"/>
+  <!-- Prohibition sign: red circle with diagonal bar over a flame -->
+  <circle cx="200" cy="150" r="82" fill="#ffffff" stroke="#E4322B" stroke-width="16"/>
+  <line x1="142" y1="208" x2="258" y2="92" stroke="#E4322B" stroke-width="16" stroke-linecap="round"/>
+  <path d="M200 108c14 18 22 30 22 44a22 22 0 0 1-44 0c0-8 4-14 8-20 2 8 8 10 8 10 0-14 6-24 6-34Z" fill="#211B4E"/>
+  <text x="200" y="270" text-anchor="middle" font-family="Plus Jakarta Sans, system-ui, sans-serif" font-size="20" font-weight="800" fill="#6B6690">No open flames</text>
+</svg>

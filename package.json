@@ -1,0 +1,46 @@
+{
+  "name": "cscs-test-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "cap:sync": "cap sync",
+    "cap:ios": "cap open ios",
+    "cap:android": "cap open android",
+    "cap:assets": "capacitor-assets generate --iconBackgroundColor \"#7C3AED\" --splashBackgroundColor \"#F1EAFE\""
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.107.0",
+    "@capacitor-community/in-app-review": "^8.0.0",
+    "@capacitor/core": "^8.4.1",
+    "@capacitor/filesystem": "^8.1.2",
+    "@capacitor/local-notifications": "^8.2.0",
+    "@capacitor/share": "^8.0.1",
+    "@capgo/capacitor-social-login": "^8.3.33",
+    "@supabase/ssr": "^0.5.2",
+    "@supabase/supabase-js": "^2.45.4",
+    "next": "^14.2.35",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^8.4.1",
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.4.1",
+    "@capacitor/ios": "^8.4.1",
+    "@types/node": "^20.16.10",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.16",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.2"
+  },
+  "overrides": {
+    "postcss": "^8.5.16"
+  }
+}

@@ -1,0 +1,46 @@
+import type { Metadata, Viewport } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import "./globals.css";
+
+// App-wide brand font (matches the My Life in the UK Test app). Loaded via
+// next/font (self-hosted at build time, no external request, no flash).
+// Exposed as the --font-sans CSS variable that Tailwind's `sans` family and
+// globals.css reference.
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "CSCS Test App",
+  description:
+    "Practice for the CITB Health, Safety & Environment (HS&E) test — your route to a CSCS card.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#FFFFFF",
+  width: "device-width",
+  initialScale: 1,
+  // Pin the scale so iOS can never auto-zoom into a focused input. All inputs
+  // are also >=16px, the real fix — this is the backstop.
+  maximumScale: 1,
+  userScalable: false,
+  // Go edge-to-edge so env(safe-area-inset-*) reports the real notch/home-bar
+  // insets; screens then pad themselves with .pt-safe / .pb-safe.
+  viewportFit: "cover",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  // Light theme (brand purple accent). No `dark` class — the app is light-only.
+  return (
+    <html lang="en" className={jakarta.variable}>
+      <body>{children}</body>
+    </html>
+  );
+}

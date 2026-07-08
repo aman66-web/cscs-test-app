@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="A construction site scene with a hazard to identify">
+  <!-- sky -->
+  <rect width="400" height="300" fill="#DCE7F5"/>
+  <rect y="200" width="400" height="100" fill="#CDbfa6"/>
+  <rect y="200" width="400" height="100" fill="#C9BCA3"/>
+  <!-- scaffolding uprights -->
+  <g stroke="#8A8FA3" stroke-width="6">
+    <line x1="60" y1="40" x2="60" y2="210"/>
+    <line x1="120" y1="40" x2="120" y2="210"/>
+    <line x1="60" y1="80" x2="120" y2="80"/>
+    <line x1="60" y1="140" x2="120" y2="140"/>
+  </g>
+  <!-- worker with hard hat (left) -->
+  <g>
+    <circle cx="180" cy="150" r="14" fill="#F2C79B"/>
+    <path d="M164 148a16 10 0 0 1 32 0Z" fill="#FFC24B"/>
+    <rect x="170" y="164" width="20" height="34" rx="5" fill="#F5822A"/>
+    <rect x="168" y="168" width="24" height="14" rx="3" fill="#FFD84D"/>
+  </g>
+  <!-- HAZARD: unguarded floor opening (right), no barrier -->
+  <ellipse cx="300" cy="235" rx="46" ry="20" fill="#1B1730"/>
+  <ellipse cx="300" cy="231" rx="46" ry="20" fill="#2A2340"/>
+  <path d="M254 231a46 20 0 0 0 92 0" fill="none" stroke="#0E0B18" stroke-width="4"/>
+  <!-- caption -->
+  <text x="200" y="288" text-anchor="middle" font-family="Plus Jakarta Sans, system-ui, sans-serif" font-size="14" font-weight="700" fill="#3A3560">Tap the biggest hazard on this site</text>
+</svg>
