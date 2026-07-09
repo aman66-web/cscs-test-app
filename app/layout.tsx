@@ -20,6 +20,17 @@ export const metadata: Metadata = {
   title: "CSCS Test App",
   description:
     "Practice for the CITB Health, Safety & Environment (HS&E) test — your route to a CSCS card.",
+  // All icons live in public/ and are declared explicitly here (no Next
+  // file-convention icons in app/, so the <head> has exactly these links):
+  //  - SVG favicon (scalable, primary) + 32px PNG fallback
+  //  - apple-touch-icon for iOS "Add to Home Screen"
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
 };
 
 export const viewport: Viewport = {
