@@ -28,6 +28,19 @@ export async function GET(request: Request) {
   const oauthErrorCode = searchParams.get("error_code");
   const oauthErrorDescription = searchParams.get("error_description");
 
+  // Step trace (visible in Vercel → project → Logs). Shows the host the
+  // callback actually landed on (PKCE cookies are host-bound) and which params
+  // arrived, so a failed sign-in can be diagnosed end-to-end.
+  const landedHost =
+    request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? origin;
+  console.log(
+    "[auth/callback] GET host=%s hasCode=%s error=%s mode=%s",
+    landedHost,
+    code ? "yes" : "no",
+    oauthError ?? "-",
+    mode ?? "-"
+  );
+
   // The provider / Supabase can redirect back with an error and no code.
   // Supabase sends error + error_code + error_description; keep the most
   // specific machine-readable part in the reason so the sign-in screen can
@@ -48,13 +61,18 @@ export async function GET(request: Request) {
 
   if (code) {
     const supabase = createClient();
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    const { data: exchanged, error } =
+      await supabase.auth.exchangeCodeForSession(code);
     if (error) {
       // Most commonly a missing/blocked PKCE code-verifier cookie (host
       // mismatch, e.g. www vs apex) or an expired Apple client secret.
       console.error("[auth/callback] exchangeCodeForSession failed:", error.message);
       return errorRedirect(origin, error.message, request);
     }
+    console.log(
+      "[auth/callback] exchange OK — session for user=%s",
+      exchanged?.user?.id ?? "unknown"
+    );
 
     // Apple only returns the user's name (and, if hidden, the relay email) on
     // the VERY FIRST sign-in. Capture it once into our profile — but NEVER let
@@ -94,6 +112,8 @@ export async function GET(request: Request) {
     } else {
       next = safeNext;
     }
+
+    console.log("[auth/callback] success — redirecting to %s", next);
 
     // `x-forwarded-host` is set behind a load balancer / proxy.
     const forwardedHost = request.headers.get("x-forwarded-host");
