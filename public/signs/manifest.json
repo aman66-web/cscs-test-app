@@ -1,0 +1,1844 @@
+{
+  "E001": {
+    "file": "ISO_7010_E001.svg",
+    "meaning": "Safe condition sign E001: Emergency exit",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E001.svg",
+    "status": "ok"
+  },
+  "E002": {
+    "file": "ISO_7010_E002.svg",
+    "meaning": "Safe condition sign E002: Emergency exit",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E002.svg",
+    "status": "ok"
+  },
+  "E003": {
+    "file": "ISO_7010_E003.svg",
+    "meaning": "Safe condition sign E003: First aid",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E003_-_First_aid_sign.svg",
+    "status": "ok"
+  },
+  "E004": {
+    "file": "ISO_7010_E004.svg",
+    "meaning": "Safe condition sign E004: Emergency telephone",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E004.svg",
+    "status": "ok"
+  },
+  "E007": {
+    "file": "ISO_7010_E007.svg",
+    "meaning": "Safe condition sign E007: Hazard duty pointe",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E007.svg",
+    "status": "ok"
+  },
+  "E008": {
+    "file": "ISO_7010_E008.svg",
+    "meaning": "Pull handle to break glass",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E008.svg",
+    "status": "ok"
+  },
+  "E009": {
+    "file": "ISO_7010_E009.svg",
+    "meaning": "Safe condition sign E009: Doctor",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E009.svg",
+    "status": "ok"
+  },
+  "E010": {
+    "file": "ISO_7010_E010.svg",
+    "meaning": "Safe condition sign E010: Automated heart defibrillator",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E010.svg",
+    "status": "ok"
+  },
+  "E011": {
+    "file": "ISO_7010_E011.svg",
+    "meaning": "Safe condition sign E011: Eye shower",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E011.svg",
+    "status": "ok"
+  },
+  "E012": {
+    "file": "ISO_7010_E012.svg",
+    "meaning": "Safe condition sign E012: Emergency shower",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E012.svg",
+    "status": "ok"
+  },
+  "E013": {
+    "file": "ISO_7010_E013.svg",
+    "meaning": "Safe condition sign E013: Stretcher",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E013.svg",
+    "status": "ok"
+  },
+  "E014": {
+    "file": "ISO_7010_E014.svg",
+    "meaning": "ISO 7010 E014 Child seat presence and orientation detection system (CPOD)",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E014.svg",
+    "status": "ok"
+  },
+  "E015": {
+    "file": "ISO_7010_E015.svg",
+    "meaning": "Drinking water",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E015.svg",
+    "status": "ok"
+  },
+  "E016": {
+    "file": "ISO_7010_E016.svg",
+    "meaning": "Safe condition sign E016: Emergency exit with fire escape stairs",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E016.svg",
+    "status": "ok"
+  },
+  "E017": {
+    "file": "ISO_7010_E017.svg",
+    "meaning": "Safe condition sign E017: Emergency exit with access to fire ladder",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E017.svg",
+    "status": "ok"
+  },
+  "E018": {
+    "file": "ISO_7010_E018.svg",
+    "meaning": "Öffnung durch Linksdrehung - Quelle : ASR A1.3 und DIN EN ISO 7010 (2012-10)",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E018.svg",
+    "status": "ok"
+  },
+  "E019": {
+    "file": "ISO_7010_E019.svg",
+    "meaning": "Öffnung durch Rechtsdrehung - Quelle : ASR A1.3 und DIN EN ISO 7010 (2012-10)",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E019.svg",
+    "status": "ok"
+  },
+  "E020": {
+    "file": "ISO_7010_E020.svg",
+    "meaning": "Safe condition sign E020 Emergency stop button",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E020.svg",
+    "status": "ok"
+  },
+  "E021": {
+    "file": "ISO_7010_E021.svg",
+    "meaning": "ISO 7010 E021 Protection shelter; To indicate the location of a protection shelter",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E021.svg",
+    "status": "ok"
+  },
+  "E022": {
+    "file": "ISO_7010_E022.svg",
+    "meaning": "ISO 7010 Door opens by pushing on the left-hand side",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E022.svg",
+    "status": "ok"
+  },
+  "E023": {
+    "file": "ISO_7010_E023.svg",
+    "meaning": "ISO 7010 Door opens by pushing on the right-hand side",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E023.svg",
+    "status": "ok"
+  },
+  "E024": {
+    "file": "ISO_7010_E024.svg",
+    "meaning": "ISO 7010 E024 Evacuation temporary refuge; To indicate the location of a temporary safe area (refuge) to await rescue assistance, provided for those unable to use stairs in the event of an emergency evacuation",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E024.svg",
+    "status": "ok"
+  },
+  "E025": {
+    "file": "ISO_7010_E025.svg",
+    "meaning": "ISO 7010 E025 Emergency hammer; To indicate the location of an emergency hammer",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E025.svg",
+    "status": "ok"
+  },
+  "E026": {
+    "file": "ISO_7010_E026.svg",
+    "meaning": "ISO 7010 E026 Emergency exit for people unable to walk or with walking impairment (left); To indicate an escape route to a place of safety usable by people unable to walk or with walking impairment",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E026.svg",
+    "status": "ok"
+  },
+  "E027": {
+    "file": "ISO_7010_E027.svg",
+    "meaning": "ISO 7010 E027 Medical grab bag; To indicate the location of a medical grab bag",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E027.svg",
+    "status": "ok"
+  },
+  "E028": {
+    "file": "ISO_7010_E028.svg",
+    "meaning": "ISO 7010 E028 Oxygen resuscitator; To indicate the location of an oxygen resuscitator",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E028.svg",
+    "status": "ok"
+  },
+  "E029": {
+    "file": "ISO_7010_E029.svg",
+    "meaning": "ISO 7010 E029 Emergency escape breathing device; To indicate the location of an emergency escape breathing device (EEBD)",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E029.svg",
+    "status": "ok"
+  },
+  "E030": {
+    "file": "ISO_7010_E030.svg",
+    "meaning": "ISO 7010 E030 Emergency exit for people unable to walk or with walking impairment (right); To indicate an escape route to a place of safety usable by people unable to walk or with walking impairment",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E030.svg",
+    "status": "ok"
+  },
+  "E031": {
+    "file": "ISO_7010_E031.svg",
+    "meaning": "Safe condition sign E031: Shipboard general alarm",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E031.svg",
+    "status": "ok"
+  },
+  "E032": {
+    "file": "ISO_7010_E032.svg",
+    "meaning": "ISO 7010 E032 Shipboard assembly station; To indicate the location of an assembly station on board a ship",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E032.svg",
+    "status": "ok"
+  },
+  "E033": {
+    "file": "ISO_7010_E033.svg",
+    "meaning": "ISO 7010 Door slides right to open",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E033.svg",
+    "status": "ok"
+  },
+  "E034": {
+    "file": "ISO_7010_E034.svg",
+    "meaning": "ISO 7010 Door slides left to open",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E034.svg",
+    "status": "ok"
+  },
+  "E035": {
+    "file": "ISO_7010_E035.svg",
+    "meaning": "ISO 7010 E035 Liferaft knife; To indicate the location of a liferaft knife",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E035.svg",
+    "status": "ok"
+  },
+  "E037": {
+    "file": "ISO_7010_E037.svg",
+    "meaning": "Bereitschaftsboot; Kennzeichnen des Ortes eines Bereitschaftsbootes",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E037.svg",
+    "status": "ok"
+  },
+  "E038": {
+    "file": "ISO_7010_E038.svg",
+    "meaning": "ISO 7010 E038 Liferaft; To indicate the location of a liferaft",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E038.svg",
+    "status": "ok"
+  },
+  "E040": {
+    "file": "ISO_7010_E040.svg",
+    "meaning": "Safe condition sign E040: Lifebuoy",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E040.svg",
+    "status": "ok"
+  },
+  "E041": {
+    "file": "ISO_7010_E041.svg",
+    "meaning": "ISO 7010 E041 Lifebuoy with line; To indicate the location of a lifebuoy with line",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E041.svg",
+    "status": "ok"
+  },
+  "E042": {
+    "file": "ISO_7010_E042.svg",
+    "meaning": "ISO 7010 E042 Lifebuoy with light; To indicate the location of a lifebuoy with light",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E042.svg",
+    "status": "ok"
+  },
+  "E043": {
+    "file": "ISO_7010_E043.svg",
+    "meaning": "ISO 7010 E043 Lifebuoy with line and light; To indicate the location of a lifebuoy with line and light",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E043.svg",
+    "status": "ok"
+  },
+  "E044": {
+    "file": "ISO_7010_E044.svg",
+    "meaning": "Safe condition sign E044: Lifejacket",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E044.svg",
+    "status": "ok"
+  },
+  "E045": {
+    "file": "ISO_7010_E045.svg",
+    "meaning": "ISO 7010 E045 Child's lifejacket; To indicate the location of a child's lifejacket",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E045.svg",
+    "status": "ok"
+  },
+  "E046": {
+    "file": "ISO_7010_E046.svg",
+    "meaning": "ISO 7010 E046 Infant's lifejacket; To indicate the location of an infant's lifejacket",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E046.svg",
+    "status": "ok"
+  },
+  "E047": {
+    "file": "ISO_7010_E047.svg",
+    "meaning": "ISO 7010 E047 Search and rescue transponder; To indicate the location of a search and rescue transponder (SART)",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E047.svg",
+    "status": "ok"
+  },
+  "E048": {
+    "file": "ISO_7010_E048.svg",
+    "meaning": "ISO 7010 E048 Survival craft distress signal; To indicate the location of a survival craft distress signal",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E048.svg",
+    "status": "ok"
+  },
+  "E049": {
+    "file": "ISO_7010_E049.svg",
+    "meaning": "ISO 7010 E049 Rocket parachute flare; To indicate the location of a rocket parachute flare",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E049.svg",
+    "status": "ok"
+  },
+  "E050": {
+    "file": "ISO_7010_E050.svg",
+    "meaning": "ISO 7010 E050 Line-throwing appliance; To indicate the location of a line-throwing appliance",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E050.svg",
+    "status": "ok"
+  },
+  "E051": {
+    "file": "ISO_7010_E051.svg",
+    "meaning": "ISO 7010 E051 Two-way VHF radiotelephone apparatus; To indicate the location of a two-way VHF radiotelephone apparatus",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E051.svg",
+    "status": "ok"
+  },
+  "E052": {
+    "file": "ISO_7010_E052.svg",
+    "meaning": "ISO 7010 E052 Emergency position indicating radio beacon; To indicate the location of an emergency position indicating radio beacon (EPIRB)",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E052.svg",
+    "status": "ok"
+  },
+  "E053": {
+    "file": "ISO_7010_E053.svg",
+    "meaning": "ISO 7010 E053 Embarkation ladder; To indicate the location of an embarkation ladder",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E053.svg",
+    "status": "ok"
+  },
+  "E054": {
+    "file": "ISO_7010_E054.svg",
+    "meaning": "ISO 7010 E054 Marine evacuation slide; To indicate the location of a marine evacuation slide",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E054.svg",
+    "status": "ok"
+  },
+  "E055": {
+    "file": "ISO_7010_E055.svg",
+    "meaning": "ISO 7010 E055 Marine evacuation chute; To indicate the location of a marine evacuation chute",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E055.svg",
+    "status": "ok"
+  },
+  "E056": {
+    "file": "ISO_7010_E056.svg",
+    "meaning": "ISO 7010 E056 Survival clothing; To indicate the location of survival clothing",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E056.svg",
+    "status": "ok"
+  },
+  "E057": {
+    "file": "ISO_7010_E057.svg",
+    "meaning": "ISO 7010 E057 Door opens by pulling on the left-hand side; To indicate that the door opens by pulling on the left-hand side",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E057.svg",
+    "status": "ok"
+  },
+  "E058": {
+    "file": "ISO_7010_E058.svg",
+    "meaning": "ISO 7010 E058 Door opens by pulling on the right-hand side; To indicate that the door opens by pulling on the right-hand side",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E058.svg",
+    "status": "ok"
+  },
+  "E059": {
+    "file": "ISO_7010_E059.svg",
+    "meaning": "Safe condition sign E059: Escape ladder",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E059.svg",
+    "status": "ok"
+  },
+  "E060": {
+    "file": "ISO_7010_E060.svg",
+    "meaning": "ISO 7010 E060 Evacuation chair; To indicate the location of an evacuation chair",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E060.svg",
+    "status": "ok"
+  },
+  "E061": {
+    "file": "ISO_7010_E061.svg",
+    "meaning": "ISO 7010 E061 Water life-saving equipment; To indicate the location of water life-saving equipment",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E061.svg",
+    "status": "ok"
+  },
+  "E062": {
+    "file": "ISO_7010_E062.svg",
+    "meaning": "ISO 7010 E062 Tsunami evacuation area; To indicate the location of a safe place/uphill area for evacuation to in the event of a tsunami",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E062.svg",
+    "status": "ok"
+  },
+  "E063": {
+    "file": "ISO_7010_E063.svg",
+    "meaning": "ISO 7010 E063 Tsunami evacuation building; To indicate the location of a safe building for evacuation in the event of a tsunam",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E063.svg",
+    "status": "ok"
+  },
+  "E064": {
+    "file": "ISO_7010_E064.svg",
+    "meaning": "First aid responder",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E064.svg",
+    "status": "ok"
+  },
+  "E065": {
+    "file": "ISO_7010_E065.svg",
+    "meaning": "ISO 7010 E065 Natural disaster outdoor refuge area; To indicate the location of a natural disaster outdoor refuge area",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E065.svg",
+    "status": "ok"
+  },
+  "E067": {
+    "file": "ISO_7010_E067.svg",
+    "meaning": "ISO 7010 E067 Evacuation mattress; To indicate the location of an evacuation mattress",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E067.svg",
+    "status": "ok"
+  },
+  "E068": {
+    "file": "ISO_7010_E068.svg",
+    "meaning": "ISO 7010 E068 Lifebuoy with light and smoke; To indicate the location of a lifebuoy with light and smoke",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E068.svg",
+    "status": "ok"
+  },
+  "E069": {
+    "file": "ISO_7010_E069.svg",
+    "meaning": "ISO 7010 E069 Person overboard call point; To indicate the location of a person overboard call point",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E069.svg",
+    "status": "ok"
+  },
+  "E070": {
+    "file": "ISO_7010_E070.svg",
+    "meaning": "ISO 7010 E070 Evacuation lift for people unable to use stairs; To indicate the location of a lift usable for the evacuation of people unable to use stairs",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E070.svg",
+    "status": "ok"
+  },
+  "E072": {
+    "file": "ISO_7010_E072.svg",
+    "meaning": "ISO 7010 E072 Safe anchorage point; To indicate the location of a safe anchorage point",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E072.svg",
+    "status": "ok"
+  },
+  "E073": {
+    "file": "ISO_7010_E073.svg",
+    "meaning": "ISO 7010 E073 Emergency descent device; To indicate the location of an emergency descent",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E073.svg",
+    "status": "ok"
+  },
+  "E074": {
+    "file": "ISO_7010_E074.svg",
+    "meaning": "ISO 7010 E074 Emergency rations; To indicate the location of emergency rations",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E074.svg",
+    "status": "ok"
+  },
+  "E075": {
+    "file": "ISO_7010_E075.svg",
+    "meaning": "Lifeguard; To indicate the location of a lifeguard",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E075.svg",
+    "status": "ok"
+  },
+  "E076": {
+    "file": "ISO_7010_E076.svg",
+    "meaning": "Evacuation equipment; To indicate the location of evacuation equipment",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_E076.svg",
+    "status": "ok"
+  },
+  "F001": {
+    "file": "ISO_7010_F001.svg",
+    "meaning": "Fire safety sign F001: Fire extinguisher",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F001.svg",
+    "status": "ok"
+  },
+  "F002": {
+    "file": "ISO_7010_F002.svg",
+    "meaning": "Fire safety sign F002: Fire hose reel",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F002.svg",
+    "status": "ok"
+  },
+  "F003": {
+    "file": "ISO_7010_F003.svg",
+    "meaning": "Fire safety sign F003: Fire ladder",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F003.svg",
+    "status": "ok"
+  },
+  "F004": {
+    "file": "ISO_7010_F004.svg",
+    "meaning": "Fire safety sign F004: Collection of firefighting equipment",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F004.svg",
+    "status": "ok"
+  },
+  "F005": {
+    "file": "ISO_7010_F005.svg",
+    "meaning": "Fire safety sign F005: Fire alarm call point",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F005.svg",
+    "status": "ok"
+  },
+  "F006": {
+    "file": "ISO_7010_F006.svg",
+    "meaning": "Fire safety sign F006: Fire emergency telephone",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F006.svg",
+    "status": "ok"
+  },
+  "F007": {
+    "file": "ISO_7010_F007.svg",
+    "meaning": "Funktion: Kennzeichnen des Ortes einer Brandschutztür Bildinhalt: Tür im Winkel, gebogener Pfeil, Flammen-Determinante",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F007.svg",
+    "status": "ok"
+  },
+  "F008": {
+    "file": "ISO_7010_F008.svg",
+    "meaning": "ISO 7010 F008 Fixed fire extinguishing battery; To indicate the location of a fixed fire extinguishing battery",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F008.svg",
+    "status": "ok"
+  },
+  "F009": {
+    "file": "ISO_7010_F009.svg",
+    "meaning": "ISO 7010 F009 Wheeled fire extinguisher; To indicate the location of a wheeled fire extinguisher",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F009.svg",
+    "status": "ok"
+  },
+  "F010": {
+    "file": "ISO_7010_F010.svg",
+    "meaning": "ISO 7010 F010 Portable foam applicator unit; To indicate the location of a portable foam applicator unit",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F010.svg",
+    "status": "ok"
+  },
+  "F011": {
+    "file": "ISO_7010_F011.svg",
+    "meaning": "ISO 7010 F011 Water fog applicator; To indicate the location of a water fog applicator",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F011.svg",
+    "status": "ok"
+  },
+  "F012": {
+    "file": "ISO_7010_F012.svg",
+    "meaning": "ISO 7010 F012 Fixed fire extinguishing installation; To indicate the location of a fixed fire extinguishing installation",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F012.svg",
+    "status": "ok"
+  },
+  "F013": {
+    "file": "ISO_7010_F013.svg",
+    "meaning": "ISO 7010 F013 Fixed fire extinguishing bottle; To indicate the location of a fixed fire extinguishing bottle",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F013.svg",
+    "status": "ok"
+  },
+  "F014": {
+    "file": "ISO_7010_F014.svg",
+    "meaning": "ISO 7010 F014 Remote release station; To indicate the location of a remote release station",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F014.svg",
+    "status": "ok"
+  },
+  "F015": {
+    "file": "ISO_7010_F015.svg",
+    "meaning": "ISO 7010 F015 Fire monitor; To indicate the location of a fire monitor",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F015.svg",
+    "status": "ok"
+  },
+  "F016": {
+    "file": "ISO_7010_F016.svg",
+    "meaning": "ISO 7010 F016 Fire blanket; To indicate the location of a fire blanket",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F016.svg",
+    "status": "ok"
+  },
+  "F017": {
+    "file": "ISO_7010_F017.svg",
+    "meaning": "ISO 7010 F017 Firefighters’ lift; To indicate the location of a firefighters' lift and associated switch",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F017.svg",
+    "status": "ok"
+  },
+  "F018": {
+    "file": "ISO_7010_F018.svg",
+    "meaning": "ISO 7010 F018 Fire alarm flashing light; To indicate a device that flashes to indicate that the fire alarm has operated",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F018.svg",
+    "status": "ok"
+  },
+  "F019": {
+    "file": "ISO_7010_F019.svg",
+    "meaning": "Fire safety sign F019: Unconnected fire hose",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_F019.svg",
+    "status": "ok"
+  },
+  "M001": {
+    "file": "ISO_7010_M001.svg",
+    "meaning": "Mandatory action sign M001: General mandatory action sign",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M001.svg",
+    "status": "ok"
+  },
+  "M002": {
+    "file": "ISO_7010_M002.svg",
+    "meaning": "Mandatory action sign M002: Refer to instruction manual/booklet",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M002.svg",
+    "status": "ok"
+  },
+  "M003": {
+    "file": "ISO_7010_M003.svg",
+    "meaning": "Mandatory action sign M003: Wear ear protection",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M003.svg",
+    "status": "ok"
+  },
+  "M004": {
+    "file": "ISO_7010_M004.svg",
+    "meaning": "Mandatory action sign M004: Wear eye protection",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M004.svg",
+    "status": "ok"
+  },
+  "M005": {
+    "file": "ISO_7010_M005.svg",
+    "meaning": "Mandatory action sign M005: Connect an earth terminal to the ground",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M005.svg",
+    "status": "ok"
+  },
+  "M006": {
+    "file": "ISO_7010_M006.svg",
+    "meaning": "Mandatory action sign M006: Disconnect mains plug from electrical outlet",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M006.svg",
+    "status": "ok"
+  },
+  "M007": {
+    "file": "ISO_7010_M007.svg",
+    "meaning": "Mandatory action sign M007: Opaque eye protection must be worn",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M007.svg",
+    "status": "ok"
+  },
+  "M008": {
+    "file": "ISO_7010_M008.svg",
+    "meaning": "Mandatory action sign M008: Wear safety footwear",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M008.svg",
+    "status": "ok"
+  },
+  "M009": {
+    "file": "ISO_7010_M009.svg",
+    "meaning": "Mandatory action sign M009: Wear protective gloves",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M009.svg",
+    "status": "ok"
+  },
+  "M010": {
+    "file": "ISO_7010_M010.svg",
+    "meaning": "Mandatory action sign M010: Wear protective clothing",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M010.svg",
+    "status": "ok"
+  },
+  "M011": {
+    "file": "ISO_7010_M011.svg",
+    "meaning": "Mandatory action sign M011: Wash your hands",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M011.svg",
+    "status": "ok"
+  },
+  "M012": {
+    "file": "ISO_7010_M012.svg",
+    "meaning": "Mandatory action sign M012: Use handrail",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M012.svg",
+    "status": "ok"
+  },
+  "M013": {
+    "file": "ISO_7010_M013.svg",
+    "meaning": "Mandatory action sign M013: Wear a face shield",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M013.svg",
+    "status": "ok"
+  },
+  "M014": {
+    "file": "ISO_7010_M014.svg",
+    "meaning": "Mandatory action sign M014: Wear head protection",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M014.svg",
+    "status": "ok"
+  },
+  "M015": {
+    "file": "ISO_7010_M015.svg",
+    "meaning": "Mandatory action sign M015: Wear high-visibility clothing",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M015.svg",
+    "status": "ok"
+  },
+  "M016": {
+    "file": "ISO_7010_M016.svg",
+    "meaning": "Mandatory action sign M016: Wear a mask",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M016.svg",
+    "status": "ok"
+  },
+  "M017": {
+    "file": "ISO_7010_M017.svg",
+    "meaning": "Mandatory action sign M017: Wear respiratory protection",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M017.svg",
+    "status": "ok"
+  },
+  "M018": {
+    "file": "ISO_7010_M018.svg",
+    "meaning": "Mandatory action sign M018: Wear a safety harness",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M018.svg",
+    "status": "ok"
+  },
+  "M019": {
+    "file": "ISO_7010_M019.svg",
+    "meaning": "Mandatory action sign M019: Wear a welding mask",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M019.svg",
+    "status": "ok"
+  },
+  "M020": {
+    "file": "ISO_7010_M020.svg",
+    "meaning": "Mandatory action sign M020: Wear safety belts",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M020.svg",
+    "status": "ok"
+  },
+  "M021": {
+    "file": "ISO_7010_M021.svg",
+    "meaning": "Mandatory action sign M021: Disconnect before carrying out maintenance or repair",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M021.svg",
+    "status": "ok"
+  },
+  "M022": {
+    "file": "ISO_7010_M022.svg",
+    "meaning": "Mandatory action sign M022: Use barrier cream",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M022.svg",
+    "status": "ok"
+  },
+  "M023": {
+    "file": "ISO_7010_M023.svg",
+    "meaning": "Mandatory action sign M023: Use footbridge",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M023.svg",
+    "status": "ok"
+  },
+  "M024": {
+    "file": "ISO_7010_M024.svg",
+    "meaning": "Mandatory action sign M024: Use this walkway",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M024.svg",
+    "status": "ok"
+  },
+  "M025": {
+    "file": "ISO_7010_M025.svg",
+    "meaning": "Mandatory action sign M025: Protect infants' eyes with opaque eye protection",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M025.svg",
+    "status": "ok"
+  },
+  "M026": {
+    "file": "ISO_7010_M026.svg",
+    "meaning": "Mandatory action sign M026: Use protective apron",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M026.svg",
+    "status": "ok"
+  },
+  "M027": {
+    "file": "ISO_7010_M027.svg",
+    "meaning": "Mandatory action sign M027: Check guard",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M027%3B_mandatory%3B_install_or_check_guard.svg",
+    "status": "ok"
+  },
+  "M028": {
+    "file": "ISO_7010_M028.svg",
+    "meaning": "ISO 7010 M028; mandatory; install locks and keep locked",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M028%3B_mandatory%3B_install_locks_and_keep_locked.svg",
+    "status": "ok"
+  },
+  "M029": {
+    "file": "ISO_7010_M029.svg",
+    "meaning": "ISO 7010 M029; mandatory; sound your horn",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M029%3B_mandatory%3B_sound_your_horn.svg",
+    "status": "ok"
+  },
+  "M030": {
+    "file": "ISO_7010_M030.svg",
+    "meaning": "ISO 7010 M030; mandatory; place trash (litter, waste, refuse) in the bin (receptacle, trashcan, wastebasket, poubelle)",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M030%3B_mandatory%3B_place_trash_in_the_bin.svg",
+    "status": "ok"
+  },
+  "M031": {
+    "file": "ISO_7010_M031.svg",
+    "meaning": "ISO 7010 M031; mandatory; use guard to protect from injury from the table saw",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M031%3B_mandatory%3B_use_guard_to_protect_from_injury_from_the_table_saw.svg",
+    "status": "ok"
+  },
+  "M032": {
+    "file": "ISO_7010_M032.svg",
+    "meaning": "ISO 7010 M032; mandatory; use footwear with anti-static or anti-spark features",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M032%3B_mandatory%3B_use_footwear_with_anti-static_or_anti-spark_features.svg",
+    "status": "ok"
+  },
+  "M035": {
+    "file": "ISO_7010_M035.svg",
+    "meaning": "ISO 7010 M035 mandatory; exit towpath after falling. If you fall, exit the towpath to avoid serious injury from the next skier, or from other hazards.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M035_mandatory%3B_exit_towpath_after_falling.svg",
+    "status": "ok"
+  },
+  "M046": {
+    "file": "ISO_7010_M046.svg",
+    "meaning": "ISO 7010 M046 mandatory; secure gas cylinders to avoid flammable or explosive vapors being released",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M046%3B_mandatory%3B_secure_gas_cylinders.svg",
+    "status": "ok"
+  },
+  "M047": {
+    "file": "ISO_7010_M047.svg",
+    "meaning": "ISO 7010 M047; mandatory; use breathing equipment (SCBA)",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M047%3B_mandatory%3B_use_breathing_equipment_%28SCBA%29.svg",
+    "status": "ok"
+  },
+  "M048": {
+    "file": "ISO_7010_M048.svg",
+    "meaning": "Gebotszeichen nach ISO 7010: Gasdetektor benutzen",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M048_Gasdetektor_benutzen.svg",
+    "status": "ok"
+  },
+  "M049": {
+    "file": "ISO_7010_M049.svg",
+    "meaning": "ISO 7010 M049; mandatory; use personal protective equipment for sport",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M049%3B_mandatory%3B_use_personal_protective_equipment_for_sport.svg",
+    "status": "ok"
+  },
+  "M053": {
+    "file": "ISO_7010_M053.svg",
+    "meaning": "ISO 7010 M053; mandatory; wear personal floatation device (PFD) (lifejacket) (lifevest) (life preserver)",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M053%3B_mandatory%3B_wear_personal_floatation_device_%28PFD%29_%28lifejacket%29.svg",
+    "status": "ok"
+  },
+  "M054": {
+    "file": "ISO_7010_M054.svg",
+    "meaning": "ISO 7010 M054; supervise children during aquatic activities",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M054%3B_supervise_children_during_aquatic_activities.svg",
+    "status": "ok"
+  },
+  "M055": {
+    "file": "ISO_7010_M055.svg",
+    "meaning": "Mandatory action sign M055: Keep out of reach of children",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M055.svg",
+    "status": "ok"
+  },
+  "M056": {
+    "file": "ISO_7010_M056.svg",
+    "meaning": "ISO 7010 M056: Ventilate before and during entering",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M056.svg",
+    "status": "ok"
+  },
+  "M057": {
+    "file": "ISO_7010_M057.svg",
+    "meaning": "ISO 7010 M056: Ensure continuous ventilation",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M057.svg",
+    "status": "ok"
+  },
+  "M058": {
+    "file": "ISO_7010_M058.svg",
+    "meaning": "ISO 7010 M058 mandatory action sign: Entry only with supervisor outside",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M058.svg",
+    "status": "ok"
+  },
+  "M059": {
+    "file": "ISO_7010_M059.svg",
+    "meaning": "ISO 7010 M059 mandatory action sign: Wear laboratory coat",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M059.svg",
+    "status": "ok"
+  },
+  "M060": {
+    "file": "ISO_7010_M060.svg",
+    "meaning": "ISO 7010 M060 Hold the trolley handle; To signify that the handle of the trolley must be held firmly when using a moving walk or escalator",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M060.svg",
+    "status": "ok"
+  },
+  "M061": {
+    "file": "ISO_7010_M061.svg",
+    "meaning": "ISO 7010 M061 Disinfect your hands; To signify that hands must be disinfected",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M061.svg",
+    "status": "ok"
+  },
+  "M062": {
+    "file": "ISO_7010_M062.svg",
+    "meaning": "ISO 7010 M062 Disinfect surface; To signify that the surface must be disinfected",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M062.svg",
+    "status": "ok"
+  },
+  "M065": {
+    "file": "ISO_7010_M065.svg",
+    "meaning": "ISO 7010 M065 Children must be accompanied; To signify that children must be accompanied by an adult",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M065.svg",
+    "status": "ok"
+  },
+  "M066": {
+    "file": "ISO_7010_M066.svg",
+    "meaning": "ISO 7010 M066 Wear a sports helmet; To signify that a sports helmet must be worn",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M066.svg",
+    "status": "ok"
+  },
+  "M067": {
+    "file": "ISO_7010_M067.svg",
+    "meaning": "ISO 7010 M067 Wear snow goggles; To signify that skiers and snowboarders must wear snow goggles",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M067.svg",
+    "status": "ok"
+  },
+  "M068": {
+    "file": "ISO_7010_M068.svg",
+    "meaning": "Lock moving mechanical parts; To signify that moving mechanical parts must be locked before accessing an area to carry out maintenance or repair.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M068.svg",
+    "status": "ok"
+  },
+  "M069": {
+    "file": "ISO_7010_M069.svg",
+    "meaning": "Tools must be tethered; To signify that tools must be securely tethered",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M069.svg",
+    "status": "ok"
+  },
+  "M070": {
+    "file": "ISO_7010_M070.svg",
+    "meaning": "ISO 7010 M070 Use lamp in luminaire with shield; To signify that the lamp must be used only in a luminaire with a protective shield.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M070.svg",
+    "status": "ok"
+  },
+  "M071": {
+    "file": "ISO_7010_M071.svg",
+    "meaning": "ISO 7010 M071 Use anti-tip restraints; To signify that anti-tip restraints must be used.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M071.svg",
+    "status": "ok"
+  },
+  "M072": {
+    "file": "ISO_7010_M072.svg",
+    "meaning": "Use decontamination shower; To signify that a decontamination shower must be used.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_M072.svg",
+    "status": "ok"
+  },
+  "P001": {
+    "file": "ISO_7010_P001.svg",
+    "meaning": "Prohibition sign P001: Generic prohibition sign",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P001.svg",
+    "status": "ok"
+  },
+  "P002": {
+    "file": "ISO_7010_P002.svg",
+    "meaning": "Prohibition sign P002: Smoking prohibited",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P002.svg",
+    "status": "ok"
+  },
+  "P003": {
+    "file": "ISO_7010_P003.svg",
+    "meaning": "Prohibition sign P003: No Fire, No Smoking",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P003.svg",
+    "status": "ok"
+  },
+  "P004": {
+    "file": "ISO_7010_P004.svg",
+    "meaning": "Prohibition sign P004: No pedestrians",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P004.svg",
+    "status": "ok"
+  },
+  "P005": {
+    "file": "ISO_7010_P005.svg",
+    "meaning": "Prohibition sign P005: No potable water",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P005.svg",
+    "status": "ok"
+  },
+  "P006": {
+    "file": "ISO_7010_P006.svg",
+    "meaning": "Prohibition sign P006: No high-lift trucks",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P006.svg",
+    "status": "ok"
+  },
+  "P007": {
+    "file": "ISO_7010_P007.svg",
+    "meaning": "Prohibition sign P007: No access with cardiac pacemaker or implanted defibrillators",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P007.svg",
+    "status": "ok"
+  },
+  "P008": {
+    "file": "ISO_7010_P008.svg",
+    "meaning": "Prohibition sign P008: No metallic articles or watches",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P008.svg",
+    "status": "ok"
+  },
+  "P009": {
+    "file": "ISO_7010_P009.svg",
+    "meaning": "Prohibition sign P009: No climbing",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P009.svg",
+    "status": "ok"
+  },
+  "P010": {
+    "file": "ISO_7010_P010.svg",
+    "meaning": "Prohibition sign P010: Do not touch",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P010.svg",
+    "status": "ok"
+  },
+  "P011": {
+    "file": "ISO_7010_P011.svg",
+    "meaning": "Prohibition sign P011: No fire extinction with water",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P011.svg",
+    "status": "ok"
+  },
+  "P012": {
+    "file": "ISO_7010_P012.svg",
+    "meaning": "Prohibition sign P012: No heavy load",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P012.svg",
+    "status": "ok"
+  },
+  "P013": {
+    "file": "ISO_7010_P013.svg",
+    "meaning": "Prohibition sign/icon/logo P013: No cellphones allowed",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P013.svg",
+    "status": "ok"
+  },
+  "P014": {
+    "file": "ISO_7010_P014.svg",
+    "meaning": "Prohibition sign P014: No access with metallic implants",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P014.svg",
+    "status": "ok"
+  },
+  "P015": {
+    "file": "ISO_7010_P015.svg",
+    "meaning": "Prohibition sign P015: Do not grab inside",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P015.svg",
+    "status": "ok"
+  },
+  "P016": {
+    "file": "ISO_7010_P016.svg",
+    "meaning": "Prohibition sign P016: Do not spray with water",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P016.svg",
+    "status": "ok"
+  },
+  "P017": {
+    "file": "ISO_7010_P017.svg",
+    "meaning": "Do Not Push",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P017.svg",
+    "status": "ok"
+  },
+  "P018": {
+    "file": "ISO_7010_P018.svg",
+    "meaning": "Do Not Sit Here",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P018.svg",
+    "status": "ok"
+  },
+  "P019": {
+    "file": "ISO_7010_P019.svg",
+    "meaning": "Aufsteigen verboten",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P019.svg",
+    "status": "ok"
+  },
+  "P020": {
+    "file": "ISO_7010_P020.svg",
+    "meaning": "Prohibition sign P020: Do not use lift in case of fire",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P020.svg",
+    "status": "ok"
+  },
+  "P021": {
+    "file": "ISO_7010_P021.svg",
+    "meaning": "Prohibition sign P021: No dogs",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P021.svg",
+    "status": "ok"
+  },
+  "P022": {
+    "file": "ISO_7010_P022.svg",
+    "meaning": "Prohibition sign P022: Do not eat or drink",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P022.svg",
+    "status": "ok"
+  },
+  "P023": {
+    "file": "ISO_7010_P023.svg",
+    "meaning": "Prohibition sign P023: Do not obstruct",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P023.svg",
+    "status": "ok"
+  },
+  "P024": {
+    "file": "ISO_7010_P024.svg",
+    "meaning": "Prohibition sign P024: Do not step in this area",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P024.svg",
+    "status": "ok"
+  },
+  "P025": {
+    "file": "ISO_7010_P025.svg",
+    "meaning": "Do not use this incomplete scaffold",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P025.svg",
+    "status": "ok"
+  },
+  "P026": {
+    "file": "ISO_7010_P026.svg",
+    "meaning": "ISO 7010 safety symbol P026: Do not use this device near bathtub, shower or water filled reservoir .",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P026.svg",
+    "status": "ok"
+  },
+  "P027": {
+    "file": "ISO_7010_P027.svg",
+    "meaning": "Prohibition sign P027: No transport of persons (lift)",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P027.svg",
+    "status": "ok"
+  },
+  "P028": {
+    "file": "ISO_7010_P028.svg",
+    "meaning": "Prohibition sign P028: Do not use wearing gloves",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P028.svg",
+    "status": "ok"
+  },
+  "P029": {
+    "file": "ISO_7010_P029.svg",
+    "meaning": "No Photography",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P029.svg",
+    "status": "ok"
+  },
+  "P030": {
+    "file": "ISO_7010_P030.svg",
+    "meaning": "ISO 7010 prohibition symbol, P030: Do not tie knots in rope .",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P030.svg",
+    "status": "ok"
+  },
+  "P031": {
+    "file": "ISO_7010_P031.svg",
+    "meaning": "Prohibition sign P031: Do not operate",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P031.svg",
+    "status": "ok"
+  },
+  "P032": {
+    "file": "ISO_7010_P032.svg",
+    "meaning": "Prohibition sign P032: Not allowed for angle grinder",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P032.svg",
+    "status": "ok"
+  },
+  "P033": {
+    "file": "ISO_7010_P033.svg",
+    "meaning": "Prohibition sign P033: Not permissible for wet grinding",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P033.svg",
+    "status": "ok"
+  },
+  "P034": {
+    "file": "ISO_7010_P034.svg",
+    "meaning": "Prohibition sign P034: Not permissible for free-hand and hand-guided grinding",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P034.svg",
+    "status": "ok"
+  },
+  "P035": {
+    "file": "ISO_7010_P035.svg",
+    "meaning": "Prohibition sign P035: Do not wear metal-studded footwear",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P035.svg",
+    "status": "ok"
+  },
+  "P036": {
+    "file": "ISO_7010_P036.svg",
+    "meaning": "Prohibition sign P036: No children allowed",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P036.svg",
+    "status": "ok"
+  },
+  "P037": {
+    "file": "ISO_7010_P037.svg",
+    "meaning": "Prohibition sign P037: Do not leave the tow-track",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P037.svg",
+    "status": "ok"
+  },
+  "P038": {
+    "file": "ISO_7010_P038.svg",
+    "meaning": "Prohibition sign P038: Do not swing the chair",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P038.svg",
+    "status": "ok"
+  },
+  "P039": {
+    "file": "ISO_7010_P039.svg",
+    "meaning": "Prohibition sign P039: Hot works prohibited",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P039.svg",
+    "status": "ok"
+  },
+  "P040": {
+    "file": "ISO_7010_P040.svg",
+    "meaning": "Prohibition sign P040: Do not set off fireworks",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P040.svg",
+    "status": "ok"
+  },
+  "P041": {
+    "file": "ISO_7010_P041.svg",
+    "meaning": "Prohibition sign P041: No leaning against",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P041.svg",
+    "status": "ok"
+  },
+  "P042": {
+    "file": "ISO_7010_P042.svg",
+    "meaning": "Prohibition sign P042: Not for pregnant women",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P042.svg",
+    "status": "ok"
+  },
+  "P043": {
+    "file": "ISO_7010_P043.svg",
+    "meaning": "Prohibition sign P043: Not for people in the state of intoxication",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P043.svg",
+    "status": "ok"
+  },
+  "P044": {
+    "file": "ISO_7010_P044.svg",
+    "meaning": "Prohibition sign P044: Use of smart glasses prohibited",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P044.svg",
+    "status": "ok"
+  },
+  "P045": {
+    "file": "ISO_7010_P045.svg",
+    "meaning": "Prohibition sign P045: No campfire",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P045.svg",
+    "status": "ok"
+  },
+  "P048": {
+    "file": "ISO_7010_P048.svg",
+    "meaning": "Prohibition sign P048: No running",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P048.svg",
+    "status": "ok"
+  },
+  "P049": {
+    "file": "ISO_7010_P049.svg",
+    "meaning": "Prohibition sign P049: No swimming",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P049.svg",
+    "status": "ok"
+  },
+  "P050": {
+    "file": "ISO_7010_P050.svg",
+    "meaning": "Prohibition sign P050: No snorkelling",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P050.svg",
+    "status": "ok"
+  },
+  "P051": {
+    "file": "ISO_7010_P051.svg",
+    "meaning": "Prohibition sign P051: No sub-aqua diving",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P051.svg",
+    "status": "ok"
+  },
+  "P052": {
+    "file": "ISO_7010_P052.svg",
+    "meaning": "Prohibition sign P052: No diving",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P052.svg",
+    "status": "ok"
+  },
+  "P053": {
+    "file": "ISO_7010_P053.svg",
+    "meaning": "Prohibition sign P053: No sailing",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P053.svg",
+    "status": "ok"
+  },
+  "P054": {
+    "file": "ISO_7010_P054.svg",
+    "meaning": "Prohibition sign P054: No windsurfing",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P054.svg",
+    "status": "ok"
+  },
+  "P055": {
+    "file": "ISO_7010_P055.svg",
+    "meaning": "Prohibition sign P055: No manually powered craft",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P055.svg",
+    "status": "ok"
+  },
+  "P056": {
+    "file": "ISO_7010_P056.svg",
+    "meaning": "Prohibition sign P056: No mechanically powered craft",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P056.svg",
+    "status": "ok"
+  },
+  "P057": {
+    "file": "ISO_7010_P057.svg",
+    "meaning": "Prohibition sign P057: No personal water craft",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P057.svg",
+    "status": "ok"
+  },
+  "P058": {
+    "file": "ISO_7010_P058.svg",
+    "meaning": "Prohibition sign P058: No towed water activity",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P058.svg",
+    "status": "ok"
+  },
+  "P059": {
+    "file": "ISO_7010_P059.svg",
+    "meaning": "Prohibition sign P059: No surf craft",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P059.svg",
+    "status": "ok"
+  },
+  "P060": {
+    "file": "ISO_7010_P060.svg",
+    "meaning": "Prohibition sign P060: No outdoor footwear",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P060.svg",
+    "status": "ok"
+  },
+  "P061": {
+    "file": "ISO_7010_P061.svg",
+    "meaning": "Prohibition sign P061: No jumping into water",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P061.svg",
+    "status": "ok"
+  },
+  "P062": {
+    "file": "ISO_7010_P062.svg",
+    "meaning": "Prohibition sign P062: No pushing into water",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P062.svg",
+    "status": "ok"
+  },
+  "P063": {
+    "file": "ISO_7010_P063.svg",
+    "meaning": "Prohibition sign P063: No body boarding",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P063.svg",
+    "status": "ok"
+  },
+  "P064": {
+    "file": "ISO_7010_P064.svg",
+    "meaning": "Prohibition sign P064: No surfing between the red-and-yellow flags",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P064.svg",
+    "status": "ok"
+  },
+  "P065": {
+    "file": "ISO_7010_P065.svg",
+    "meaning": "Prohibition sign P065: No kite surfing",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P065.svg",
+    "status": "ok"
+  },
+  "P066": {
+    "file": "ISO_7010_P066.svg",
+    "meaning": "Prohibition sign P066: No parasailing",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P066.svg",
+    "status": "ok"
+  },
+  "P067": {
+    "file": "ISO_7010_P067.svg",
+    "meaning": "Prohibition sign P067: No sand yachting",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P067.svg",
+    "status": "ok"
+  },
+  "P068": {
+    "file": "ISO_7010_P068.svg",
+    "meaning": "Prohibition sign P068: Do not expose to direct sunlight or hot surface",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P068.svg",
+    "status": "ok"
+  },
+  "P069": {
+    "file": "ISO_7010_P069.svg",
+    "meaning": "Prohibition sign P069: Not to be serviced by users",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P069.svg",
+    "status": "ok"
+  },
+  "P070": {
+    "file": "ISO_7010_P070.svg",
+    "meaning": "Prohibition sign P070: Do not put finger into the nozzle of a hydromassage",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P070.svg",
+    "status": "ok"
+  },
+  "P071": {
+    "file": "ISO_7010_P071.svg",
+    "meaning": "Prohibition sign P071: Do not cross barrier",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P071.svg",
+    "status": "ok"
+  },
+  "P072": {
+    "file": "ISO_7010_P072.svg",
+    "meaning": "Prohibition sign P072: No jumping down",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P072.svg",
+    "status": "ok"
+  },
+  "P073": {
+    "file": "ISO_7010_P073.svg",
+    "meaning": "ISO 7010 P073 Do not shut lid when burners are operating; To prohibit shutting the lid when at least one of the burners is operating",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P073.svg",
+    "status": "ok"
+  },
+  "P074": {
+    "file": "ISO_7010_P074.svg",
+    "meaning": "ISO 7010 P074 Child seat installation prohibited; To prohibit installing rear-facing child seat (in the passenger seat while passenger airbag is activated)",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P074.svg",
+    "status": "ok"
+  },
+  "P075": {
+    "file": "ISO_7010_P075.svg",
+    "meaning": "ISO 7010 P075 Do not stare at light source; To prohibit staring at a light source",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P075.svg",
+    "status": "ok"
+  },
+  "P077": {
+    "file": "ISO_7010_P077.svg",
+    "meaning": "ISO 7010 P077 No snowboarding; To prohibit snowboarding",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P077.svg",
+    "status": "ok"
+  },
+  "P079": {
+    "file": "ISO_7010_P079.svg",
+    "meaning": "ISO 7010 P079 No ice skating; To prohibit ice skating",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P079.svg",
+    "status": "ok"
+  },
+  "P080": {
+    "file": "ISO_7010_P080.svg",
+    "meaning": "ISO 7010 P080 No access for unauthorized persons; To prohibit unauthorized persons from accessing an area",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P080.svg",
+    "status": "ok"
+  },
+  "P081": {
+    "file": "ISO_7010_P081.svg",
+    "meaning": "ISO 7010 P081 Do not cover appliance; To prohibit covering appliance with material",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_P081.svg",
+    "status": "ok"
+  },
+  "W001": {
+    "file": "ISO_7010_W001.svg",
+    "meaning": "Warning sign W001: Generic warning",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W001.svg",
+    "status": "ok"
+  },
+  "W002": {
+    "file": "ISO_7010_W002.svg",
+    "meaning": "Warning sign W002: Explosive substances",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W002.svg",
+    "status": "ok"
+  },
+  "W003": {
+    "file": "ISO_7010_W003.svg",
+    "meaning": "Warning sign W003: Radioactive substances or ionising radiation",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W003.svg",
+    "status": "ok"
+  },
+  "W004": {
+    "file": "ISO_7010_W004.svg",
+    "meaning": "Warning sign W004: Warning for laser beam",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W004.svg",
+    "status": "ok"
+  },
+  "W005": {
+    "file": "ISO_7010_W005.svg",
+    "meaning": "Warning sign W005: Non-ionising electromagnetic radiation",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W005.svg",
+    "status": "ok"
+  },
+  "W006": {
+    "file": "ISO_7010_W006.svg",
+    "meaning": "Warning sign W006: Warning for magnetic field",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W006.svg",
+    "status": "ok"
+  },
+  "W007": {
+    "file": "ISO_7010_W007.svg",
+    "meaning": "Warning sign W007: Risk of stumbling",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W007.svg",
+    "status": "ok"
+  },
+  "W008": {
+    "file": "ISO_7010_W008.svg",
+    "meaning": "Warning sign W008: Risk of falling",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W008.svg",
+    "status": "ok"
+  },
+  "W009": {
+    "file": "ISO_7010_W009.svg",
+    "meaning": "Warning sign W009: Biohazard",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W009.svg",
+    "status": "ok"
+  },
+  "W010": {
+    "file": "ISO_7010_W010.svg",
+    "meaning": "Warning sign W0010: Low temperatures",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W010.svg",
+    "status": "ok"
+  },
+  "W011": {
+    "file": "ISO_7010_W011.svg",
+    "meaning": "Warning sign W011: Slip hazard",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W011.svg",
+    "status": "ok"
+  },
+  "W012": {
+    "file": "ISO_7010_W012.svg",
+    "meaning": "Warning sign W012: High Voltage",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W012.svg",
+    "status": "ok"
+  },
+  "W013": {
+    "file": "ISO_7010_W013.svg",
+    "meaning": "Warnung vor Wachhund",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W013.svg",
+    "status": "ok"
+  },
+  "W014": {
+    "file": "ISO_7010_W014.svg",
+    "meaning": "Warning sign W014: Fork lift trucks warning",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W014.svg",
+    "status": "ok"
+  },
+  "W015": {
+    "file": "ISO_7010_W015.svg",
+    "meaning": "Warning sign W015: Overhead load warning",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W015.svg",
+    "status": "ok"
+  },
+  "W016": {
+    "file": "ISO_7010_W016.svg",
+    "meaning": "Warning sign W016: Poisonous substances",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W016.svg",
+    "status": "ok"
+  },
+  "W017": {
+    "file": "ISO_7010_W017.svg",
+    "meaning": "Warning sign W017: Warning for hot surface",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W017.svg",
+    "status": "ok"
+  },
+  "W018": {
+    "file": "ISO_7010_W018.svg",
+    "meaning": "Warning sign W018: Remotely started equipment",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W018.svg",
+    "status": "ok"
+  },
+  "W019": {
+    "file": "ISO_7010_W019.svg",
+    "meaning": "Warning sign W019: Risk of crushing",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W019.svg",
+    "status": "ok"
+  },
+  "W020": {
+    "file": "ISO_7010_W020.svg",
+    "meaning": "Warning of obstacles in the head area according to DIN EN ISO 7010",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W020.svg",
+    "status": "ok"
+  },
+  "W021": {
+    "file": "ISO_7010_W021.svg",
+    "meaning": "Warning sign W021: Combustible and flammable materials",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W021.svg",
+    "status": "ok"
+  },
+  "W022": {
+    "file": "ISO_7010_W022.svg",
+    "meaning": "Warning of sharp objects",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W022.svg",
+    "status": "ok"
+  },
+  "W023": {
+    "file": "ISO_7010_W023.svg",
+    "meaning": "Warning sign W023: Corrosive substances",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W023.svg",
+    "status": "ok"
+  },
+  "W024": {
+    "file": "ISO_7010_W024.svg",
+    "meaning": "Warning sign W024: Hand injury",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W024.svg",
+    "status": "ok"
+  },
+  "W025": {
+    "file": "ISO_7010_W025.svg",
+    "meaning": "Warning sign W025: Counter rotating roller",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W025.svg",
+    "status": "ok"
+  },
+  "W026": {
+    "file": "ISO_7010_W026.svg",
+    "meaning": "Warning sign W026: Danger from loading batteries",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W026.svg",
+    "status": "ok"
+  },
+  "W027": {
+    "file": "ISO_7010_W027.svg",
+    "meaning": "Warning sign W027: Warning for optical radiation",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W027.svg",
+    "status": "ok"
+  },
+  "W028": {
+    "file": "ISO_7010_W028.svg",
+    "meaning": "Warning sign W028: Oxidising material",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W028.svg",
+    "status": "ok"
+  },
+  "W029": {
+    "file": "ISO_7010_W029.svg",
+    "meaning": "Warning sign W029: Pressurized Cylinders",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W029.svg",
+    "status": "ok"
+  },
+  "W030": {
+    "file": "ISO_7010_W030.svg",
+    "meaning": "Warning sign from ISO 7010 W030 - Hand Injury in Press",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W030.svg",
+    "status": "ok"
+  },
+  "W031": {
+    "file": "ISO_7010_W031.svg",
+    "meaning": "Warning icon similar to recommendation issued in ISO 7010:2019. W031; warning, hand injury from workpiece moving in press brake machinery",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W031%3B_warning%2C_hand_injury_from_workpiece_moving_in_press_brake_machinery.svg",
+    "status": "ok"
+  },
+  "W032": {
+    "file": "ISO_7010_W032.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; rapid movement of workpiece in press brake machine; metal bending hazards; parts may move; operator safety; workplace safety hazard.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W032_warning%3B_rapid_movement_of_workpiece_in_press_brake_machine.svg",
+    "status": "ok"
+  },
+  "W033": {
+    "file": "ISO_7010_W033.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; barbed wire; laceration; injury to personal body; injury to animals; sharp objects; occupational hazards",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W033_warning%3B_barbed_wire.svg",
+    "status": "ok"
+  },
+  "W034": {
+    "file": "ISO_7010_W034.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; bull in area; cattle hazards; large animal hazards; unsecured animal pen",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W034_warning%3B_bull.svg",
+    "status": "ok"
+  },
+  "W035": {
+    "file": "ISO_7010_W035.svg",
+    "meaning": "Warning sign W001: Warning falling objects",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W035.svg",
+    "status": "ok"
+  },
+  "W036": {
+    "file": "ISO_7010_W036.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; fragile roof; roof does not support weight of human body; bonk; unsafe area for walking",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W036_warning%3B_fragile_roof.svg",
+    "status": "ok"
+  },
+  "W037": {
+    "file": "ISO_7010_W037.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; injury from automated or remote-controlled vehicles; human run over by an operator-controlled machine or automated vehicle. Vehicle drone. Autonomous vehicle. Remote vehicle. Autonomous Guided Vehicle. Moving Equipment hazard. Crash hazard. Bonk. Risk of injury or death.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W037_warning%3B_injury_from_automated_or_remote-controlled_vehicles.svg",
+    "status": "ok"
+  },
+  "W038": {
+    "file": "ISO_7010_W038.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; sudden loud noises; unexpected hearing damage may occur",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W038_warning%3B_sudden_loud_noises.svg",
+    "status": "ok"
+  },
+  "W039": {
+    "file": "ISO_7010_W039.svg",
+    "meaning": "Gefahr Eisschlag",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W039.svg",
+    "status": "ok"
+  },
+  "W040": {
+    "file": "ISO_7010_W040.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; risk of roof avalanche; sudden movement of snow pile off roof.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W040_warning%3B_roof_avalanche.svg",
+    "status": "ok"
+  },
+  "W041": {
+    "file": "ISO_7010_W041.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning: breathing hazard; toxic air; asphyxiation; inhalation hazard; asphyxiating atmosphere.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W041_warning%3B_breathing_hazard.svg",
+    "status": "ok"
+  },
+  "W042": {
+    "file": "ISO_7010_W042.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning: arc flash hazard; electrocution due to arc flash",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W042_warning%3B_arc_flash_hazard.svg",
+    "status": "ok"
+  },
+  "W043": {
+    "file": "ISO_7010_W043.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; thin ice; unsafe frozen surface",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W043_warning%3B_thin_ice.svg",
+    "status": "ok"
+  },
+  "W044": {
+    "file": "ISO_7010_W044.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; boat ramp; slipway",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W044_warning%3B_slipway.svg",
+    "status": "ok"
+  },
+  "W046": {
+    "file": "ISO_7010_W046.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; surfing; surfers; surf craft area; boarding; hangtenners",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W046_warning%3B_surfing.svg",
+    "status": "ok"
+  },
+  "W047": {
+    "file": "ISO_7010_W047.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; water is deep; deep water; depth; no standing possible in this water; drowning hazard",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W047_warning%3B_deep_water.svg",
+    "status": "ok"
+  },
+  "W048": {
+    "file": "ISO_7010_W048.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; diving hazard; shallow water; no diving",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W048_warning%3B_shallow_water.svg",
+    "status": "ok"
+  },
+  "W049": {
+    "file": "ISO_7010_W049.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; irregular surface; shallow water; submerged objects; bonk; no diving.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W049_warning%3B_submerged_objects.svg",
+    "status": "ok"
+  },
+  "W050": {
+    "file": "ISO_7010_W050.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; swimming pool bottom has a sudden drop to the deep end; deep water; drowning; no standing in the deep end.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W050_warning%3B_sudden_drop_in_swimming_pool.svg",
+    "status": "ok"
+  },
+  "W051": {
+    "file": "ISO_7010_W051.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; no guard rail; unprotected edges; car crash hazard; water hazard",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W051_warning%3B_no_guard_rail_and_unprotected_edges.svg",
+    "status": "ok"
+  },
+  "W052": {
+    "file": "ISO_7010_W052.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; erosion; unstable cliff edge; fall hazard",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W052_warning%3B_unstable_cliff_edge.svg",
+    "status": "ok"
+  },
+  "W053": {
+    "file": "ISO_7010_W053.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; unstable cliff; fall hazard (compare with W052)",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W053_warning%3B_unstable_cliff.svg",
+    "status": "ok"
+  },
+  "W054": {
+    "file": "ISO_7010_W054.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; sharks; predatory fish; sharp teeth",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W054_warning%3B_sharks.svg",
+    "status": "ok"
+  },
+  "W055": {
+    "file": "ISO_7010_W055.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; sewage effluent outfall; no swimming; toxic water hazard; sewer water; hygiene hazard",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W055_warning%3B_sewage_effluent_outfall.svg",
+    "status": "ok"
+  },
+  "W056": {
+    "file": "ISO_7010_W056.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; tsunami hazard area",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W056_warning%3B_tsunami_hazard_zone.svg",
+    "status": "ok"
+  },
+  "W057": {
+    "file": "ISO_7010_W057.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; strong currents; undertow; fast-moving water; drowning hazard.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W057_warning%3B_strong_currents.svg",
+    "status": "ok"
+  },
+  "W058": {
+    "file": "ISO_7010_W058.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; boats in operation; ships in operation; boating area; shipping area; no swimming; swimming hazard;",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W058_warning%3B_boating_area.svg",
+    "status": "ok"
+  },
+  "W059": {
+    "file": "ISO_7010_W059.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning: 'sand yachting', 'land yachting', 'dirtboating'; or fast-moving wind-propelled vehicles in this area; crash hazard; beach hazard.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W059%3B_sand_yachting.svg",
+    "status": "ok"
+  },
+  "W060": {
+    "file": "ISO_7010_W060.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; rising or incoming tides in this area; escape may not be possible; time-dependendthazard; beach hazard",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W060_warning%3B_incoming_tides.svg",
+    "status": "ok"
+  },
+  "W061": {
+    "file": "ISO_7010_W061.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; quicksand, mud, deep mud, silt, or unstable ground; sinking hazard; crushing, asphyxiation and suffocation hazard.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W061_warning%3B_quicksand%2C_mud%2C_deep_mud%2C_or_silt.svg",
+    "status": "ok"
+  },
+  "W062": {
+    "file": "ISO_7010_W062.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; kite surfing area; hangtenners; wind-propelled surfboards in operatrion",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W062_warning%3B_kite_surfing.svg",
+    "status": "ok"
+  },
+  "W063": {
+    "file": "ISO_7010_W063.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; parasailing; gliders connected to boats in this area; collision hazards due to rope, boat, aviation and other collisions; water hazard;",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W063_warning%3B_parasailing.svg",
+    "status": "ok"
+  },
+  "W064": {
+    "file": "ISO_7010_W064.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; strong winds; stiff breezes; airspeed; blown away; wind sock.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W064_warning%3B_strong_winds.svg",
+    "status": "ok"
+  },
+  "W065": {
+    "file": "ISO_7010_W065.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning: large waves; breaking waves; high surf; drowning hazard; swimming hazard; ocean hazard; lake hazard",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W065_warning%3B_high_surf_or_large_breaking_waves.svg",
+    "status": "ok"
+  },
+  "W066": {
+    "file": "ISO_7010_W066.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning: sudden drop to deep water in lakes or ocean (compare with ISO 7010 W050). Drowning hazard; unstable footing; water hazard.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W066_warning%3B_Sudden_drop_to_deep_water.svg",
+    "status": "ok"
+  },
+  "W067": {
+    "file": "ISO_7010_W067.svg",
+    "meaning": "Safety Icon, similar to recommendation issued in ISO 7010:2019. Warning; alligators, caymans, crocodiles; predator hazards; risk to people and small animals; chomp.",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W067_warning%3B_alligators%2C_caymans_and_crocodiles.svg",
+    "status": "ok"
+  },
+  "W068": {
+    "file": "ISO_7010_W068.svg",
+    "meaning": "Warning; Falling into water when stepping on or off a floating surface",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W068.svg",
+    "status": "ok"
+  },
+  "W069": {
+    "file": "ISO_7010_W069.svg",
+    "meaning": "Warning; Jellyfish",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W069.svg",
+    "status": "ok"
+  },
+  "W070": {
+    "file": "ISO_7010_W070.svg",
+    "meaning": "Warning; Step down",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W070.svg",
+    "status": "ok"
+  },
+  "W071": {
+    "file": "ISO_7010_W071.svg",
+    "meaning": "ISO 7010 W071: Substance or mixture presenting a health hazard",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W071.svg",
+    "status": "ok"
+  },
+  "W072": {
+    "file": "ISO_7010_W072.svg",
+    "meaning": "Warning; Substance or mixture that can cause an environmental hazard",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W072.svg",
+    "status": "ok"
+  },
+  "W073": {
+    "file": "ISO_7010_W073.svg",
+    "meaning": "ISO 7010 W073 Warning; Large-scale fire zone; To warn of a large-scale fire zone",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W073.svg",
+    "status": "ok"
+  },
+  "W074": {
+    "file": "ISO_7010_W074.svg",
+    "meaning": "ISO 7010 W074 Warning; Tornado zone; To warn of potential tornados in the area",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W074.svg",
+    "status": "ok"
+  },
+  "W075": {
+    "file": "ISO_7010_W075.svg",
+    "meaning": "ISO 7010 W075 Warning; Active volcano zone; To warn of an active volcano and volcanic eruptions",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W075.svg",
+    "status": "ok"
+  },
+  "W076": {
+    "file": "ISO_7010_W076.svg",
+    "meaning": "ISO 7010 W076 Warning; Debris flow zone; To warn of a zone where large debris flow or flash flooding can occur",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W076.svg",
+    "status": "ok"
+  },
+  "W077": {
+    "file": "ISO_7010_W077.svg",
+    "meaning": "ISO 7010 W077 Warning; Flood zone; To warn of flood (including flood from inland waters)",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W077.svg",
+    "status": "ok"
+  },
+  "W078": {
+    "file": "ISO_7010_W078.svg",
+    "meaning": "ISO 7010 W078 Warning; Landslide zone; To warn of landslide or unstable slopes",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W078.svg",
+    "status": "ok"
+  },
+  "W079": {
+    "file": "ISO_7010_W079.svg",
+    "meaning": "ISO 7010 W079; warning; hot content",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W079.svg",
+    "status": "ok"
+  },
+  "W080": {
+    "file": "ISO_7010_W080.svg",
+    "meaning": "ISO 7010 W080 Warning; Hot steam; To warn of the emission of hot steam",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W080.svg",
+    "status": "ok"
+  },
+  "W082": {
+    "file": "ISO_7010_W082.svg",
+    "meaning": "ISO 7010 W082 Warning; Crevasses under snow; To warn of crevasses under the snow",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W082.svg",
+    "status": "ok"
+  },
+  "W083": {
+    "file": "ISO_7010_W083.svg",
+    "meaning": "ISO 7010 W083 Warning; Avalanche; To warn of avalanche",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W083.svg",
+    "status": "ok"
+  },
+  "W084": {
+    "file": "ISO_7010_W084.svg",
+    "meaning": "ISO 7010 W084 Warning; Thunderstorm; To warn of thunderstorm",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W084.svg",
+    "status": "ok"
+  },
+  "W085": {
+    "file": "ISO_7010_W085.svg",
+    "meaning": "ISO 7010 W085 Warning; Typhoon/hurricane/cyclone zone; To warn of a potential typhoon/hurricane/cyclone in the area",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W085.svg",
+    "status": "ok"
+  },
+  "W087": {
+    "file": "ISO_7010_W087.svg",
+    "meaning": "ISO 7010 W087 Warning; High sound volume levels To warn of high sound volume levels over long periods of time",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W087.svg",
+    "status": "ok"
+  },
+  "W088": {
+    "file": "ISO_7010_W088.svg",
+    "meaning": "ISO 7010 W088 Warning; Moving blades To warn of moving blades",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W088.svg",
+    "status": "ok"
+  },
+  "W089": {
+    "file": "ISO_7010_W089.svg",
+    "meaning": "ISO 7010 W089 Warning; Moving gears; To warn of moving gears",
+    "source_page": "https://commons.wikimedia.org/wiki/ISO_7010_W089.svg",
+    "status": "ok"
+  }
+}
