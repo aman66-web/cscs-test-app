@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { authedRedirectTarget } from "@/lib/auth/redirect-target";
+import { isFreshOAuthSignup } from "@/lib/auth/new-account";
 
 /**
  * OAuth (Google / Apple) redirect target.
@@ -57,20 +58,28 @@ export async function GET(request: Request) {
       explicitNext && explicitNext.startsWith("/") && !explicitNext.startsWith("//")
         ? explicitNext
         : null;
-    let next = safeNext ?? (await authedRedirectTarget(supabase));
 
-    // Friendly new-vs-returning messaging. OAuth intentionally treats
-    // "Create account" and "Sign in" identically (the provider verifies the
-    // person; we sign them in either way — never an error). But when their
-    // expectation doesn't match reality, say so with a toast on arrival:
-    //  - came from "Create account" but the account already exists (they land
-    //    on the dashboard)      → "Welcome back — we've signed you in."
-    //  - came from "Sign in" but they're brand new (they land in onboarding)
-    //                           → "No account yet — let's get you set up."
-    if (mode === "signup" && next.startsWith("/dashboard")) {
-      next += (next.includes("?") ? "&" : "?") + "auth=welcomeBack";
-    } else if (mode === "signin" && next.startsWith("/onboarding")) {
-      next += (next.includes("?") ? "&" : "?") + "auth=setup";
+    // A brand-new OAuth account (Google/Apple just created it) is sent to the
+    // confirm-account interstitial FIRST — "no account found, create one?" —
+    // so we never silently sign up someone who only meant to sign in. They
+    // confirm (→ onboarding) or cancel (→ the account is deleted). Returning
+    // users skip this entirely.
+    let next: string;
+    if (!safeNext) {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (await isFreshOAuthSignup(supabase, user)) {
+        next = "/auth/confirm-account";
+      } else {
+        next = await authedRedirectTarget(supabase);
+        // Existing account reached via "Create account" → a friendly note.
+        if (mode === "signup" && next.startsWith("/dashboard")) {
+          next += (next.includes("?") ? "&" : "?") + "auth=welcomeBack";
+        }
+      }
+    } else {
+      next = safeNext;
     }
 
     // `x-forwarded-host` is set behind a load balancer / proxy.

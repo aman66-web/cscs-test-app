@@ -1,0 +1,10 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Full-bleed charcoal square (iOS applies its own rounded-corner mask) -->
+  <rect width="1024" height="1024" fill="#1C1917"/>
+  <!-- Hard-hat brim -->
+  <rect x="176" y="622" width="672" height="112" rx="56" fill="#F97316"/>
+  <!-- Hard-hat dome -->
+  <path d="M288 654a224 224 0 0 1 448 0z" fill="#F97316"/>
+  <!-- Hi-vis reflective stripe across the dome -->
+  <rect x="320" y="474" width="384" height="82" rx="41" fill="#FACC15"/>
+</svg>

@@ -21,6 +21,7 @@
 // =============================================================
 
 import { createClient } from "@/lib/supabase/client";
+import { isFreshOAuthSignup } from "@/lib/auth/new-account";
 
 export type NativeOAuthProvider = "google" | "apple";
 
@@ -80,6 +81,11 @@ async function nativeRedirect(
     const {
       data: { user },
     } = await supabase.auth.getUser();
+    // A brand-new OAuth account goes to the confirm-account interstitial first
+    // (same as the web callback) — never a silent sign-up.
+    if (await isFreshOAuthSignup(supabase, user)) {
+      return "/auth/confirm-account";
+    }
     let onboarded = false;
     if (user) {
       const { data } = await supabase
@@ -91,7 +97,6 @@ async function nativeRedirect(
     }
     let dest = onboarded ? "/dashboard" : "/onboarding";
     if (mode === "signup" && dest === "/dashboard") dest += "?auth=welcomeBack";
-    else if (mode === "signin" && dest === "/onboarding") dest += "?auth=setup";
     return dest;
   } catch {
     return "/";
