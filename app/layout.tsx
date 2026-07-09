@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { NativeReminderSync } from "@/components/app/native-reminder-sync";
 import { ReviewGate } from "@/components/review/review-gate";
+import { LanguageProvider } from "@/components/i18n/language-provider";
 import "./globals.css";
 
 // App-wide brand font (matches the My Life in the UK Test app). Loaded via
@@ -39,13 +40,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Light theme (brand purple accent). No `dark` class — the app is light-only.
+  // Construction theme (charcoal + safety-orange), light-only. The
+  // LanguageProvider makes the chosen interface language available app-wide
+  // (used by the landing screen today; more screens can adopt t() over time).
   return (
     <html lang="en" className={jakarta.variable}>
       <body>
-        {children}
-        <NativeReminderSync />
-        <ReviewGate />
+        <LanguageProvider>
+          {children}
+          <NativeReminderSync />
+          <ReviewGate />
+        </LanguageProvider>
       </body>
     </html>
   );
