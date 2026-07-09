@@ -86,15 +86,18 @@ export function LearnModules() {
                         <span className="h-2 w-2 flex-none rounded-full" style={{ background: subDotColor(subPct) }} />
                         {s.title}
                         <span className="ms-auto text-xs font-extrabold text-ink-soft">
-                          {subPct > 0 ? `${subPct}%` : ""}
+                          {subPct}%
                         </span>
                       </Link>
                       {midCheckAfter ? (
                         <Link
-                          href={`/test/${m.key}`}
+                          href={`/practice/${m.key}`}
                           className="flex items-center gap-2.5 border-b border-ink/5 py-[11px] text-[13.5px] font-extrabold text-purple-deep"
                         >
-                          🎯 Mid-module check
+                          📝 Mid-module check
+                          <span className="ms-auto text-xs font-extrabold">
+                            Take it
+                          </span>
                         </Link>
                       ) : null}
                     </div>
@@ -102,25 +105,32 @@ export function LearnModules() {
                 })}
 
                 <Link
-                  href={`/flashcards/${m.key}`}
+                  href={`/learn/${m.key}/flashcards`}
                   className="flex items-center gap-2.5 border-b border-ink/5 py-[11px] text-[13.5px] font-extrabold text-purple-deep"
                 >
                   🃏 Module flashcards
+                  <span className="ms-auto text-xs font-extrabold">Review</span>
                 </Link>
 
                 {allOpened ? (
                   <Link
-                    href={`/test/${m.key}`}
+                    href={`/practice/session?topics=${m.key}&final=1`}
                     className="flex items-center gap-2.5 py-[11px] text-[13.5px] font-extrabold text-purple-deep"
                   >
-                    ✅ Final module test
+                    🏁 Final module test
+                    <span className="ms-auto text-xs font-extrabold">
+                      Take it
+                    </span>
                   </Link>
                 ) : (
                   <div
                     aria-disabled="true"
                     className="flex items-center gap-2.5 py-[11px] text-[13.5px] font-extrabold text-ink-soft"
                   >
-                    🔒 Final module test — open all lessons to unlock
+                    🏁 Final module test
+                    <span className="ms-auto text-xs font-extrabold">
+                      Locked 🔒
+                    </span>
                   </div>
                 )}
               </div>

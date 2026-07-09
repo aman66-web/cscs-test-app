@@ -1,156 +1,253 @@
 import { NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { createClient } from "@/lib/supabase/server";
-import { computeReadiness, READINESS_COPY, type AnswerSample } from "@/lib/readiness/readiness";
+import {
+  computeReadiness,
+  READINESS_COPY,
+  BOOK_READY_PERCENT,
+  type AnswerSample,
+} from "@/lib/readiness/readiness";
+import {
+  topicStats,
+  weakestFirst,
+  type TopicCount,
+} from "@/lib/study-plan/study-plan";
+import { sanitizeTopics, TOPICS, type TopicKey } from "@/lib/onboarding/types";
 import { moduleTitle } from "@/lib/question-bank/modules";
-import { MODULE_KEYS } from "@/lib/questions/module-keys";
-import type { ModuleKey } from "@/lib/questions/types";
+import { MOCK_CONFIG } from "@/lib/mock/config";
 
-// =============================================================
-// AI study coach — CSCS HS&E test. Named "David".
-//
-// Mirrors the My Life in the UK Test app: Anthropic claude-haiku-4-5 with a
-// per-user DAILY message cap. Personalises the system prompt from the client's
-// on-device progress summary (no Supabase progress tables). Sign-in is
-// optional — a signed-out user is capped under an "anon" bucket.
-// =============================================================
+// Cloned from the My Life in the UK Test app's app/api/coach/route.ts,
+// adapted for the CITB HS&E test (David persona, 50-question format, 90%
+// pass mark, 95% safe-to-book guidance, module keys instead of chapters).
 
 export const runtime = "nodejs";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
+const TOPIC_SET = new Set<string>(TOPICS.map((t) => t.key));
+
+// ----- Cost control: daily per-user message cap --------------------------
+// Every coach reply costs real money (Anthropic API), so each account gets a
+// small daily allowance. SINGLE CONFIG VALUE — raise it here or via the
+// COACH_DAILY_LIMIT env var (no code change needed).
 const COACH_DAILY_LIMIT = (() => {
   const n = parseInt(process.env.COACH_DAILY_LIMIT ?? "", 10);
   return Number.isFinite(n) && n > 0 ? n : 5;
 })();
 
-// In-memory daily counter. Per server instance (a soft cap); move to a DB
-// counter for hard cross-instance enforcement.
+// In-memory fallback counter, used ONLY if the coach_usage RPC isn't
+// installed yet (supabase/coach-usage.sql). Per server instance, so it's
+// weaker than the DB counter — run the SQL for real enforcement.
 const dailyByUser = new Map<string, { day: string; count: number }>();
-const utcDay = () => new Date().toISOString().slice(0, 10);
-/** True if the user has already hit today's cap. Does NOT consume quota. */
-function isDailyLimited(userId: string): boolean {
+function fallbackDailyLimited(userId: string): boolean {
+  const day = new Date().toISOString().slice(0, 10); // UTC day, matches SQL
   const e = dailyByUser.get(userId);
-  return !!e && e.day === utcDay() && e.count >= COACH_DAILY_LIMIT;
-}
-/** Count one SUCCESSFUL coach reply against today's allowance. */
-function noteDailyUse(userId: string): void {
-  const day = utcDay();
-  const e = dailyByUser.get(userId);
-  if (!e || e.day !== day) dailyByUser.set(userId, { day, count: 1 });
-  else e.count += 1;
-}
-
-const clampCount = (v: unknown) => (typeof v === "number" && v >= 0 && Number.isFinite(v) ? Math.min(v, 100000) : 0);
-
-/** Validate the client's on-device progress summary. */
-function parseLocalProgress(input: unknown): {
-  samples: AnswerSample[];
-  byModule: Record<string, { answered: number; correct: number }>;
-  mocksTaken: number;
-} {
-  const empty = { samples: [] as AnswerSample[], byModule: {}, mocksTaken: 0 };
-  if (typeof input !== "object" || input === null) return empty;
-  const p = input as Record<string, unknown>;
-  const samples: AnswerSample[] = Array.isArray(p.samples)
-    ? p.samples
-        .filter((s): s is AnswerSample => !!s && typeof (s as AnswerSample).correct === "boolean")
-        .slice(0, 100)
-        .map((s) => ({ correct: !!s.correct, isMock: !!s.isMock }))
-    : [];
-  const byModule: Record<string, { answered: number; correct: number }> = {};
-  if (typeof p.byModule === "object" && p.byModule !== null) {
-    for (const key of MODULE_KEYS) {
-      const v = (p.byModule as Record<string, unknown>)[key];
-      if (v && typeof v === "object") {
-        const r = v as Record<string, unknown>;
-        byModule[key] = { answered: clampCount(r.answered), correct: clampCount(r.correct) };
-      }
-    }
+  if (!e || e.day !== day) {
+    dailyByUser.set(userId, { day, count: 1 });
+    return false;
   }
-  return { samples, byModule, mocksTaken: clampCount(p.mocksTaken) };
+  if (e.count >= COACH_DAILY_LIMIT) return true;
+  e.count += 1;
+  return false;
 }
 
-function buildSystemPrompt(progress: ReturnType<typeof parseLocalProgress>): string {
-  const lines = [
-    "You are David, the friendly, encouraging study coach for the UK CITB Health, Safety & Environment (HS&E) test — the exam people take to get a CSCS card to work on construction sites.",
-    "The test is 50 multiple-choice questions in 45 minutes, and you must score 45/50 (90%) to pass. Some questions have more than one correct answer, and some ask you to tap the right spot on an image. Advise booking the real test only once they are consistently scoring around 90%+.",
-    "Keep replies short, plain-English and practical. Explain WHY something is safe or unsafe, not just the rule. Never invent legal requirements; if unsure, say so and point them to the official CITB materials. Do not help anyone cheat the real test — teach the underlying knowledge.",
-    "The five modules are: Working Environment, Occupational Health, Safety, High Risk Activities, and Specialist Topics.",
-  ];
-
-  const readiness = computeReadiness(progress.samples);
-  if (readiness.score != null) {
-    lines.push(
-      `The learner's estimated readiness is ${readiness.score}% (${READINESS_COPY[readiness.band].label}). They have answered ${progress.samples.length} recent questions and taken ${progress.mocksTaken} mock test(s).`
-    );
-  } else {
-    lines.push("The learner is just getting started — encourage them to answer a few questions so you can gauge their readiness.");
+// Best-effort per-user rate limit (in-memory, per server instance): 10
+// coach calls per minute is plenty for humans and blunts scripted abuse of
+// the paid model behind this endpoint. (Anti-abuse burst limit — the daily
+// cap above is the cost control.)
+const RATE_LIMIT = 10;
+const RATE_WINDOW_MS = 60_000;
+const recentByUser = new Map<string, number[]>();
+function rateLimited(userId: string): boolean {
+  const now = Date.now();
+  const recent = (recentByUser.get(userId) ?? []).filter(
+    (t) => now - t < RATE_WINDOW_MS
+  );
+  if (recent.length >= RATE_LIMIT) {
+    recentByUser.set(userId, recent);
+    return true;
   }
-
-  const ranked = Object.entries(progress.byModule)
-    .filter(([, v]) => v.answered >= 3)
-    .map(([k, v]) => ({ k, pct: Math.round((v.correct / v.answered) * 100) }))
-    .sort((a, b) => a.pct - b.pct);
-  if (ranked.length > 0) {
-    const weak = ranked.slice(0, 2).map((r) => `${moduleTitle(r.k as ModuleKey)} (${r.pct}%)`).join(", ");
-    lines.push(`Their weakest module(s) so far: ${weak}. Gently steer revision there when relevant.`);
-  }
-
-  return lines.join(" ");
+  recent.push(now);
+  recentByUser.set(userId, recent);
+  // Bounded memory: prune the map occasionally.
+  if (recentByUser.size > 5000) recentByUser.clear();
+  return false;
 }
 
-export async function POST(request: Request) {
-  // Sign-in is optional; use the user id for the daily cap when present.
+export async function POST(req: Request) {
   const supabase = createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  const userId = user?.id ?? "anon";
+  if (!user) {
+    return NextResponse.json({ error: "Please sign in again." }, { status: 401 });
+  }
 
   if (!process.env.ANTHROPIC_API_KEY) {
     return NextResponse.json(
-      { error: "AI coach is not configured yet (missing ANTHROPIC_API_KEY)." },
+      { error: "The coach isn't set up yet. Add ANTHROPIC_API_KEY to enable it." },
       { status: 503 }
     );
   }
 
-  if (isDailyLimited(userId)) {
+  if (rateLimited(user.id)) {
     return NextResponse.json(
-      { error: "You've used your coach messages for today — check back tomorrow!", code: "daily_limit" },
+      { error: "The coach is busy right now — please try again in a moment." },
       { status: 429 }
     );
   }
 
-  let body: { messages?: unknown; progress?: unknown };
+  let body: { messages?: ChatMessage[]; progress?: unknown };
   try {
-    body = await request.json();
+    body = (await req.json()) as { messages?: ChatMessage[]; progress?: unknown };
   } catch {
     return NextResponse.json({ error: "Bad request." }, { status: 400 });
   }
 
-  const messages: ChatMessage[] = (Array.isArray(body.messages) ? body.messages : [])
+  const messages = (Array.isArray(body.messages) ? body.messages : [])
     .filter(
-      (m: unknown): m is ChatMessage =>
-        !!m &&
-        typeof (m as ChatMessage).content === "string" &&
-        ((m as ChatMessage).role === "user" || (m as ChatMessage).role === "assistant")
+      (m) =>
+        (m.role === "user" || m.role === "assistant") &&
+        typeof m.content === "string"
     )
     .slice(-12)
     .map((m) => ({ role: m.role, content: m.content.slice(0, 2000) }));
 
-  // Anthropic requires the conversation to START on a user turn — after the
-  // slice(-12) window the first message could be an assistant reply, so drop
-  // any leading non-user turns.
+  // Anthropic requires the conversation to START with a user turn.
   while (messages.length > 0 && messages[0].role !== "user") messages.shift();
 
   if (messages.length === 0 || messages[messages.length - 1].role !== "user") {
     return NextResponse.json({ error: "No question provided." }, { status: 400 });
   }
 
-  const system = buildSystemPrompt(parseLocalProgress(body.progress));
-  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  // Daily cost cap — enforced SERVER-SIDE so it can't be bypassed by a
+  // modified client. Prefer the atomic DB counter (works across serverless
+  // instances); fall back to the per-instance counter until the SQL is run.
+  // Runs AFTER body validation so malformed requests never consume one of
+  // the day's messages (an Anthropic-side failure still does — fail-closed
+  // on cost is the safe direction).
+  {
+    const { data: newCount, error: usageError } = await supabase.rpc(
+      "increment_coach_usage",
+      { daily_limit: COACH_DAILY_LIMIT }
+    );
+    const limited = usageError
+      ? fallbackDailyLimited(user.id)
+      : newCount === -1;
+    if (usageError) {
+      console.warn(
+        "[coach] coach_usage RPC unavailable (run supabase/coach-usage.sql); using in-memory fallback:",
+        usageError.message
+      );
+    }
+    if (limited) {
+      return NextResponse.json(
+        {
+          error:
+            "You've used your coach messages for today — check back tomorrow!",
+          code: "daily_limit",
+        },
+        { status: 429 }
+      );
+    }
+  }
 
+  // ----- Build personalised context from the user's data -----
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("first_name, hardest_topics")
+    .eq("id", user.id)
+    .maybeSingle<{ first_name: string | null; hardest_topics: unknown }>();
+
+  const { data: answersRaw } = await supabase
+    .from("user_answers")
+    .select("module, correct, is_mock")
+    .eq("user_id", user.id)
+    .order("answered_at", { ascending: false })
+    .limit(500);
+
+  const answers = (answersRaw ?? []) as {
+    module: string;
+    correct: boolean;
+    is_mock: boolean;
+  }[];
+
+  // Study answers also live on-device (see lib/progress/local-progress.ts),
+  // so the client sends a compact summary with each request. The DB log is
+  // preferred if it has data; otherwise personalise from the summary
+  // (validated + clamped — it's coaching context, not authorization).
+  const local = parseLocalProgress(body.progress);
+
+  const samples: AnswerSample[] =
+    answers.length > 0
+      ? answers.map((a) => ({ correct: a.correct, isMock: a.is_mock }))
+      : local.samples;
+  const readiness = computeReadiness(samples);
+
+  const counts: Partial<Record<TopicKey, TopicCount>> = {};
+  if (answers.length > 0) {
+    for (const a of answers) {
+      if (!TOPIC_SET.has(a.module)) continue;
+      const key = a.module as TopicKey;
+      const c = counts[key] ?? { answered: 0, correct: 0 };
+      c.answered += 1;
+      if (a.correct) c.correct += 1;
+      counts[key] = c;
+    }
+  } else {
+    for (const [k, c] of Object.entries(local.byModule)) {
+      if (TOPIC_SET.has(k)) counts[k as TopicKey] = c;
+    }
+  }
+
+  const seed = sanitizeTopics(profile?.hardest_topics);
+  const stats = weakestFirst(topicStats(counts, seed));
+  const withData = stats.filter((s) => !s.seeded);
+  const weakLine = (withData.length ? withData : stats)
+    .slice(0, 2)
+    .map((s) =>
+      s.seeded
+        ? `${moduleTitle(s.topic)} (flagged at sign-up)`
+        : `${moduleTitle(s.topic)} (${s.accuracy}% correct)`
+    )
+    .join(", ");
+
+  // Totals from whichever source is live (per-module counts cover the whole
+  // local log; `samples` alone is capped at the most recent 100).
+  const moduleTotals = Object.values(counts);
+  const totalAnswered = moduleTotals.reduce((s, c) => s + c.answered, 0);
+  const totalCorrect = moduleTotals.reduce((s, c) => s + c.correct, 0);
+  const overallAcc =
+    totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : null;
+  const mockCount =
+    answers.length > 0
+      ? answers.filter((a) => a.is_mock).length
+      : local.mocksTaken;
+  const firstName = profile?.first_name?.trim() || "there";
+
+  const system = [
+    `You are David, the app's friendly, encouraging study coach for the official CITB Health, Safety & Environment (HS&E) test — the test needed for a CSCS card. Introduce yourself as David when greeting someone or if asked your name.`,
+    `Help the user revise: explain answers, quiz them, suggest what to study next, and advise on readiness. Keep replies concise, warm and specific to the HS&E test and UK construction-site safety. Use British English. If asked about something unrelated, gently steer back to their study.`,
+    `Test facts: ${MOCK_CONFIG.questionCount} multiple-choice questions in ${MOCK_CONFIG.durationMinutes} minutes, pass mark ${MOCK_CONFIG.passMark}/${MOCK_CONFIG.questionCount} (${MOCK_CONFIG.passPercentage}%). Advise booking only once they are consistently scoring ${BOOK_READY_PERCENT}%+.`,
+    ``,
+    `About the person you're helping:`,
+    `- First name: ${firstName}`,
+    `- Readiness score: ${
+      readiness.score == null ? "not enough data yet" : `${readiness.score}%`
+    } (${READINESS_COPY[readiness.band].label})`,
+    `- Questions answered so far: ${totalAnswered}${
+      mockCount ? `, including ${mockCount} under mock-test conditions` : ""
+    }`,
+    `- Overall accuracy: ${overallAcc == null ? "no data yet" : `${overallAcc}%`}`,
+    `- Weakest modules right now: ${weakLine || "unknown"}`,
+    `- Modules they said were hardest at sign-up: ${
+      seed.length ? seed.map((t) => moduleTitle(t)).join(", ") : "none given"
+    }`,
+    ``,
+    `Personalise your advice with this. If they ask "am I ready to book?", answer using their readiness score and the ${BOOK_READY_PERCENT}% guidance.`,
+  ].join("\n");
+
+  const client = new Anthropic();
   try {
     const msg = await client.messages.create({
       model: "claude-haiku-4-5",
@@ -158,18 +255,80 @@ export async function POST(request: Request) {
       system,
       messages: messages.map((m) => ({ role: m.role, content: m.content })),
     });
+
     const reply = msg.content
-      .filter((b): b is Anthropic.TextBlock => b.type === "text")
-      .map((b) => b.text)
+      .map((block) => (block.type === "text" ? block.text : ""))
       .join("")
       .trim();
-    noteDailyUse(userId); // only successful replies count against the daily cap
-    return NextResponse.json({ reply: reply || "Sorry, I couldn't think of a reply just then. Try rephrasing?" });
+
+    return NextResponse.json({
+      reply: reply || "Sorry, I couldn't think of a reply just then. Try rephrasing?",
+    });
   } catch (err) {
     if (err instanceof Anthropic.RateLimitError) {
-      return NextResponse.json({ error: "The coach is busy right now. Please try again in a moment." }, { status: 429 });
+      return NextResponse.json(
+        { error: "The coach is busy right now — please try again in a moment." },
+        { status: 429 }
+      );
     }
-    console.error("coach error", err);
-    return NextResponse.json({ error: "The coach is unavailable right now. Please try again." }, { status: 502 });
+    if (err instanceof Anthropic.APIError) {
+      return NextResponse.json(
+        { error: "The coach had trouble answering. Please try again." },
+        { status: 502 }
+      );
+    }
+    return NextResponse.json(
+      { error: "Something went wrong. Please try again." },
+      { status: 500 }
+    );
   }
+}
+
+// ----- Local-progress summary validation ------------------------------------
+
+type LocalSummary = {
+  samples: AnswerSample[];
+  byModule: Record<string, { answered: number; correct: number }>;
+  mocksTaken: number;
+};
+
+/** Clamp + sanitise the client-sent progress summary (coaching context only —
+    never used for authorization). Malformed input degrades to empty. */
+function parseLocalProgress(input: unknown): LocalSummary {
+  const empty: LocalSummary = { samples: [], byModule: {}, mocksTaken: 0 };
+  if (!input || typeof input !== "object") return empty;
+  const o = input as Record<string, unknown>;
+
+  const samples: AnswerSample[] = Array.isArray(o.samples)
+    ? o.samples
+        .slice(0, 100)
+        .filter(
+          (s): s is { correct: boolean; isMock: boolean } =>
+            !!s &&
+            typeof s === "object" &&
+            typeof (s as Record<string, unknown>).correct === "boolean" &&
+            typeof (s as Record<string, unknown>).isMock === "boolean"
+        )
+        .map((s) => ({ correct: s.correct, isMock: s.isMock }))
+    : [];
+
+  const byModule: LocalSummary["byModule"] = {};
+  if (o.byModule && typeof o.byModule === "object") {
+    for (const [k, v] of Object.entries(o.byModule as Record<string, unknown>)) {
+      if (!TOPIC_SET.has(k) || !v || typeof v !== "object") continue;
+      const c = v as Record<string, unknown>;
+      const answered = clampCount(c.answered);
+      const correct = Math.min(clampCount(c.correct), answered);
+      if (answered > 0) byModule[k] = { answered, correct };
+    }
+  }
+
+  const mocksTaken = clampCount(o.mocksTaken);
+  return { samples, byModule, mocksTaken };
+}
+
+function clampCount(v: unknown): number {
+  return typeof v === "number" && Number.isFinite(v)
+    ? Math.max(0, Math.min(100000, Math.floor(v)))
+    : 0;
 }

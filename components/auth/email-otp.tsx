@@ -218,9 +218,8 @@ export function EmailOtp({
       );
       return;
     }
-    // Signed in — land on the home screen and refresh so server components
-    // pick up the new session cookie.
-    router.replace("/");
+    // /onboarding self-routes: finished users go to the dashboard, others resume.
+    router.replace("/onboarding");
     router.refresh();
   }
 
@@ -382,6 +381,7 @@ export function EmailOtp({
 
       <SocialButtons
         dividerText={mode === "signup" ? "or sign up with" : "or continue with"}
+        mode={mode}
       />
 
       {mode === "signup" ? (

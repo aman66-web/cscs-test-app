@@ -61,16 +61,52 @@ export type NativeOAuthResult = {
   /** True when the user simply dismissed the native sheet (show no error). */
   cancelled?: boolean;
   error?: string;
-  /** Where to navigate on success. */
+  /** Where to navigate on success (already carries any ?auth= toast param). */
   redirectTo?: string;
 };
 
 /**
+ * Decide where a freshly-signed-in native user goes, mirroring the web
+ * callback: new users → /onboarding, returning → /dashboard, and the same
+ * friendly new-vs-returning toast when the chosen entry screen doesn't match
+ * (signed in via "Sign in" but has no account yet → "we couldn't find an
+ * account…"; via "Create account" but already exists → "welcome back…").
+ */
+async function nativeRedirect(
+  supabase: ReturnType<typeof createClient>,
+  mode?: "signin" | "signup"
+): Promise<string> {
+  try {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    let onboarded = false;
+    if (user) {
+      const { data } = await supabase
+        .from("profiles")
+        .select("onboarding_completed")
+        .eq("id", user.id)
+        .maybeSingle<{ onboarding_completed: boolean | null }>();
+      onboarded = !!data?.onboarding_completed;
+    }
+    let dest = onboarded ? "/dashboard" : "/onboarding";
+    if (mode === "signup" && dest === "/dashboard") dest += "?auth=welcomeBack";
+    else if (mode === "signin" && dest === "/onboarding") dest += "?auth=setup";
+    return dest;
+  } catch {
+    return "/";
+  }
+}
+
+/**
  * Run the native sign-in and establish a Supabase session in the WebView.
- * On success the caller hard-navigates to `redirectTo`.
+ * On success the caller hard-navigates to `redirectTo`, which routes the user
+ * to onboarding (new) or the dashboard (returning) with the right arrival toast.
+ * `mode` is the entry screen the user tapped ("signin" | "signup").
  */
 export async function nativeOAuth(
-  provider: NativeOAuthProvider
+  provider: NativeOAuthProvider,
+  mode?: "signin" | "signup"
 ): Promise<NativeOAuthResult> {
   if (provider === "google" && !process.env.NEXT_PUBLIC_GOOGLE_IOS_CLIENT_ID) {
     // Fail loudly rather than with a generic "try again" when the native
@@ -110,8 +146,7 @@ export async function nativeOAuth(
       );
       return { ok: false, error: error.message };
     }
-    // No onboarding/dashboard split yet — land on the home screen.
-    return { ok: true, redirectTo: "/" };
+    return { ok: true, redirectTo: await nativeRedirect(supabase, mode) };
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e ?? "");
     // The plugins reject with a cancellation message when the user dismisses

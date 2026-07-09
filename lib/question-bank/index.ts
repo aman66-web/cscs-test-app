@@ -32,9 +32,28 @@ export function modulePool(module: ModuleKey): Question[] {
   return QUESTION_BANK.filter((q) => q.module === module);
 }
 
+/** Questions across any set of modules (practice session builder). */
+export function modulesPool(modules: ModuleKey[]): Question[] {
+  const set = new Set<string>(modules);
+  return QUESTION_BANK.filter((q) => set.has(q.module));
+}
+
 /** Questions for one topic within a module. */
 export function topicPool(module: ModuleKey, topic: string): Question[] {
   return QUESTION_BANK.filter((q) => q.module === module && q.topic === topic);
+}
+
+/**
+ * Runtime questions for one Learn submodule (lesson check quizzes). Question
+ * topics are finer-grained than lesson ids (e.g. "safety_signs_prohibition"
+ * under the "safety_signs" lesson), so this matches by prefix and falls back
+ * to the whole module when a lesson has no tagged questions yet.
+ */
+export function subtopicPool(module: ModuleKey, subId: string): Question[] {
+  const tagged = QUESTION_BANK.filter(
+    (q) => q.module === module && (q.topic === subId || q.topic.startsWith(`${subId}_`))
+  );
+  return tagged.length > 0 ? tagged : modulePool(module);
 }
 
 /** Question count per module. */

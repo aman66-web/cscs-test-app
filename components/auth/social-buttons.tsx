@@ -13,7 +13,15 @@ type OAuthProvider = "google" | "apple";
  * "or continue with" divider + Google / Apple buttons. One flow for both
  * pages: OAuth signs existing users in and creates accounts for new ones.
  */
-export function SocialButtons({ dividerText }: { dividerText: string }) {
+export function SocialButtons({
+  dividerText,
+  mode,
+}: {
+  dividerText: string;
+  /** Which entry screen hosts the buttons — threaded to OAuth so the callback
+      can show a friendly new-vs-returning note (wired up with onboarding). */
+  mode?: "signin" | "signup";
+}) {
   const supabase = createClient();
   const [pending, setPending] = useState<OAuthProvider | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -26,7 +34,7 @@ export function SocialButtons({ dividerText }: { dividerText: string }) {
     // session directly in the WebView — no Safari, no PKCE redirect. On success
     // hard-navigate so the server components see the new session cookie.
     if (await isNativeAuth()) {
-      const res = await nativeOAuth(provider);
+      const res = await nativeOAuth(provider, mode);
       if (res.ok) {
         window.location.assign(res.redirectTo ?? "/");
         return;
@@ -43,7 +51,7 @@ export function SocialButtons({ dividerText }: { dividerText: string }) {
       typeof window !== "undefined"
         ? window.location.origin
         : process.env.NEXT_PUBLIC_SITE_URL ?? "";
-    const redirectTo = `${base}/auth/callback`;
+    const redirectTo = `${base}/auth/callback${mode ? `?mode=${mode}` : ""}`;
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
       options: { redirectTo },

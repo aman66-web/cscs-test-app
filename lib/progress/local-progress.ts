@@ -2,18 +2,20 @@
 // Local progress store (client-side, localStorage).
 //
 // Ported from the My Life in the UK Test app's lib/progress/local-progress.ts
-// and adapted for CSCS: a SINGLE storage key (no per-user namespacing yet), and
-// answers are grouped by `module` (one of the 5 CSCS modules) instead of the
-// handbook chapter. All XP, streaks, mock history and readiness are derived
-// purely from this store — no backend needed, so everything is testable in the
-// browser immediately.
+// and adapted for CSCS: answers are grouped by `module` (one of the 5 CSCS
+// modules) instead of the handbook chapter. All XP, streaks, mock history and
+// readiness are derived purely from this store — no backend needed, so
+// everything is testable in the browser immediately.
 //
 // Every read defensively coerces each field back to its type, so a corrupt blob
 // falls back to empty per-field and never white-screens. Every write is
 // best-effort (try/catch) — storage being unavailable must never break a quiz.
 // =============================================================
 
-const KEY = "cscs-progress-v1";
+const LEGACY_KEY = "cscs-progress-v1";
+/** Which signed-in user this device's progress belongs to (set by
+    ProgressScope on every authed screen). */
+const USER_KEY = "cscs-user";
 
 /** XP awarded per correct answer (practice + mock). Mock submit = score × this. */
 export const XP_PER_CORRECT = 10;
@@ -58,6 +60,10 @@ export type LocalProgress = {
   answerLog: AnswerEntry[];
   /** Spaced-repetition state per question (flashcards). */
   srs: Record<string, SrsCard>;
+  /** Has this USER seen the first-run dashboard walkthrough (on this
+      device)? Lives here — not in device settings — so it's per account:
+      a second person signing in on the same phone gets their own tour. */
+  tourSeen: boolean;
 };
 
 const EMPTY: LocalProgress = {
@@ -72,6 +78,7 @@ const EMPTY: LocalProgress = {
   mistakes: {},
   answerLog: [],
   srs: {},
+  tourSeen: false,
 };
 
 // ---- day key (LOCAL time, not UTC) ------------------------------------------
@@ -86,11 +93,49 @@ function isObj(v: unknown): v is Record<string, unknown> {
   return typeof v === "object" && v !== null;
 }
 
+/**
+ * Storage key for the CURRENT user. Progress is namespaced per account
+ * (cscs-progress-v1:<uid>) so two people sharing a device never see each
+ * other's XP/streak/mistakes. Falls back to the legacy shared key until a
+ * user id has been recorded (pre-sign-in, or first run after this update —
+ * ProgressScope migrates the legacy data to the signed-in user's bucket).
+ */
+function currentKey(): string {
+  if (typeof window === "undefined") return LEGACY_KEY;
+  try {
+    const uid = window.localStorage.getItem(USER_KEY);
+    return uid ? `${LEGACY_KEY}:${uid}` : LEGACY_KEY;
+  } catch {
+    return LEGACY_KEY;
+  }
+}
+
+/**
+ * Bind local progress to the signed-in user (called from ProgressScope on
+ * authed screens). One-time migration: the first account to claim this
+ * device adopts any legacy un-namespaced progress so existing users keep
+ * their streak/XP after the update.
+ */
+export function setProgressUser(userId: string) {
+  if (typeof window === "undefined" || !userId) return;
+  try {
+    window.localStorage.setItem(USER_KEY, userId);
+    const namespaced = `${LEGACY_KEY}:${userId}`;
+    const legacy = window.localStorage.getItem(LEGACY_KEY);
+    if (legacy && !window.localStorage.getItem(namespaced)) {
+      window.localStorage.setItem(namespaced, legacy);
+      window.localStorage.removeItem(LEGACY_KEY);
+    }
+  } catch {
+    // best-effort
+  }
+}
+
 /** The current progress, always a fully-formed object (never throws). */
 export function getProgress(): LocalProgress {
   if (typeof window === "undefined") return { ...EMPTY };
   try {
-    const raw = window.localStorage.getItem(KEY);
+    const raw = window.localStorage.getItem(currentKey());
     if (!raw) return { ...EMPTY };
     const p = JSON.parse(raw) as unknown;
     if (!isObj(p)) return { ...EMPTY };
@@ -116,6 +161,7 @@ export function getProgress(): LocalProgress {
           )
         : [],
       srs: isObj(p.srs) ? (p.srs as Record<string, SrsCard>) : {},
+      tourSeen: p.tourSeen === true,
     };
   } catch {
     return { ...EMPTY };
@@ -125,7 +171,7 @@ export function getProgress(): LocalProgress {
 function save(p: LocalProgress): void {
   if (typeof window === "undefined") return;
   try {
-    window.localStorage.setItem(KEY, JSON.stringify(p));
+    window.localStorage.setItem(currentKey(), JSON.stringify(p));
     // Let same-tab listeners (widgets) know progress changed.
     window.dispatchEvent(new Event("cscs-progress"));
   } catch {
@@ -170,12 +216,19 @@ export function logAnswers(
       ...p.answerLog,
       ...entries.map((e) => ({ qid: e.qid, module: e.module, correct: e.correct, isMock, at })),
     ].slice(-ANSWER_LOG_CAP);
+    // Mistakes deck: a question ENTERS on a wrong answer and LEAVES after two
+    // consecutive correct answers (matching the reference app — questions
+    // never answered wrong are never in the deck).
     const mistakes = { ...p.mistakes };
     for (const e of entries) {
-      const m = mistakes[e.qid] ?? { wrong: 0, correctStreak: 0 };
-      mistakes[e.qid] = e.correct
-        ? { wrong: m.wrong, correctStreak: m.correctStreak + 1 }
-        : { wrong: m.wrong + 1, correctStreak: 0 };
+      const entry = mistakes[e.qid];
+      if (!e.correct) {
+        mistakes[e.qid] = { wrong: (entry?.wrong ?? 0) + 1, correctStreak: 0 };
+      } else if (entry) {
+        const streak = entry.correctStreak + 1;
+        if (streak >= 2) delete mistakes[e.qid];
+        else mistakes[e.qid] = { ...entry, correctStreak: streak };
+      }
     }
     return { ...p, answerLog, mistakes };
   });
@@ -183,6 +236,11 @@ export function logAnswers(
 
 export function logAnswer(qid: string, module: string, correct: boolean, isMock: boolean): void {
   logAnswers([{ qid, module, correct }], isMock);
+}
+
+/** Question ids currently in the Mistakes deck. */
+export function mistakeIds(p = getProgress()): string[] {
+  return Object.keys(p.mistakes);
 }
 
 /** Record a completed mock (feeds the readiness MOCK term + best scores). */
@@ -228,6 +286,41 @@ export function resetProgress(): void {
 }
 
 // ---- selectors --------------------------------------------------------------
+// ---- first-run dashboard tour ------------------------------------------------
+export function hasSeenTour(): boolean {
+  return getProgress().tourSeen;
+}
+
+export function markTourSeen(): void {
+  updateProgress((p) => ({ ...p, tourSeen: true }));
+}
+
+/** Re-arm the walkthrough (Profile → "Replay app walkthrough"). */
+export function clearTourSeen(): void {
+  updateProgress((p) => ({ ...p, tourSeen: false }));
+}
+
+/** Export everything we store locally (App Store data-export requirement). */
+export function exportProgressJson(): string {
+  return JSON.stringify(getProgress(), null, 2);
+}
+
+/**
+ * Full local wipe for ACCOUNT DELETION: the deleted account's progress bucket
+ * AND the recorded user id (so nothing identifying the deleted account is left
+ * on the device). currentKey() is read before cscs-user is removed. Device
+ * settings are cleared separately by the caller (clearSettings). */
+export function wipeAllLocalData(): void {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.removeItem(currentKey()); // this account's progress
+    window.localStorage.removeItem(LEGACY_KEY);
+    window.localStorage.removeItem(USER_KEY); // the recorded user id
+  } catch {
+    // best-effort
+  }
+}
+
 export function minutesToday(p = getProgress()): number {
   return p.practiceDays[todayKey()]?.minutes ?? 0;
 }

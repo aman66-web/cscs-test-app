@@ -48,6 +48,23 @@ export function srsGrade(qid: string, grade: SrsGrade): void {
   updateProgress((p) => ({ ...p, srs: { ...p.srs, [qid]: schedule(p.srs[qid], grade, now) } }));
 }
 
+/** Implicit grading from quizzes: right → good, wrong → again. */
+export function srsGradeAnswer(qid: string, correct: boolean) {
+  srsGrade(qid, correct ? "good" : "again");
+}
+
+/** Batch implicit grading (one storage write for a whole mock). */
+export function srsGradeAnswers(entries: { qid: string; correct: boolean }[]) {
+  const now = Date.now();
+  updateProgress((p) => {
+    const srs = { ...p.srs };
+    for (const e of entries) {
+      srs[e.qid] = schedule(srs[e.qid], e.correct ? "good" : "again", now);
+    }
+    return { ...p, srs };
+  });
+}
+
 /** Is a card due (never seen, or past its due time)? */
 export function isDue(card: SrsCard | undefined, now = Date.now()): boolean {
   return !card || card.due <= now;

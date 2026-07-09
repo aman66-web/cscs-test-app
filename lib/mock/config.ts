@@ -39,3 +39,6 @@ export function isPass(correctCount: number): boolean {
 
 /** Duration in whole seconds — handy for the countdown timer. */
 export const MOCK_DURATION_SECONDS = MOCK_CONFIG.durationMinutes * 60;
+
+/** How many numbered mock papers the app offers (matches the reference app). */
+export const MOCK_COUNT = 10;

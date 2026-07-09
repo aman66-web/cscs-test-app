@@ -1,16 +1,37 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 /**
- * Where an authenticated visitor to a public/auth page should be sent.
- *
- * For now everyone lands on the home screen. When onboarding + a dashboard
- * exist, branch here on a `profiles.onboarding_completed` flag (new users →
- * /onboarding, returning → /dashboard) — see the My Life in the UK Test app's
- * redirect-target.ts for that pattern.
+ * Reads only the onboarding flag for a user. A missing row (e.g. the signup
+ * trigger has not fired yet) is treated as "not completed".
+ */
+export async function getProfileOnboarding(
+  supabase: SupabaseClient,
+  userId: string
+): Promise<{ completed: boolean }> {
+  const { data } = await supabase
+    .from("profiles")
+    .select("onboarding_completed")
+    .eq("id", userId)
+    .maybeSingle();
+
+  return { completed: data?.onboarding_completed === true };
+}
+
+/**
+ * Where an authenticated visitor to a public/auth page should be sent:
+ * - not signed in        → /sign-in
+ * - signed in, onboarded → /dashboard
+ * - signed in, not yet   → /onboarding
  */
 export async function authedRedirectTarget(
-  // Kept in the signature so callers don't change when the branch above lands.
-  _supabase: SupabaseClient
+  supabase: SupabaseClient
 ): Promise<string> {
-  return "/";
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return "/sign-in";
+
+  const { completed } = await getProfileOnboarding(supabase, user.id);
+  return completed ? "/dashboard" : "/onboarding";
 }

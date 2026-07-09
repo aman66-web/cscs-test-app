@@ -56,12 +56,15 @@ select:focus-visible {
 }
 
 /* Safe-area helpers for the notch / home indicator (paired with the
-   viewport-fit=cover set in app/layout.tsx). */
+   viewport-fit=cover set in app/layout.tsx). Floors match the My Life in the
+   UK Test app: the static minimum must clear the iPhone status bar BY ITSELF
+   (~46px) because the remote-wrapper WKWebView can report
+   env(safe-area-inset-top) as 0, in which case the floor is what renders. */
 .pt-safe {
-  padding-top: env(safe-area-inset-top);
+  padding-top: max(2.875rem, env(safe-area-inset-top));
 }
 .pb-safe {
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: max(1.75rem, env(safe-area-inset-bottom));
 }
 
 /* ============================================================
@@ -123,6 +126,11 @@ select:focus-visible {
   box-shadow: none;
 }
 
+/* Secondary pill button: white with hairline border (reference app). */
+.btn-secondary {
+  @apply flex h-[54px] w-full cursor-pointer items-center justify-center gap-2 rounded-full border-[1.5px] border-ink/10 bg-white text-base font-bold text-ink transition hover:border-purple/40 hover:bg-[#FAF9FF] active:scale-[0.99] disabled:opacity-50;
+}
+
 /* ============================================================
    3D flip card (flashcards). Ported from the reference app.
    ============================================================ */
@@ -149,4 +157,132 @@ select:focus-visible {
   background: radial-gradient(90% 34% at 12% 0%, #ffe6d0 0, transparent 55%),
     radial-gradient(90% 44% at 100% 10%, #e8deff 0, transparent 60%),
     linear-gradient(180deg, #fbf5f0 0%, #f3eefc 40%, #eef1fb 100%);
+}
+
+/* ============================================================
+   Boxed brand input (prototype .field): white, 1.5px hairline border,
+   15px radius, purple border + soft glow on focus. Ported from the
+   My Life in the UK Test app. */
+/* iOS auto-zoom guard: any focusable text control under 16px makes iOS zoom
+   into it on focus (zoomed/off-centre screen, sideways scroll, stuck zoom).
+   Element-level default so unstyled inputs are safe; class utilities can
+   still size UP (e.g. the 28px OTP code field) but none may go below 16px. */
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+
+.input-boxed {
+  height: 56px;
+  width: 100%;
+  border: 1.5px solid rgba(33, 27, 78, 0.1);
+  border-radius: 15px;
+  background: #fff;
+  padding: 0 15px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.input-boxed::placeholder {
+  color: #a7a2be;
+  font-weight: 500;
+}
+.input-boxed:focus,
+.input-boxed:focus-within {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+/* ============================================================
+   Brand splash (post-onboarding "Personalising your dashboard…"):
+   orbit ring spin, floating chip bob, logo pop, label fade-up and the
+   progress-bar sweep. Ported from the My Life in the UK Test app.
+   ============================================================ */
+@keyframes splashPop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes splashSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes splashBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+@keyframes splashFadeUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes splashBar {
+  from {
+    width: 8%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Gently fade + settle onto an element (chat bubbles, tour spotlight). */
+@keyframes tourReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Simple fade-in for inline reveals (e.g. the onboarding score field). */
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   Global reduced-motion convention.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
