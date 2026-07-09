@@ -17,6 +17,18 @@ const DOTS: FloatingDot[] = [
 ];
 
 /** Passwordless sign-in: email → 6-digit code → into the app. */
-export function SignInScreen({ calloutError = false }: { calloutError?: boolean }) {
-  return <EmailOtp mode="signin" chips={CHIPS} dots={DOTS} authError={calloutError} />;
+export function SignInScreen({
+  calloutMessage,
+}: {
+  /** Readable auth-failure message (already mapped — never a raw code). */
+  calloutMessage?: string;
+}) {
+  return (
+    <EmailOtp
+      mode="signin"
+      chips={CHIPS}
+      dots={DOTS}
+      authErrorMessage={calloutMessage}
+    />
+  );
 }

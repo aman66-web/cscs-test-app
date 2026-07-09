@@ -25,12 +25,25 @@ export async function GET(request: Request) {
   // through the OAuth redirectTo so we can message new-vs-returning nicely.
   const mode = searchParams.get("mode");
   const oauthError = searchParams.get("error");
+  const oauthErrorCode = searchParams.get("error_code");
   const oauthErrorDescription = searchParams.get("error_description");
 
   // The provider / Supabase can redirect back with an error and no code.
+  // Supabase sends error + error_code + error_description; keep the most
+  // specific machine-readable part in the reason so the sign-in screen can
+  // map it to a helpful message (see lib/auth/oauth-error.ts).
   if (oauthError) {
-    console.error("[auth/callback] provider error:", oauthError, oauthErrorDescription);
-    return errorRedirect(origin, oauthErrorDescription ?? oauthError, request);
+    console.error(
+      "[auth/callback] provider error:",
+      oauthError,
+      oauthErrorCode,
+      oauthErrorDescription
+    );
+    return errorRedirect(
+      origin,
+      oauthErrorCode ?? oauthErrorDescription ?? oauthError,
+      request
+    );
   }
 
   if (code) {

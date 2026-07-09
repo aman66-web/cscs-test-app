@@ -49,12 +49,16 @@ export function EmailOtp({
   chips,
   dots,
   authError = false,
+  authErrorMessage,
 }: {
   mode: "signin" | "signup";
   chips: FloatingChip[];
   dots: FloatingDot[];
   /** Set when returning from a failed OAuth callback (?error=auth). */
   authError?: boolean;
+  /** Readable failure message (already mapped from the callback's reason
+      code — see lib/auth/oauth-error.ts). Overrides the generic line. */
+  authErrorMessage?: string;
 }) {
   const supabase = createClient();
   const router = useRouter();
@@ -64,7 +68,8 @@ export function EmailOtp({
   const [code, setCode] = useState("");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(
-    authError ? "We couldn't finish that sign-in. Please try again." : null
+    authErrorMessage ??
+      (authError ? "We couldn't finish that sign-in. Please try again." : null)
   );
   // An optional CTA rendered under the error (e.g. "Create an account").
   const [errorLink, setErrorLink] = useState<{ href: string; label: string } | null>(

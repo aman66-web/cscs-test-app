@@ -25,11 +25,15 @@ import { isFreshOAuthSignup } from "@/lib/auth/new-account";
 
 export type NativeOAuthProvider = "google" | "apple";
 
-/** True only inside the native Capacitor shell (never the plain web). */
+/** True only inside the native Capacitor shell (never the plain web).
+    In a normal browser (desktop Safari/Chrome, mobile web) there is no native
+    bridge, so isNativePlatform() is false and the buttons take the standard
+    web `signInWithOAuth` redirect flow instead. */
 export async function isNativeAuth(): Promise<boolean> {
+  if (typeof window === "undefined") return false;
   try {
     const { Capacitor } = await import("@capacitor/core");
-    return Capacitor.isNativePlatform();
+    return Capacitor.isNativePlatform() === true;
   } catch {
     return false;
   }
