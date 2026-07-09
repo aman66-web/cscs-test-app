@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TOPICS, type TopicKey } from "@/lib/onboarding/types";
 
 // Cloned from the My Life in the UK Test app's components/onboarding/steps.tsx.
@@ -43,14 +43,68 @@ function toISODate(d: Date): string {
 
 const MIN_AGE = 13;
 const MAX_AGE = 110;
+const DOB_INVALID = "Please enter a valid date, like 15/03/1994.";
+
+/** Split an ISO "YYYY-MM-DD" into DD / MM / YYYY parts (to seed the inputs). */
+function partsFromIso(value: string | null): { d: string; m: string; y: string } {
+  if (value && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    const [y, m, d] = value.split("-");
+    return { d, m, y };
+  }
+  return { d: "", m: "", y: "" };
+}
+
+/** Validate the three typed parts. Returns the ISO date when valid, plus an
+    error message to show (only once enough has been typed to judge). */
+function evaluateDob(
+  dd: string,
+  mm: string,
+  yy: string
+): { iso: string | null; error: string | null } {
+  // Nothing (or not enough) entered yet — neither valid nor an error.
+  if (dd === "" && mm === "" && yy === "") return { iso: null, error: null };
+  if (dd === "" || mm === "" || yy.length < 4) return { iso: null, error: null };
+
+  const day = parseInt(dd, 10);
+  const month = parseInt(mm, 10);
+  const year = parseInt(yy, 10);
+  if (month < 1 || month > 12 || day < 1 || day > 31) {
+    return { iso: null, error: DOB_INVALID };
+  }
+  // Real calendar date? Constructing it and checking the parts round-trip
+  // rejects impossible dates like 31/02 (which would roll over to March).
+  const dt = new Date(year, month - 1, day);
+  if (
+    dt.getFullYear() !== year ||
+    dt.getMonth() !== month - 1 ||
+    dt.getDate() !== day
+  ) {
+    return { iso: null, error: DOB_INVALID };
+  }
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  if (dt.getTime() > today.getTime()) {
+    return { iso: null, error: "That date is in the future." };
+  }
+  // Age gate — same 365.25-day formula the server uses (onboarding actions),
+  // so client and server always agree.
+  const ageYears = (today.getTime() - dt.getTime()) / (365.25 * 86400000);
+  if (ageYears < MIN_AGE) {
+    return { iso: null, error: `You must be at least ${MIN_AGE} to use the app.` };
+  }
+  if (ageYears > MAX_AGE) {
+    return { iso: null, error: DOB_INVALID };
+  }
+  return { iso: toISODate(dt), error: null };
+}
 
 /**
- * Date of birth via the NATIVE date picker (`type="date"`): a tap opens the
- * OS calendar/wheel, so the user can never type it in the wrong format or a
- * wrong order — the picker localises display automatically (the OS decides),
- * while the stored value is always ISO "YYYY-MM-DD". The min/max bounds stop
- * future, impossible, and out-of-range ages at the picker itself; we re-check
- * on change as defence in depth.
+ * Date of birth as three typed inputs (DD / MM / YYYY) with auto-advance and a
+ * numeric keypad — no OS date picker. Validates a real calendar date that is
+ * in the past and within the sensible age range, then hands the parent an ISO
+ * "YYYY-MM-DD" string (or "" while incomplete/invalid), matching the previous
+ * contract. The server (onboarding actions) re-checks as defence in depth.
  */
 export function DobStep({
   value,
@@ -60,58 +114,98 @@ export function DobStep({
   /** Receives the ISO date when valid, "" while empty/invalid. */
   onChange: (value: string) => void;
 }) {
-  const iso = value && /^\d{4}-\d{2}-\d{2}$/.test(value) ? value : "";
-  const [error, setError] = useState(false);
+  const seed = partsFromIso(value);
+  const [d, setD] = useState(seed.d);
+  const [m, setM] = useState(seed.m);
+  const [y, setY] = useState(seed.y);
+  const [error, setError] = useState<string | null>(null);
 
-  // Bounds read the clock, so compute them AFTER mount (client-only) — if they
-  // were computed during render, a server/client midnight or timezone gap could
-  // make the min/max attributes differ and trigger a hydration mismatch.
-  // Latest allowed birth date = MIN_AGE years ago; earliest = MAX_AGE ago.
-  const [bounds, setBounds] = useState<{ min: string; max: string } | null>(
-    null
-  );
-  useEffect(() => {
-    const now = new Date();
-    setBounds({
-      max: toISODate(
-        new Date(now.getFullYear() - MIN_AGE, now.getMonth(), now.getDate())
-      ),
-      min: toISODate(
-        new Date(now.getFullYear() - MAX_AGE, now.getMonth(), now.getDate())
-      ),
-    });
-  }, []);
+  const dRef = useRef<HTMLInputElement>(null);
+  const mRef = useRef<HTMLInputElement>(null);
+  const yRef = useRef<HTMLInputElement>(null);
 
-  function handle(v: string) {
-    if (!v) {
-      setError(false);
-      onChange("");
-      return;
-    }
-    const dt = new Date(`${v}T00:00:00`);
-    const ageYears = (Date.now() - dt.getTime()) / (365.25 * 86400000);
-    const ok =
-      !Number.isNaN(dt.getTime()) && ageYears >= MIN_AGE && ageYears <= MAX_AGE;
-    setError(!ok);
-    onChange(ok ? v : "");
+  function apply(dd: string, mm: string, yy: string) {
+    setD(dd);
+    setM(mm);
+    setY(yy);
+    const res = evaluateDob(dd, mm, yy);
+    setError(res.error);
+    onChange(res.iso ?? "");
   }
+
+  const box = `${fieldClass} text-center`;
+  const sep = "flex-none text-[15px] font-bold text-ink-soft";
 
   return (
     <div>
-      <input
-        type="date"
-        autoComplete="bday"
-        value={iso}
-        min={bounds?.min}
-        max={bounds?.max}
-        aria-invalid={error}
-        aria-label="DD/MM/YYYY"
-        onChange={(e) => handle(e.target.value)}
-        className={fieldClass}
-      />
+      <div className="flex items-center gap-2">
+        <input
+          ref={dRef}
+          inputMode="numeric"
+          pattern="[0-9]*"
+          autoComplete="bday-day"
+          maxLength={2}
+          placeholder="DD"
+          aria-label="Day"
+          aria-invalid={!!error}
+          autoFocus
+          value={d}
+          onChange={(e) => {
+            const v = e.target.value.replace(/\D/g, "").slice(0, 2);
+            apply(v, m, y);
+            if (v.length === 2) mRef.current?.focus();
+          }}
+          className={`${box} !w-16 flex-none`}
+        />
+        <span className={sep} aria-hidden="true">
+          /
+        </span>
+        <input
+          ref={mRef}
+          inputMode="numeric"
+          pattern="[0-9]*"
+          autoComplete="bday-month"
+          maxLength={2}
+          placeholder="MM"
+          aria-label="Month"
+          aria-invalid={!!error}
+          value={m}
+          onChange={(e) => {
+            const v = e.target.value.replace(/\D/g, "").slice(0, 2);
+            apply(d, v, y);
+            if (v.length === 2) yRef.current?.focus();
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Backspace" && m === "") dRef.current?.focus();
+          }}
+          className={`${box} !w-16 flex-none`}
+        />
+        <span className={sep} aria-hidden="true">
+          /
+        </span>
+        <input
+          ref={yRef}
+          inputMode="numeric"
+          pattern="[0-9]*"
+          autoComplete="bday-year"
+          maxLength={4}
+          placeholder="YYYY"
+          aria-label="Year"
+          aria-invalid={!!error}
+          value={y}
+          onChange={(e) => {
+            const v = e.target.value.replace(/\D/g, "").slice(0, 4);
+            apply(d, m, v);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Backspace" && y === "") mRef.current?.focus();
+          }}
+          className={`${box} !w-auto flex-1`}
+        />
+      </div>
       {error ? (
         <p role="alert" className="mt-3 text-xs font-bold text-bad">
-          Please enter a valid date, like 15/03/1994.
+          {error}
         </p>
       ) : null}
     </div>
