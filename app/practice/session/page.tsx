@@ -193,7 +193,7 @@ function SessionBuilder() {
             {pickedModules.map((m) => (
               <span
                 key={m.key}
-                className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[12.5px] font-bold text-ink shadow-[0_8px_18px_-12px_rgba(33,27,78,0.35)]"
+                className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[12.5px] font-bold text-ink shadow-[0_8px_18px_-12px_rgba(28, 25, 23,0.35)]"
               >
                 <span aria-hidden="true">{m.icon}</span> {m.title}
               </span>
@@ -201,7 +201,7 @@ function SessionBuilder() {
           </div>
 
           {/* The briefing: what to expect */}
-          <section className="mt-5 rounded-[18px] bg-white px-4 py-1 shadow-[0_12px_26px_-16px_rgba(33,27,78,0.28)]">
+          <section className="mt-5 rounded-[18px] bg-white px-4 py-1 shadow-[0_12px_26px_-16px_rgba(28, 25, 23,0.28)]">
             {infoRow(
               "🎯",
               `Pass mark: ${MOCK_CONFIG.passPercentage}%`,
@@ -286,7 +286,7 @@ function SessionBuilder() {
           {pickedModules.map((m) => (
             <span
               key={m.key}
-              className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[12.5px] font-bold text-ink shadow-[0_8px_18px_-12px_rgba(33,27,78,0.35)]"
+              className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[12.5px] font-bold text-ink shadow-[0_8px_18px_-12px_rgba(28, 25, 23,0.35)]"
             >
               <span aria-hidden="true">{m.icon}</span> {m.title}
             </span>
@@ -294,7 +294,7 @@ function SessionBuilder() {
         </div>
 
         {/* How many questions */}
-        <section className="mt-5 rounded-[18px] bg-white p-4 shadow-[0_12px_26px_-16px_rgba(33,27,78,0.28)]">
+        <section className="mt-5 rounded-[18px] bg-white p-4 shadow-[0_12px_26px_-16px_rgba(28, 25, 23,0.28)]">
           <h2 className="text-[14.5px] font-extrabold tracking-[-0.2px] text-ink">
             How many questions?
           </h2>
@@ -353,7 +353,7 @@ function SessionBuilder() {
           onClick={() => setShuffleOn((s) => !s)}
           role="switch"
           aria-checked={shuffleOn}
-          className="mt-3 flex w-full items-center gap-3 rounded-[18px] bg-white px-4 py-[15px] text-start shadow-[0_12px_26px_-16px_rgba(33,27,78,0.28)]"
+          className="mt-3 flex w-full items-center gap-3 rounded-[18px] bg-white px-4 py-[15px] text-start shadow-[0_12px_26px_-16px_rgba(28, 25, 23,0.28)]"
         >
           <span className="flex-none text-lg" aria-hidden="true">🔀</span>
           <span className="min-w-0 flex-1">
@@ -375,7 +375,7 @@ function SessionBuilder() {
           role="switch"
           aria-checked={mistakesOnly}
           disabled={mistakesAvailable === 0}
-          className="mt-3 flex w-full items-center gap-3 rounded-[18px] bg-white px-4 py-[15px] text-start shadow-[0_12px_26px_-16px_rgba(33,27,78,0.28)] disabled:opacity-50"
+          className="mt-3 flex w-full items-center gap-3 rounded-[18px] bg-white px-4 py-[15px] text-start shadow-[0_12px_26px_-16px_rgba(28, 25, 23,0.28)] disabled:opacity-50"
         >
           <span className="flex-none text-lg" aria-hidden="true">🔁</span>
           <span className="min-w-0 flex-1">

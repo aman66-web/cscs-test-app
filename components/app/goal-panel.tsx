@@ -34,7 +34,7 @@ export function GoalPanel({ goalMinutes }: { goalMinutes: number }) {
         </span>
         <div className="flex h-2 flex-1 overflow-hidden rounded-[5px] bg-[#F0EDF8]">
           <i
-            className="block h-full rounded-[5px] bg-[linear-gradient(90deg,#8B4BF5,#6D28D9)]"
+            className="block h-full rounded-[5px] bg-[linear-gradient(90deg,#F97316,#C2410C)]"
             style={{ width: `${pct}%` }}
           />
         </div>

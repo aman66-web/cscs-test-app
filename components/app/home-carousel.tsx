@@ -96,19 +96,19 @@ function ProgressGraph({ points }: { points: DayPoint[] }) {
           ))}
           <path d={path} fill="none" stroke="url(#plGrad)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
           {points.map((pt, i) => (
-            <circle key={i} cx={x(i)} cy={y(pt.pct)} r="3.5" fill="#6D28D9" stroke="#fff" strokeWidth="1.5" />
+            <circle key={i} cx={x(i)} cy={y(pt.pct)} r="3.5" fill="#C2410C" stroke="#fff" strokeWidth="1.5" />
           ))}
           {/* First/last date labels */}
-          <text x={PAD.l} y={H - 8} fontSize="9.5" fontWeight="700" fill="#6B6690">
+          <text x={PAD.l} y={H - 8} fontSize="9.5" fontWeight="700" fill="#57534E">
             {points[0].label}
           </text>
-          <text x={W - PAD.r} y={H - 8} textAnchor="end" fontSize="9.5" fontWeight="700" fill="#6B6690">
+          <text x={W - PAD.r} y={H - 8} textAnchor="end" fontSize="9.5" fontWeight="700" fill="#57534E">
             {points[points.length - 1].label}
           </text>
           <defs>
             <linearGradient id="plGrad" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stopColor="#8B4BF5" />
-              <stop offset="1" stopColor="#6D28D9" />
+              <stop offset="0" stopColor="#F97316" />
+              <stop offset="1" stopColor="#C2410C" />
             </linearGradient>
           </defs>
         </svg>

@@ -32,10 +32,10 @@ export function BrandSplash({
         {/* Rotating orbit ring + dots */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 rounded-full border-2 border-dashed border-[rgba(124,58,237,0.25)]"
+          className="absolute inset-0 rounded-full border-2 border-dashed border-[rgba(249, 115, 22,0.25)]"
           style={{ animation: "splashSpin 14s linear infinite" }}
         >
-          <span className="absolute -top-1.5 left-1/2 h-3 w-3 rounded-full bg-[#FFC24B]" />
+          <span className="absolute -top-1.5 left-1/2 h-3 w-3 rounded-full bg-[#FACC15]" />
           <span className="absolute -bottom-1 left-[18%] h-2.5 w-2.5 rounded-full bg-[#4ADE80]" />
           <span className="absolute right-[6%] top-[24%] h-2 w-2 rounded-full bg-[#F472B6]" />
         </div>
@@ -46,7 +46,7 @@ export function BrandSplash({
           className="absolute left-1/2 top-1/2 h-[190px] w-[190px] -translate-x-1/2 -translate-y-1/2 rounded-full"
           style={{
             background:
-              "radial-gradient(circle, rgba(124,58,237,0.18) 0%, rgba(124,58,237,0) 65%)",
+              "radial-gradient(circle, rgba(249, 115, 22,0.18) 0%, rgba(249, 115, 22,0) 65%)",
           }}
         />
 
@@ -59,7 +59,7 @@ export function BrandSplash({
             style={{
               top: c.top,
               left: c.left,
-              boxShadow: "0 12px 24px -10px rgba(33,27,78,0.4)",
+              boxShadow: "0 12px 24px -10px rgba(28, 25, 23,0.4)",
               animation: `splashBob ${c.d} ease-in-out infinite`,
               animationDelay: c.delay,
             }}
@@ -71,7 +71,7 @@ export function BrandSplash({
         {/* Logo pop */}
         <span
           className="absolute left-1/2 top-1/2 h-[92px] w-[92px] -translate-x-1/2 -translate-y-1/2"
-          style={{ filter: "drop-shadow(0 16px 28px rgba(124,58,237,0.45))" }}
+          style={{ filter: "drop-shadow(0 16px 28px rgba(249, 115, 22,0.45))" }}
         >
           <span
             className="block h-full w-full"
@@ -95,7 +95,7 @@ export function BrandSplash({
         ) : null}
         <div className="mx-auto mt-5 h-1.5 w-full overflow-hidden rounded-full bg-ink/10">
           <div
-            className="h-full rounded-full bg-[linear-gradient(90deg,#8B4BF5,#6D28D9)]"
+            className="h-full rounded-full bg-[linear-gradient(90deg,#F97316,#C2410C)]"
             style={{ animation: "splashBar 2.1s ease-in-out both" }}
           />
         </div>

@@ -46,8 +46,8 @@ export function BrandLogo({
       )}
       <defs>
         <linearGradient id={id} x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#8B4BF5" />
-          <stop offset="1" stopColor="#6D28D9" />
+          <stop stopColor="#F97316" />
+          <stop offset="1" stopColor="#C2410C" />
         </linearGradient>
       </defs>
     </svg>

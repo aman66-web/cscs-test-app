@@ -59,7 +59,7 @@ function AuthToastInner() {
       <button
         type="button"
         onClick={() => setMessage(null)}
-        className="flex max-w-md items-start gap-2.5 rounded-2xl border border-white/80 bg-white/95 px-4 py-3 text-start shadow-[0_18px_40px_-14px_rgba(33,27,78,0.45)] backdrop-blur"
+        className="flex max-w-md items-start gap-2.5 rounded-2xl border border-white/80 bg-white/95 px-4 py-3 text-start shadow-[0_18px_40px_-14px_rgba(28, 25, 23,0.45)] backdrop-blur"
       >
         <span aria-hidden="true" className="mt-0.5 flex-none text-[16px]">
           👋

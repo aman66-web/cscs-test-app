@@ -35,7 +35,7 @@ export function QuestionCard({
   const isHotspot = question.question_type === "hotspot";
 
   return (
-    <div className="relative mt-[22px] rounded-[22px] bg-white p-[18px] pt-5 shadow-[0_18px_40px_-18px_rgba(33,27,78,0.35)]">
+    <div className="relative mt-[22px] rounded-[22px] bg-white p-[18px] pt-5 shadow-[0_18px_40px_-18px_rgba(28, 25, 23,0.35)]">
       {eyebrow ? (
         <div className="flex items-center gap-1.5 text-[11.5px] font-extrabold uppercase tracking-[0.6px] text-purple">
           <span aria-hidden="true">⛑️</span> {eyebrow}
@@ -54,7 +54,7 @@ export function QuestionCard({
 
       {/* Image for image-based multiple-choice questions */}
       {question.image_url && !isHotspot ? (
-        <div className="relative mt-4 overflow-hidden rounded-[14px] border border-ink/10 bg-[#EEF1FB]">
+        <div className="relative mt-4 overflow-hidden rounded-[14px] border border-ink/10 bg-[#FBF3EA]">
           <Image
             src={question.image_url}
             alt="Question illustration"
@@ -77,11 +77,11 @@ export function QuestionCard({
           {question.options.map((opt, i) => {
             const selected = choiceSelected.includes(i);
             const isRight = question.correct_answer.includes(i);
-            let cls = "border-transparent bg-[#F5F3FB] text-ink hover:border-purple/30";
+            let cls = "border-transparent bg-[#F7F1E9] text-ink hover:border-purple/30";
             if (revealed) {
               if (isRight) cls = "border-[rgba(34,178,104,0.35)] bg-[#E3F8EA] text-[#137A3B]";
               else if (selected) cls = "border-[rgba(224,85,85,0.35)] bg-[#FDEAEA] text-[#B93B3B]";
-              else cls = "border-transparent bg-[#F5F3FB] text-ink-soft";
+              else cls = "border-transparent bg-[#F7F1E9] text-ink-soft";
             } else if (selected) {
               cls = "border-purple bg-white text-ink";
             }
@@ -147,7 +147,7 @@ function HotspotImage({
         ref={ref}
         type="button"
         onClick={handleTap}
-        className="relative block w-full overflow-hidden rounded-[14px] border border-ink/10 bg-[#EEF1FB]"
+        className="relative block w-full overflow-hidden rounded-[14px] border border-ink/10 bg-[#FBF3EA]"
       >
         {question.image_url ? (
           <Image

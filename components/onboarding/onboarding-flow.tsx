@@ -50,7 +50,7 @@ const STEP_EMOJI: Record<StepId, string> = {
 /** iOS-style example notification card (what a daily nudge looks like). */
 function NotificationPreview({ body, time }: { body: string; time: string }) {
   return (
-    <div className="mt-2.5 flex items-start gap-3 rounded-[18px] border border-white/70 bg-white/90 p-3.5 shadow-[0_12px_26px_-14px_rgba(33,27,78,0.35)] backdrop-blur">
+    <div className="mt-2.5 flex items-start gap-3 rounded-[18px] border border-white/70 bg-white/90 p-3.5 shadow-[0_12px_26px_-14px_rgba(28, 25, 23,0.35)] backdrop-blur">
       <BrandLogo className="h-[38px] w-[38px] flex-none rounded-[10px]" withWordmark={false} />
       <div className="min-w-0 flex-1">
         <div className="flex items-baseline justify-between gap-2">
@@ -73,7 +73,7 @@ function EmojiBadge({ emoji }: { emoji: string }) {
   return (
     <div
       aria-hidden="true"
-      className="mb-4 flex h-16 w-16 flex-none items-center justify-center rounded-[20px] bg-white text-[32px] shadow-[0_12px_26px_-12px_rgba(33,27,78,0.35)]"
+      className="mb-4 flex h-16 w-16 flex-none items-center justify-center rounded-[20px] bg-white text-[32px] shadow-[0_12px_26px_-12px_rgba(28, 25, 23,0.35)]"
     >
       {emoji}
     </div>
@@ -328,7 +328,7 @@ export function OnboardingFlow({
             aria-label="Setup progress"
           >
             <div
-              className="h-full rounded-full bg-[linear-gradient(90deg,#8B4BF5,#6D28D9)] transition-[width] duration-300 ease-out"
+              className="h-full rounded-full bg-[linear-gradient(90deg,#F97316,#C2410C)] transition-[width] duration-300 ease-out"
               style={{ width: `${(safeIndex / (steps.length - 1)) * 100}%` }}
             />
           </div>

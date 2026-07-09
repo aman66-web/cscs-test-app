@@ -12,14 +12,14 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 // Palette shared by all auth screens (raw values so they stay exact).
-export const INK = "#211B4E";
-export const INK_SOFT = "#6B6690";
-export const PURPLE_DEEP = "#6D28D9";
+export const INK = "#1C1917";
+export const INK_SOFT = "#57534E";
+export const PURPLE_DEEP = "#C2410C";
 
 const SCREEN_BG =
   "radial-gradient(90% 40% at 12% 8%, #FFE6D0 0%, rgba(255,230,208,0) 52%)," +
-  "radial-gradient(90% 50% at 100% 22%, #E8DEFF 0%, rgba(232,222,255,0) 58%)," +
-  "linear-gradient(180deg,#FBF5F0 0%,#F3EEFC 48%,#EEF1FB 100%)";
+  "radial-gradient(90% 50% at 100% 22%, #FDEAD3 0%, rgba(232,222,255,0) 58%)," +
+  "linear-gradient(180deg,#FBF5F0 0%,#FBF3EA 48%,#FBF3EA 100%)";
 
 export type FloatingChip = {
   top: number;
@@ -61,8 +61,8 @@ function Logo({ className }: { className?: string }) {
           y2="44"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#8B4BF5" />
-          <stop offset="1" stopColor="#6D28D9" />
+          <stop stopColor="#F97316" />
+          <stop offset="1" stopColor="#C2410C" />
         </linearGradient>
       </defs>
     </svg>
@@ -107,12 +107,12 @@ export function AuthShell({
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[270px] overflow-hidden"
         >
-          <span className="absolute left-1/2 top-[-140px] h-[420px] w-[420px] -translate-x-1/2 rounded-full border-[1.5px] border-[rgba(124,58,237,0.13)]" />
-          <span className="absolute left-1/2 top-[-60px] h-[260px] w-[260px] -translate-x-1/2 rounded-full border-[1.5px] border-[rgba(124,58,237,0.13)]" />
+          <span className="absolute left-1/2 top-[-140px] h-[420px] w-[420px] -translate-x-1/2 rounded-full border-[1.5px] border-[rgba(249, 115, 22,0.13)]" />
+          <span className="absolute left-1/2 top-[-60px] h-[260px] w-[260px] -translate-x-1/2 rounded-full border-[1.5px] border-[rgba(249, 115, 22,0.13)]" />
           {chips.map((c, i) => (
             <span
               key={i}
-              className="absolute flex items-center justify-center rounded-full border-[3px] border-white shadow-[0_10px_22px_-8px_rgba(33,27,78,0.35)]"
+              className="absolute flex items-center justify-center rounded-full border-[3px] border-white shadow-[0_10px_22px_-8px_rgba(28, 25, 23,0.35)]"
               style={{
                 top: c.top,
                 left: c.left,
@@ -151,7 +151,7 @@ export function AuthShell({
           <Link
             href="/"
             aria-label="Back"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(33,27,78,0.08)] bg-white/80 backdrop-blur-[6px] transition hover:bg-white"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(28, 25, 23,0.08)] bg-white/80 backdrop-blur-[6px] transition hover:bg-white"
           >
             <svg width="9" height="16" viewBox="0 0 9 16" fill="none" aria-hidden="true">
               <path
@@ -171,7 +171,7 @@ export function AuthShell({
             className="mx-auto mt-0.5 block h-[62px] w-[62px]"
             style={{
               animation: "authPulse 5s ease-in-out infinite",
-              filter: "drop-shadow(0 12px 24px rgba(124,58,237,.4))",
+              filter: "drop-shadow(0 12px 24px rgba(249, 115, 22,.4))",
             }}
           >
             <Logo className="h-[62px] w-[62px]" />
@@ -189,7 +189,7 @@ export function AuthShell({
 
         {/* Frosted bottom sheet with the form */}
         <div
-          className="relative z-[6] mx-4 mt-5 flex flex-1 flex-col rounded-t-[28px] border border-white/90 bg-white/85 px-[22px] pt-6 shadow-[0_-18px_44px_-22px_rgba(33,27,78,0.35)] backdrop-blur-[10px]"
+          className="relative z-[6] mx-4 mt-5 flex flex-1 flex-col rounded-t-[28px] border border-white/90 bg-white/85 px-[22px] pt-6 shadow-[0_-18px_44px_-22px_rgba(28, 25, 23,0.35)] backdrop-blur-[10px]"
           style={{ paddingBottom: "max(20px, env(safe-area-inset-bottom))" }}
         >
           {children}

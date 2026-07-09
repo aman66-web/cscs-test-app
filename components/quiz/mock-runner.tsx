@@ -246,7 +246,7 @@ export function MockRunner({
           </div>
 
           {/* Question navigator: jump to any question at any point */}
-          <div className="rounded-[18px] bg-white/85 p-3 shadow-[0_10px_24px_-16px_rgba(33,27,78,0.25)]">
+          <div className="rounded-[18px] bg-white/85 p-3 shadow-[0_10px_24px_-16px_rgba(28, 25, 23,0.25)]">
             <div className="grid grid-cols-8 gap-1.5">
               {questions.map((qq, i) => {
                 const isCurrent = i === index;
@@ -262,7 +262,7 @@ export function MockRunner({
                     aria-current={isCurrent ? "true" : undefined}
                     className={`flex h-9 items-center justify-center rounded-[10px] text-[12.5px] font-extrabold transition active:scale-95 ${
                       isCurrent
-                        ? "bg-[linear-gradient(180deg,#8B4BF5,#6D28D9)] text-white shadow-[0_6px_14px_-6px_rgba(124,58,237,0.7)]"
+                        ? "bg-[linear-gradient(180deg,#F97316,#C2410C)] text-white shadow-[0_6px_14px_-6px_rgba(249, 115, 22,0.7)]"
                         : answered
                           ? "bg-lilac text-purple-deep"
                           : "border-[1.5px] border-ink/10 bg-white text-ink-soft"
@@ -393,13 +393,13 @@ function MockResults({
                 <div className="mt-2 flex gap-2.5">
                   <Link
                     href="/learn"
-                    className="flex-1 rounded-full bg-lilac px-3 py-2 text-center text-[12.5px] font-extrabold text-purple-deep transition hover:bg-[#E7DBFC]"
+                    className="flex-1 rounded-full bg-lilac px-3 py-2 text-center text-[12.5px] font-extrabold text-purple-deep transition hover:bg-[#FBE4CC]"
                   >
                     📖 Revisit in Learn
                   </Link>
                   <Link
                     href={`/practice/${c.key}`}
-                    className="flex-1 rounded-full bg-lilac px-3 py-2 text-center text-[12.5px] font-extrabold text-purple-deep transition hover:bg-[#E7DBFC]"
+                    className="flex-1 rounded-full bg-lilac px-3 py-2 text-center text-[12.5px] font-extrabold text-purple-deep transition hover:bg-[#FBE4CC]"
                   >
                     🎯 Drill in Practice
                   </Link>

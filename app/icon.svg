@@ -1,4 +1,9 @@
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="64" height="64" rx="16" fill="#7C3AED"/>
-  <path d="M20 33.5L28 41.5L45 24.5" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect width="64" height="64" rx="16" fill="#1C1917"/>
+  <!-- hard-hat brim -->
+  <rect x="11" y="40" width="42" height="7" rx="3.5" fill="#F97316"/>
+  <!-- hard-hat dome -->
+  <path d="M18 41a14 14 0 0 1 28 0z" fill="#F97316"/>
+  <!-- hi-vis reflective stripe across the dome -->
+  <rect x="20" y="31" width="24" height="5" rx="2.5" fill="#FACC15"/>
 </svg>

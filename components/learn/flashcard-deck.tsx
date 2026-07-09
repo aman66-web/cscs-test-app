@@ -134,7 +134,7 @@ export function FlashcardDeck({
           </Link>
           <div className="flex h-1.5 flex-1 overflow-hidden rounded-full bg-ink/10">
             <div
-              className="h-full rounded-full bg-[linear-gradient(90deg,#8B4BF5,#6D28D9)] transition-[width] duration-300"
+              className="h-full rounded-full bg-[linear-gradient(90deg,#F97316,#C2410C)] transition-[width] duration-300"
               style={{ width: `${(index / cards.length) * 100}%` }}
             />
           </div>
@@ -158,7 +158,7 @@ export function FlashcardDeck({
             }`}
           >
             {/* Front */}
-            <span className="flip-face absolute inset-0 flex flex-col rounded-[22px] bg-white p-6 shadow-[0_18px_40px_-18px_rgba(33,27,78,0.35)]">
+            <span className="flip-face absolute inset-0 flex flex-col rounded-[22px] bg-white p-6 shadow-[0_18px_40px_-18px_rgba(28, 25, 23,0.35)]">
               <span className="text-[11.5px] font-extrabold uppercase tracking-[0.6px] text-purple">
                 ⛑️ Flashcards
               </span>
@@ -172,7 +172,7 @@ export function FlashcardDeck({
               </span>
             </span>
             {/* Back */}
-            <span className="flip-face flip-back absolute inset-0 flex flex-col overflow-y-auto rounded-[22px] bg-white p-6 shadow-[0_18px_40px_-18px_rgba(33,27,78,0.35)]">
+            <span className="flip-face flip-back absolute inset-0 flex flex-col overflow-y-auto rounded-[22px] bg-white p-6 shadow-[0_18px_40px_-18px_rgba(28, 25, 23,0.35)]">
               <span className="text-[11.5px] font-extrabold uppercase tracking-[0.6px] text-[#137A3B]">
                 ✓ Answer
               </span>

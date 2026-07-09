@@ -67,7 +67,7 @@ export function ReviewGate() {
       <div
         role="dialog"
         aria-modal="true"
-        className="w-full max-w-md rounded-t-[26px] bg-white px-6 pb-[max(1.75rem,env(safe-area-inset-bottom))] pt-7 text-center shadow-[0_-18px_44px_-20px_rgba(33,27,78,0.45)] sm:rounded-[26px] sm:pb-7"
+        className="w-full max-w-md rounded-t-[26px] bg-white px-6 pb-[max(1.75rem,env(safe-area-inset-bottom))] pt-7 text-center shadow-[0_-18px_44px_-20px_rgba(28, 25, 23,0.45)] sm:rounded-[26px] sm:pb-7"
         onClick={(e) => e.stopPropagation()}
       >
         {step === "ask" ? (

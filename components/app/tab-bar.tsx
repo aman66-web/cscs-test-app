@@ -76,7 +76,7 @@ export function TabBar() {
       className="fixed inset-x-0 z-30 px-4"
       style={{ bottom: "max(16px, env(safe-area-inset-bottom))" }}
     >
-      <div className="mx-auto flex w-full max-w-md rounded-3xl border border-white/90 bg-white/90 p-2 shadow-[0_18px_40px_-16px_rgba(33,27,78,0.45)] backdrop-blur-xl">
+      <div className="mx-auto flex w-full max-w-md rounded-3xl border border-white/90 bg-white/90 p-2 shadow-[0_18px_40px_-16px_rgba(28, 25, 23,0.45)] backdrop-blur-xl">
         {TABS.map(({ href, label, Icon }) => {
           const active = pathname === href || pathname.startsWith(`${href}/`);
           return (

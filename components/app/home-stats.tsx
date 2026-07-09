@@ -129,7 +129,7 @@ export function HomeStats({
         })();
 
   const chip =
-    "min-w-0 flex-1 rounded-2xl bg-white p-3 text-start shadow-[0_10px_24px_-14px_rgba(33,27,78,0.3)] transition active:scale-[0.99]";
+    "min-w-0 flex-1 rounded-2xl bg-white p-3 text-start shadow-[0_10px_24px_-14px_rgba(28, 25, 23,0.3)] transition active:scale-[0.99]";
 
   return (
     <>
@@ -255,7 +255,7 @@ export function HomeStats({
             Ranked by your accuracy so far — focus here for the fastest gains.
           </p>
           {ranked.slice(0, 3).map((c, i) => (
-            <div key={c.key} className="mt-3 rounded-2xl bg-[#F7F5FC] p-3.5">
+            <div key={c.key} className="mt-3 rounded-2xl bg-[#FBF5EE] p-3.5">
               <div className="flex items-center justify-between">
                 <span className="text-[13.5px] font-extrabold text-ink">
                   {i + 1}. {TOPIC_LABEL.get(c.key)}

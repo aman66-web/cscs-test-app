@@ -218,7 +218,7 @@ export function PracticeSession({
           </Link>
           <div className="flex h-1.5 flex-1 overflow-hidden rounded-full bg-ink/10">
             <div
-              className="h-full rounded-full bg-[linear-gradient(90deg,#8B4BF5,#6D28D9)] transition-[width] duration-300"
+              className="h-full rounded-full bg-[linear-gradient(90deg,#F97316,#C2410C)] transition-[width] duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -231,7 +231,7 @@ export function PracticeSession({
         <div className="relative">
           <div
             aria-hidden="true"
-            className={`absolute -top-3.5 right-0 z-10 rounded-[14px] bg-white px-[13px] py-[9px] text-[13px] font-extrabold text-purple-deep shadow-[0_14px_30px_-12px_rgba(33,27,78,0.4)] transition-all duration-300 ${
+            className={`absolute -top-3.5 right-0 z-10 rounded-[14px] bg-white px-[13px] py-[9px] text-[13px] font-extrabold text-purple-deep shadow-[0_14px_30px_-12px_rgba(28, 25, 23,0.4)] transition-all duration-300 ${
               xpPop ? "translate-y-0 opacity-100" : "translate-y-1.5 opacity-0"
             }`}
           >

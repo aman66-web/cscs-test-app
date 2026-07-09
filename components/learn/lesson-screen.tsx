@@ -34,9 +34,9 @@ function RichText({ text }: { text: string }) {
 
 function FigureCard({ figure }: { figure: LessonFigure }) {
   return (
-    <div className="mt-4 flex items-center gap-4 overflow-hidden rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-18px_rgba(33,27,78,0.3)]">
+    <div className="mt-4 flex items-center gap-4 overflow-hidden rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-18px_rgba(28, 25, 23,0.3)]">
       <span
-        className="flex h-[74px] w-[74px] flex-none items-center justify-center rounded-[18px] bg-[linear-gradient(135deg,#F1EAFE,#E8DEFF)] text-[38px]"
+        className="flex h-[74px] w-[74px] flex-none items-center justify-center rounded-[18px] bg-[linear-gradient(135deg,#FEF3E2,#FDEAD3)] text-[38px]"
         aria-hidden="true"
       >
         {figure.emoji}
@@ -146,7 +146,7 @@ export function LessonScreen({
         {/* Reading progress */}
         <div className="mt-3 flex h-1.5 overflow-hidden rounded-full bg-ink/10">
           <div
-            className="h-full rounded-full bg-[linear-gradient(90deg,#8B4BF5,#6D28D9)] transition-[width] duration-300"
+            className="h-full rounded-full bg-[linear-gradient(90deg,#F97316,#C2410C)] transition-[width] duration-300"
             style={{ width: `${((page + 1) / totalPages) * 100}%` }}
           />
         </div>
@@ -173,7 +173,7 @@ export function LessonScreen({
         ))}
 
         {/* This page's facts */}
-        <div className="mt-4 rounded-[22px] bg-white p-[18px] shadow-[0_14px_30px_-18px_rgba(33,27,78,0.3)]">
+        <div className="mt-4 rounded-[22px] bg-white p-[18px] shadow-[0_14px_30px_-18px_rgba(28, 25, 23,0.3)]">
           <ul className="space-y-3.5">
             {(pages[page] ?? []).map((b, i) => (
               <li

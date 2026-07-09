@@ -109,7 +109,7 @@ export function CoachChat({ greetingName }: { greetingName: string }) {
                     key={s}
                     type="button"
                     onClick={() => send(s)}
-                    className="flex w-full items-center justify-between rounded-full border border-ink/10 bg-white py-3 pe-4 ps-5 text-start text-sm font-bold text-ink shadow-[0_10px_22px_-18px_rgba(33,27,78,0.4)] transition hover:border-purple/40"
+                    className="flex w-full items-center justify-between rounded-full border border-ink/10 bg-white py-3 pe-4 ps-5 text-start text-sm font-bold text-ink shadow-[0_10px_22px_-18px_rgba(28, 25, 23,0.4)] transition hover:border-purple/40"
                   >
                     {s}
                     <span className="inline-block text-purple-deep">→</span>
@@ -123,14 +123,14 @@ export function CoachChat({ greetingName }: { greetingName: string }) {
             {messages.map((m, i) =>
               m.role === "user" ? (
                 <div key={i} className="flex justify-end">
-                  <div className="max-w-[85%] whitespace-pre-wrap break-words rounded-[18px] rounded-ee-[6px] bg-[linear-gradient(135deg,#8B4BF5,#6D28D9)] px-4 py-3 text-sm leading-relaxed text-white shadow-[0_10px_20px_-12px_rgba(124,58,237,0.7)]">
+                  <div className="max-w-[85%] whitespace-pre-wrap break-words rounded-[18px] rounded-ee-[6px] bg-[linear-gradient(135deg,#F97316,#C2410C)] px-4 py-3 text-sm leading-relaxed text-white shadow-[0_10px_20px_-12px_rgba(249, 115, 22,0.7)]">
                     {m.content}
                   </div>
                 </div>
               ) : (
                 <div key={i} className="flex items-end justify-start gap-2">
                   <CoachAvatar size={26} className="mb-0.5" />
-                  <div className="max-w-[82%] whitespace-pre-wrap break-words rounded-[18px] rounded-es-[6px] border border-ink/[0.06] bg-white px-4 py-3 text-sm leading-relaxed text-ink shadow-[0_10px_22px_-18px_rgba(33,27,78,0.35)]">
+                  <div className="max-w-[82%] whitespace-pre-wrap break-words rounded-[18px] rounded-es-[6px] border border-ink/[0.06] bg-white px-4 py-3 text-sm leading-relaxed text-ink shadow-[0_10px_22px_-18px_rgba(28, 25, 23,0.35)]">
                     {m.content}
                   </div>
                 </div>
@@ -176,13 +176,13 @@ export function CoachChat({ greetingName }: { greetingName: string }) {
             onChange={(e) => setInput(e.target.value)}
             disabled={limitReached}
             placeholder="Ask your coach anything…"
-            className="h-12 flex-1 rounded-full border border-ink/10 bg-white px-5 text-[16px] text-ink shadow-[0_10px_22px_-18px_rgba(33,27,78,0.4)] outline-none transition focus:border-purple focus:ring-2 focus:ring-purple/30 disabled:opacity-60"
+            className="h-12 flex-1 rounded-full border border-ink/10 bg-white px-5 text-[16px] text-ink shadow-[0_10px_22px_-18px_rgba(28, 25, 23,0.4)] outline-none transition focus:border-purple focus:ring-2 focus:ring-purple/30 disabled:opacity-60"
           />
           <button
             type="submit"
             aria-label="Send"
             disabled={pending || limitReached || input.trim() === ""}
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#8B4BF5,#6D28D9)] text-white shadow-[0_10px_20px_-8px_rgba(124,58,237,0.7)] transition hover:brightness-110 active:scale-[0.97] disabled:opacity-40"
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#F97316,#C2410C)] text-white shadow-[0_10px_20px_-8px_rgba(249, 115, 22,0.7)] transition hover:brightness-110 active:scale-[0.97] disabled:opacity-40"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
               <path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />

@@ -34,7 +34,7 @@ export function LearnModules() {
         return (
           <section
             key={m.key}
-            className="mt-3 overflow-hidden rounded-[18px] bg-white shadow-[0_12px_26px_-16px_rgba(33,27,78,0.28)]"
+            className="mt-3 overflow-hidden rounded-[18px] bg-white shadow-[0_12px_26px_-16px_rgba(28, 25, 23,0.28)]"
           >
             <button
               type="button"

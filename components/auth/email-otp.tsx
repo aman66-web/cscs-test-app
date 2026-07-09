@@ -22,11 +22,23 @@ const RESEND_SECONDS = 30;
  * Passwordless email sign-in / sign-up with a 6-digit one-time passcode.
  *
  * Phase 1 (email): the user enters their email; we send a code via
- * `signInWithOtp` (no magic link — the Supabase email template must show the
- * {{ .Token }} code).
+ * `signInWithOtp`. Both entry screens use the SAME method — there is no
+ * `signUp()` call and no magic-link path here.
+ *
+ * IMPORTANT — Supabase email templates. Supabase chooses which template to
+ * send SERVER-SIDE, based on whether the account already exists:
+ *   - returning user (sign-in)  → the "Magic Link" template
+ *   - brand-new email (sign-up) → the "Confirm signup" template
+ * BOTH templates must be edited (Authentication → Email Templates) to show
+ * `{{ .Token }}` (the 6-digit code) instead of `{{ .ConfirmationURL }}` (a
+ * link). If only one is updated, that flow shows a code while the other still
+ * emails a link — this is a Supabase config gap, not a code bug.
+ *
  * Phase 2 (code): the user types the 6-digit code; `verifyOtp` signs them in
- * and we route into the app. Includes a resend control with a cooldown and
- * clear inline errors.
+ * and we route into the app. A returning user's code verifies as type
+ * "email"; a new sign-up's first code verifies as type "signup" — verify()
+ * tries "email" then falls back to "signup" so both work. Includes a resend
+ * control with a cooldown and clear inline errors.
  *
  * OTP is passwordless, so signing in and signing up are the same action —
  * `shouldCreateUser: true` creates the account on first code. The two entry
@@ -234,7 +246,7 @@ export function EmailOtp({
       >
         {notice ? (
           <p
-            className="mb-3 rounded-[14px] bg-[#F1EAFE] px-4 py-3 text-[13px] font-bold leading-snug"
+            className="mb-3 rounded-[14px] bg-[#FEF3E2] px-4 py-3 text-[13px] font-bold leading-snug"
             style={{ color: PURPLE_DEEP }}
           >
             {notice}
@@ -274,7 +286,7 @@ export function EmailOtp({
             maxLength={6}
             aria-label="6-digit code"
             placeholder="——————"
-            className="h-[62px] w-full rounded-[15px] border-[1.5px] border-transparent bg-[#F7F5FC] text-center text-[28px] font-extrabold tracking-[0.5em] text-ink outline-none transition placeholder:text-[#C9C4DC] placeholder:tracking-[0.3em] focus:border-[#7C3AED] focus:bg-white focus:shadow-[0_0_0_3px_rgba(124,58,237,0.12)]"
+            className="h-[62px] w-full rounded-[15px] border-[1.5px] border-transparent bg-[#FBF5EE] text-center text-[28px] font-extrabold tracking-[0.5em] text-ink outline-none transition placeholder:text-[#C9C4DC] placeholder:tracking-[0.3em] focus:border-[#F97316] focus:bg-white focus:shadow-[0_0_0_3px_rgba(249, 115, 22,0.12)]"
           />
 
           {error ? <ErrorBanner message={error} /> : null}
@@ -285,7 +297,7 @@ export function EmailOtp({
         </form>
 
         {/* Spam / junk folder hint. */}
-        <div className="mt-4 flex items-center gap-2.5 rounded-[14px] border border-[rgba(124,58,237,0.16)] bg-[#F2ECFC] px-3.5 py-2.5">
+        <div className="mt-4 flex items-center gap-2.5 rounded-[14px] border border-[rgba(249, 115, 22,0.16)] bg-[#FEF3E2] px-3.5 py-2.5">
           <span aria-hidden="true" className="flex-none text-[17px] leading-none">
             📩
           </span>
@@ -392,7 +404,7 @@ export function EmailOtp({
           By continuing you agree to our{" "}
           <Link
             href="/terms"
-            className="border-b border-[rgba(33,27,78,0.25)]"
+            className="border-b border-[rgba(28, 25, 23,0.25)]"
             style={{ color: INK }}
           >
             Terms
@@ -400,7 +412,7 @@ export function EmailOtp({
           and{" "}
           <Link
             href="/privacy"
-            className="border-b border-[rgba(33,27,78,0.25)]"
+            className="border-b border-[rgba(28, 25, 23,0.25)]"
             style={{ color: INK }}
           >
             Privacy Policy

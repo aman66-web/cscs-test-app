@@ -178,13 +178,13 @@ export function ProfileScreen({
   const dateLabel = formatTestDate(testDate);
 
   const row =
-    "mt-2.5 flex w-full items-center gap-3 rounded-2xl bg-white px-4 py-[15px] text-start text-sm font-bold text-ink shadow-[0_10px_24px_-16px_rgba(33,27,78,0.25)] transition hover:bg-[#FDFCFF]";
+    "mt-2.5 flex w-full items-center gap-3 rounded-2xl bg-white px-4 py-[15px] text-start text-sm font-bold text-ink shadow-[0_10px_24px_-16px_rgba(28, 25, 23,0.25)] transition hover:bg-[#FDFCFF]";
 
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-5 pb-32 pt-safe">
       {/* Head */}
       <div className="mt-2 flex flex-col items-center text-center">
-        <div className="flex h-[84px] w-[84px] items-center justify-center rounded-full bg-[linear-gradient(135deg,#8B4BF5,#6D28D9)] text-[32px] font-extrabold text-white shadow-[0_16px_32px_-14px_rgba(124,58,237,0.6)]">
+        <div className="flex h-[84px] w-[84px] items-center justify-center rounded-full bg-[linear-gradient(135deg,#F97316,#C2410C)] text-[32px] font-extrabold text-white shadow-[0_16px_32px_-14px_rgba(249, 115, 22,0.6)]">
           {initial}
         </div>
         <div className="mt-3 flex max-w-full items-center justify-center gap-1.5">
@@ -217,7 +217,7 @@ export function ProfileScreen({
         ].map((s) => (
           <div
             key={s.label}
-            className="min-w-0 flex-1 rounded-2xl bg-white px-2.5 py-3.5 text-center shadow-[0_10px_24px_-14px_rgba(33,27,78,0.3)]"
+            className="min-w-0 flex-1 rounded-2xl bg-white px-2.5 py-3.5 text-center shadow-[0_10px_24px_-14px_rgba(28, 25, 23,0.3)]"
           >
             <div className="text-xl" aria-hidden="true">
               {s.emoji}
@@ -242,7 +242,7 @@ export function ProfileScreen({
           </span>
         </button>
         {editing === "date" ? (
-          <div className="mt-2 rounded-2xl bg-white p-4 shadow-[0_10px_24px_-16px_rgba(33,27,78,0.25)]">
+          <div className="mt-2 rounded-2xl bg-white p-4 shadow-[0_10px_24px_-16px_rgba(28, 25, 23,0.25)]">
             <label className="text-[12.5px] font-bold text-ink" htmlFor="test-date">
               When is your test?
             </label>
@@ -307,7 +307,7 @@ export function ProfileScreen({
           </span>
         </button>
         {editing === "goal" ? (
-          <div className="mt-2 rounded-2xl bg-white p-4 shadow-[0_10px_24px_-16px_rgba(33,27,78,0.25)]">
+          <div className="mt-2 rounded-2xl bg-white p-4 shadow-[0_10px_24px_-16px_rgba(28, 25, 23,0.25)]">
             <p className="text-[12.5px] font-bold text-ink">Minutes per day</p>
             <div className="mt-2 flex flex-wrap gap-2">
               {GOAL_OPTIONS.map((m) => (

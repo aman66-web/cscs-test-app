@@ -38,7 +38,7 @@ export function MockSection() {
             <Link
               key={n}
               href={`/mock/${n}`}
-              className="rounded-2xl bg-white p-3.5 shadow-[0_10px_24px_-14px_rgba(33,27,78,0.3)] transition hover:bg-[#FDFCFF] active:scale-[0.99]"
+              className="rounded-2xl bg-white p-3.5 shadow-[0_10px_24px_-14px_rgba(28, 25, 23,0.3)] transition hover:bg-[#FDFCFF] active:scale-[0.99]"
             >
               <div className="flex items-center justify-between">
                 <span className="text-[14.5px] font-extrabold text-ink">

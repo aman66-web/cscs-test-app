@@ -85,7 +85,7 @@ export function TextField({
       >
         {label}
       </label>
-      <div className="flex h-[53px] items-center gap-[11px] rounded-[15px] border-[1.5px] border-transparent bg-[#F7F5FC] px-[15px] transition focus-within:border-[#7C3AED] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(124,58,237,0.12)]">
+      <div className="flex h-[53px] items-center gap-[11px] rounded-[15px] border-[1.5px] border-transparent bg-[#FBF5EE] px-[15px] transition focus-within:border-[#F97316] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(249, 115, 22,0.12)]">
         <span className="flex flex-none" style={{ color: INK_SOFT }}>
           {icon === "mail" ? <MailIcon /> : <LockIcon />}
         </span>
@@ -128,8 +128,8 @@ export function PrimaryButton({
     <button
       type="submit"
       disabled={disabled || pending}
-      className="mt-2 flex items-center justify-center gap-2.5 rounded-full p-[17px] text-base font-bold text-white shadow-[0_14px_26px_-12px_rgba(124,58,237,0.75)] outline-none transition hover:-translate-y-px hover:shadow-[0_18px_30px_-12px_rgba(124,58,237,0.85)] focus-visible:ring-[3px] focus-visible:ring-[rgba(124,58,237,0.4)] active:translate-y-0 disabled:opacity-60 disabled:hover:translate-y-0"
-      style={{ background: "linear-gradient(180deg,#8B4BF5,#6D28D9)" }}
+      className="mt-2 flex items-center justify-center gap-2.5 rounded-full p-[17px] text-base font-bold text-white shadow-[0_14px_26px_-12px_rgba(249, 115, 22,0.75)] outline-none transition hover:-translate-y-px hover:shadow-[0_18px_30px_-12px_rgba(249, 115, 22,0.85)] focus-visible:ring-[3px] focus-visible:ring-[rgba(249, 115, 22,0.4)] active:translate-y-0 disabled:opacity-60 disabled:hover:translate-y-0"
+      style={{ background: "linear-gradient(180deg,#F97316,#C2410C)" }}
     >
       {pending ? <Spinner /> : children}
     </button>

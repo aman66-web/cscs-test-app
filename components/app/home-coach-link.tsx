@@ -8,7 +8,7 @@ export function HomeCoachLink() {
     <Link
       href="/coach"
       id="tour-coach"
-      className="mt-4 flex items-center gap-3 rounded-2xl bg-white px-4 py-3.5 shadow-[0_10px_24px_-16px_rgba(33,27,78,0.25)] transition hover:bg-[#FAF9FF] active:scale-[0.99]"
+      className="mt-4 flex items-center gap-3 rounded-2xl bg-white px-4 py-3.5 shadow-[0_10px_24px_-16px_rgba(28, 25, 23,0.25)] transition hover:bg-[#FDFBF7] active:scale-[0.99]"
     >
       <span className="flex-none text-lg" aria-hidden="true">
         💬

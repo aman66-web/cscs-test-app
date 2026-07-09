@@ -64,7 +64,7 @@ export function SocialButtons({
   }
 
   const sbtn =
-    "flex h-[52px] flex-1 items-center justify-center gap-[9px] rounded-full border-[1.5px] border-[rgba(33,27,78,0.12)] bg-white text-[14.5px] font-bold transition hover:border-[rgba(124,58,237,0.35)] hover:bg-[#FAF9FF] disabled:opacity-60";
+    "flex h-[52px] flex-1 items-center justify-center gap-[9px] rounded-full border-[1.5px] border-[rgba(28, 25, 23,0.12)] bg-white text-[14.5px] font-bold transition hover:border-[rgba(249, 115, 22,0.35)] hover:bg-[#FDFBF7] disabled:opacity-60";
 
   return (
     <div>
@@ -72,9 +72,9 @@ export function SocialButtons({
         className="mb-3.5 mt-4 flex items-center gap-3 text-xs font-semibold"
         style={{ color: INK_SOFT }}
       >
-        <span className="h-px flex-1 bg-[rgba(33,27,78,0.12)]" />
+        <span className="h-px flex-1 bg-[rgba(28, 25, 23,0.12)]" />
         {dividerText}
-        <span className="h-px flex-1 bg-[rgba(33,27,78,0.12)]" />
+        <span className="h-px flex-1 bg-[rgba(28, 25, 23,0.12)]" />
       </div>
 
       <div className="flex gap-3">

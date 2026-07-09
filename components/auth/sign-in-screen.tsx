@@ -11,7 +11,7 @@ const CHIPS: FloatingChip[] = [
 ];
 
 const DOTS: FloatingDot[] = [
-  { top: 150, left: 64, size: 9, bg: "#FFC24B" },
+  { top: 150, left: 64, size: 9, bg: "#FACC15" },
   { top: 96, right: 88, size: 8, bg: "#4ADE80" },
   { top: 210, right: 74, size: 7, bg: "#F472B6" },
 ];

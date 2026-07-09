@@ -78,13 +78,13 @@ export function PracticeList({
       : null;
 
   const card =
-    "mt-3 flex w-full items-center gap-3 rounded-[18px] bg-white px-4 py-[15px] text-start shadow-[0_12px_26px_-16px_rgba(33,27,78,0.28)] transition hover:bg-[#FDFCFF] active:scale-[0.99]";
+    "mt-3 flex w-full items-center gap-3 rounded-[18px] bg-white px-4 py-[15px] text-start shadow-[0_12px_26px_-16px_rgba(28, 25, 23,0.28)] transition hover:bg-[#FDFCFF] active:scale-[0.99]";
 
   return (
     <div className="mt-1">
       {/* Summary card: ACCURACY (ring + correct/attempted) and COVERAGE
           (practised/whole bank) as two clearly-labelled, separate stats. */}
-      <section className="mt-2 flex items-center gap-4 rounded-[18px] bg-white p-4 shadow-[0_12px_26px_-16px_rgba(33,27,78,0.28)]">
+      <section className="mt-2 flex items-center gap-4 rounded-[18px] bg-white p-4 shadow-[0_12px_26px_-16px_rgba(28, 25, 23,0.28)]">
         <ProgressRing
           percent={pct ?? 0}
           size={72}
@@ -226,7 +226,7 @@ export function PracticeList({
                 `/practice/session?topics=${Array.from(picked).join(",")}`
               )
             }
-            className="btn-primary shadow-[0_18px_36px_-12px_rgba(124,58,237,0.85)]"
+            className="btn-primary shadow-[0_18px_36px_-12px_rgba(249, 115, 22,0.85)]"
           >
             Continue with {picked.size} module{picked.size === 1 ? "" : "s"}{" "}
             <span aria-hidden="true">→</span>

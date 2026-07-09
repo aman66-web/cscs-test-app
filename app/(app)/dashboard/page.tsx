@@ -41,7 +41,7 @@ export default async function DashboardPage() {
         <Link
           href="/profile"
           aria-label="Profile"
-          className="flex h-[42px] w-[42px] flex-none items-center justify-center rounded-full bg-[linear-gradient(135deg,#8B4BF5,#6D28D9)] text-base font-extrabold text-white"
+          className="flex h-[42px] w-[42px] flex-none items-center justify-center rounded-full bg-[linear-gradient(135deg,#F97316,#C2410C)] text-base font-extrabold text-white"
         >
           {initial}
         </Link>

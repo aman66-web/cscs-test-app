@@ -63,8 +63,8 @@ export function Gauge({ score }: { score: number | null }) {
       <svg viewBox="0 0 280 200" className="overflow-visible">
         <defs>
           <linearGradient id="gaugeGrad" x1="0" y1="0" x2="280" y2="0" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#8B4BF5" />
-            <stop offset="1" stopColor="#6D28D9" />
+            <stop stopColor="#F97316" />
+            <stop offset="1" stopColor="#C2410C" />
           </linearGradient>
         </defs>
         <path d={full} fill="none" stroke="#E4DFF2" strokeWidth={18} strokeLinecap="round" />

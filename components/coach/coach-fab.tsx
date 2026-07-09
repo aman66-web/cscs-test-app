@@ -112,13 +112,13 @@ export function CoachFab({
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Ask the AI coach"
-        className="fixed right-4 z-40 flex h-[54px] w-[54px] items-center justify-center rounded-full bg-[linear-gradient(135deg,#8B4BF5,#6D28D9)] text-[24px] shadow-[0_14px_26px_-8px_rgba(124,58,237,0.75)] transition hover:scale-105 active:scale-95"
+        className="fixed right-4 z-40 flex h-[54px] w-[54px] items-center justify-center rounded-full bg-[linear-gradient(135deg,#F97316,#C2410C)] text-[24px] shadow-[0_14px_26px_-8px_rgba(249, 115, 22,0.75)] transition hover:scale-105 active:scale-95"
         style={{ bottom }}
       >
         <span aria-hidden="true">🎓</span>
         <span
           aria-hidden="true"
-          className="absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded-full bg-[#FFC24B] text-[9px]"
+          className="absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded-full bg-[#FACC15] text-[9px]"
         >
           ✨
         </span>
@@ -217,7 +217,7 @@ export function CoachFab({
                         className={`max-w-[85%] whitespace-pre-wrap break-words rounded-2xl px-3.5 py-2.5 text-[13.5px] font-medium leading-relaxed ${
                           m.role === "user"
                             ? "bg-purple text-white"
-                            : "bg-[#F5F3FB] text-ink"
+                            : "bg-[#F7F1E9] text-ink"
                         }`}
                       >
                         {m.content}
@@ -226,7 +226,7 @@ export function CoachFab({
                   ))}
                   {pending ? (
                     <div className="flex justify-start">
-                      <div className="flex items-center gap-1 rounded-2xl bg-[#F5F3FB] px-4 py-3">
+                      <div className="flex items-center gap-1 rounded-2xl bg-[#F7F1E9] px-4 py-3">
                         {["0ms", "150ms", "300ms"].map((d) => (
                           <span
                             key={d}
@@ -262,7 +262,7 @@ export function CoachFab({
                 type="submit"
                 disabled={pending || limitReached || input.trim() === ""}
                 aria-label="Send"
-                className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-[linear-gradient(180deg,#8B4BF5,#6D28D9)] text-white shadow-[0_10px_20px_-8px_rgba(124,58,237,0.7)] transition active:scale-95 disabled:opacity-40"
+                className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-[linear-gradient(180deg,#F97316,#C2410C)] text-white shadow-[0_10px_20px_-8px_rgba(249, 115, 22,0.7)] transition active:scale-95 disabled:opacity-40"
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
                   <path
