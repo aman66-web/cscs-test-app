@@ -70,6 +70,72 @@ export type NativeOAuthResult = {
   redirectTo?: string;
 };
 
+/** Shape of the name/email the plugin returns for Apple and Google. */
+type NativeProfile = {
+  email?: string | null;
+  givenName?: string | null;
+  familyName?: string | null;
+  name?: string | null; // Google only (Apple gives given/family)
+};
+
+/**
+ * Persist the name (+ email) the native provider returned onto our profile row,
+ * so onboarding doesn't have to ask for it again (Apple 4.0 requirement).
+ *
+ * CRITICAL for Apple: the full name is only returned on the user's VERY FIRST
+ * authorisation, and it is NOT inside the ID token — it arrives only in the
+ * plugin's `profile`. If we don't grab it here, right after sign-in, it is gone
+ * forever. Mirrors the web callback's captureOAuthProfile. Never throws — a
+ * profile write must never break a successful sign-in.
+ */
+async function captureNativeProfile(
+  supabase: ReturnType<typeof createClient>,
+  profile: NativeProfile | undefined
+): Promise<void> {
+  try {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) return;
+
+    const { data: existing } = await supabase
+      .from("profiles")
+      .select("first_name")
+      .eq("id", user.id)
+      .maybeSingle<{ first_name: string | null }>();
+
+    const patch: Record<string, string> = {};
+
+    // Derive a first name (Apple: givenName; Google: givenName or first word of
+    // `name`). Only write it when we don't already have one, so a later Apple
+    // login — which returns no name — never clobbers the saved value.
+    if (!existing?.first_name?.trim()) {
+      const given = profile?.givenName?.trim() ?? "";
+      const full = profile?.name?.trim() ?? "";
+      const first = given || (full ? full.split(/\s+/)[0] : "");
+      if (first) patch.first_name = first.slice(0, 100);
+    }
+
+    // Email: prefer the Supabase session email (relay-safe — Apple's "Hide My
+    // Email" relay address arrives here already verified), fall back to the
+    // provider's. A relay address is a real, valid email; store it as-is.
+    const email = user.email ?? profile?.email ?? undefined;
+    if (email) patch.email = email;
+
+    if (Object.keys(patch).length > 0) {
+      // RLS lets a user write only their own row.
+      await supabase.from("profiles").upsert(
+        { id: user.id, ...patch },
+        { onConflict: "id" }
+      );
+    }
+  } catch (e) {
+    // Non-fatal: sign-in already succeeded; the name step in onboarding is the
+    // fallback if this ever fails.
+    console.error("[native-oauth] profile capture failed (non-fatal):", e);
+  }
+}
+
 /**
  * Decide where a freshly-signed-in native user goes, mirroring the web
  * callback: new users → /onboarding, returning → /dashboard, and the same
@@ -135,7 +201,10 @@ export async function nativeOAuth(
           : { scopes: ["email", "name"] },
     });
 
-    const result = (res?.result ?? {}) as { idToken?: string | null };
+    const result = (res?.result ?? {}) as {
+      idToken?: string | null;
+      profile?: NativeProfile;
+    };
     const idToken = result.idToken ?? undefined;
     if (!idToken) {
       return { ok: false, error: "No identity token was returned." };
@@ -156,6 +225,12 @@ export async function nativeOAuth(
       );
       return { ok: false, error: error.message };
     }
+
+    // Grab the provider's name/email NOW — for Apple this is the ONLY moment the
+    // full name is ever available (first authorisation only). Persisted so
+    // onboarding can skip the name/email steps.
+    await captureNativeProfile(supabase, result.profile);
+
     return { ok: true, redirectTo: await nativeRedirect(supabase, mode) };
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e ?? "");

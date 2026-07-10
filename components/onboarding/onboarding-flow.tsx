@@ -87,11 +87,18 @@ export function OnboardingFlow({
 }) {
   const router = useRouter();
 
-  const [answers, setAnswers] = useState<Answers>({
-    ...initial,
-    email: initial.email || accountEmail,
-  });
-  const [stepIndex, setStepIndex] = useState(() => firstUnansweredIndex(initial));
+  // Everything we already know at sign-in: the profile row (which carries a
+  // provider name when Apple/Google returned one) plus the account email
+  // (Apple "Hide My Email" relay addresses included).
+  const seed: Answers = { ...initial, email: initial.email || accountEmail };
+
+  const [answers, setAnswers] = useState<Answers>(seed);
+  // Decide the step list ONCE, from what we knew at sign-in — so filling a step
+  // that IS shown (e.g. the name on email sign-up) can't drop it from the list
+  // mid-flow and jump the user forward. getSteps skips the name step when a
+  // provider gave a name, and the email step whenever we already have an email.
+  const [steps] = useState<StepId[]>(() => getSteps(seed));
+  const [stepIndex, setStepIndex] = useState(() => firstUnansweredIndex(seed));
   const [direction, setDirection] = useState<1 | -1>(1);
   const [entered, setEntered] = useState(false);
   const [pending, setPending] = useState(false);
@@ -99,7 +106,6 @@ export function OnboardingFlow({
   const [showHelp, setShowHelp] = useState(false);
   const [finishing, setFinishing] = useState(false);
 
-  const steps = getSteps(answers);
   const safeIndex = Math.min(stepIndex, steps.length - 1);
   const stepId = steps[safeIndex];
   const isLast = safeIndex === steps.length - 1;

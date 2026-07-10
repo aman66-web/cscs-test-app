@@ -13,7 +13,6 @@ import { createClient } from "@/lib/supabase/server";
 /** The columns every screen collectively needs — fetched once per request. */
 export type CachedProfile = {
   first_name: string | null;
-  date_of_birth: string | null;
   email: string | null;
   taken_before: boolean | null;
   previous_score: number | null;
@@ -25,7 +24,7 @@ export type CachedProfile = {
 } | null;
 
 const PROFILE_COLUMNS =
-  "first_name, date_of_birth, email, taken_before, previous_score, " +
+  "first_name, email, taken_before, previous_score, " +
   "hardest_topics, hardest_notes, onboarding_completed, goal, test_date";
 
 /** The signed-in user, fetched at most once per server request. */

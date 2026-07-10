@@ -8,7 +8,6 @@
 
 -- 1. Add the onboarding / study columns
 alter table public.profiles
-  add column if not exists date_of_birth        date,
   add column if not exists first_name           text,
   add column if not exists last_name            text,
   add column if not exists taken_before         boolean,
@@ -16,6 +15,11 @@ alter table public.profiles
   add column if not exists hardest_topics       jsonb,
   add column if not exists hardest_notes        text,
   add column if not exists onboarding_completed boolean not null default false;
+
+-- 1a. Date of birth was removed from onboarding (no age step). Drop the column
+-- if an older database still has it. Safe to re-run.
+alter table public.profiles
+  drop column if exists date_of_birth;
 
 -- 2. Guard the previous test score to a valid range (0–50), nullable when skipped
 alter table public.profiles

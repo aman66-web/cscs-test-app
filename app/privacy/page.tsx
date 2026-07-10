@@ -9,7 +9,7 @@ export default function PrivacyPage() {
   const strong = "font-semibold text-ink";
   const list = "list-disc space-y-1 ps-5";
   return (
-    <LegalPage title="Privacy Policy" updated="9 July 2026">
+    <LegalPage title="Privacy Policy" updated="10 July 2026">
       <div className="space-y-2 text-sm leading-relaxed text-ink-soft">
         <p>
           <span className={strong}>CSCS Test App</span> — provided by{" "}
@@ -62,11 +62,6 @@ export default function PrivacyPage() {
           <li>
             Your <span className={strong}>first name</span> (used to
             personalise your experience)
-          </li>
-          <li>
-            Your <span className={strong}>date of birth</span> (used to
-            personalise your study plan and confirm you meet the age
-            requirement for the official test)
           </li>
           <li>
             Your <span className={strong}>test date</span> and{" "}
@@ -139,9 +134,9 @@ export default function PrivacyPage() {
           <span className={strong}>Anthropic</span> (the provider of the
           underlying AI model) so that it can generate personalised study
           guidance. Your message and relevant progress data are processed by
-          Anthropic to produce a response. We do not send Anthropic your name,
-          date of birth, or contact details for this purpose beyond what is
-          needed to answer your question.
+          Anthropic to produce a response. We do not send Anthropic your name
+          or contact details for this purpose beyond what is needed to answer
+          your question.
         </p>
         <p>
           To manage costs and prevent misuse, use of the AI coach is limited to

@@ -35,7 +35,6 @@ export function sanitizeTopics(input: unknown): TopicKey[] {
 /** In-memory answer shape held by the client flow component. */
 export type Answers = {
   firstName: string;
-  dateOfBirth: string | null; // ISO "YYYY-MM-DD"
   email: string;
   takenBefore: boolean | null;
   previousScore: number | null;
@@ -46,7 +45,6 @@ export type Answers = {
 /** The shape of the relevant columns as they come back from Supabase. */
 export type ProfileRow = {
   first_name: string | null;
-  date_of_birth: string | null;
   email: string | null;
   taken_before: boolean | null;
   previous_score: number | null;
@@ -57,13 +55,12 @@ export type ProfileRow = {
 
 /** Columns the onboarding page selects to seed the flow. */
 export const ONBOARDING_SELECT =
-  "first_name, date_of_birth, email, taken_before, previous_score, hardest_topics, hardest_notes, onboarding_completed";
+  "first_name, email, taken_before, previous_score, hardest_topics, hardest_notes, onboarding_completed";
 
 /** Convert a DB row (snake_case, nullable) into the client Answers shape. */
 export function mapRowToInitialAnswers(row: ProfileRow | null): Answers {
   return {
     firstName: row?.first_name ?? "",
-    dateOfBirth: row?.date_of_birth ?? null,
     email: row?.email ?? "",
     takenBefore: row?.taken_before ?? null,
     previousScore: row?.previous_score ?? null,
@@ -83,23 +80,30 @@ export type StepId =
   | "meetCoach";
 
 /**
- * The ordered list of steps. The previous-score question is an inline reveal
- * within the "takenBefore" step (when the user answers Yes), not a separate
- * step. "notifications" (turn on study reminders, with example notifications)
+ * The ordered list of steps. Steps we already have answers for are omitted so
+ * we never ask twice:
+ *  - "firstName" is skipped when a provider (Apple/Google) already gave us a
+ *    name. Email OTP sign-up has no name, so the step is shown there.
+ *  - "email" is skipped whenever we already have an email — the signed-in
+ *    account email (Apple "Hide My Email" relay addresses included) or one the
+ *    provider returned. In practice we always have an email after sign-in, so
+ *    this step only ever appears if that somehow isn't the case.
+ * (Apple Sign in with Apple / Guideline 4.0: never re-ask for data the provider
+ * already supplied.)
+ *
+ * The previous-score question is an inline reveal within "takenBefore" (when
+ * the user answers Yes), not a separate step. "notifications" (study reminders)
  * is device-local and "meetCoach" (say hello to David, the AI coach) is
  * client-only — neither saves anything server-side. "meetCoach" is
  * intentionally the FINAL step, so the user meets their coach right before
  * landing on the dashboard.
  */
-export function getSteps(_answers: Answers): StepId[] {
-  return [
-    "firstName",
-    "email",
-    "takenBefore",
-    "hardest",
-    "notifications",
-    "meetCoach",
-  ];
+export function getSteps(answers: Answers): StepId[] {
+  const steps: StepId[] = [];
+  if (answers.firstName.trim() === "") steps.push("firstName");
+  if (answers.email.trim() === "") steps.push("email");
+  steps.push("takenBefore", "hardest", "notifications", "meetCoach");
+  return steps;
 }
 
 /** Required (non-skippable) steps, used to resume at the first unanswered one. */
