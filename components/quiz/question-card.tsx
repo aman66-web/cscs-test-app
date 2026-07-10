@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
 import type { Question } from "@/lib/questions/types";
 import { isHotspotCorrect } from "@/lib/questions/types";
 
@@ -52,15 +51,18 @@ export function QuestionCard({
         </p>
       ) : null}
 
-      {/* Image for image-based multiple-choice questions */}
+      {/* Image for image-based multiple-choice questions (ISO 7010 safety
+          signs). These are static SVGs in /public/signs. We use a plain <img>,
+          NOT next/image: the Next image optimizer rejects SVG sources with a
+          400 unless `dangerouslyAllowSVG` is set, which silently blanked every
+          sign question. SVGs are vectors, so the optimizer adds nothing anyway. */}
       {question.image_url && !isHotspot ? (
-        <div className="relative mt-4 overflow-hidden rounded-[14px] border border-ink/10 bg-[#FBF3EA]">
-          <Image
+        <div className="mt-4 flex items-center justify-center overflow-hidden rounded-[14px] border border-ink/10 bg-[#FBF3EA] p-4">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={question.image_url}
-            alt="Question illustration"
-            width={400}
-            height={300}
-            className="h-auto w-full"
+            alt="Safety sign"
+            className="h-40 w-auto max-w-full object-contain"
           />
         </div>
       ) : null}
@@ -150,11 +152,12 @@ function HotspotImage({
         className="relative block w-full overflow-hidden rounded-[14px] border border-ink/10 bg-[#FBF3EA]"
       >
         {question.image_url ? (
-          <Image
+          // Plain <img> (not next/image) — see the note on the multiple-choice
+          // image above: the optimizer blocks SVG sources.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
             src={question.image_url}
             alt="Tap the hazard"
-            width={400}
-            height={300}
             className="pointer-events-none h-auto w-full"
           />
         ) : null}
