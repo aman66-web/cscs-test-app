@@ -90,21 +90,23 @@ export async function GET(request: Request) {
         ? explicitNext
         : null;
 
-    // A brand-new OAuth account (Google/Apple just created it) is sent to the
-    // confirm-account interstitial FIRST — "no account found, create one?" —
-    // so we never silently sign up someone who only meant to sign in. They
-    // confirm (→ onboarding) or cancel (→ the account is deleted). Returning
-    // users skip this entirely.
+    // The "no account found — create one?" interstitial is ONLY for the SIGN IN
+    // path: someone tapped "Sign in" with Google/Apple but has no account yet, so
+    // we confirm before keeping the just-created account (confirm → onboarding,
+    // cancel → the account is deleted). If they came from "Create account"
+    // (mode === "signup") they already asked for an account, so skip the
+    // interstitial and go straight into onboarding. Returning users skip it too.
     let next: string;
     if (!safeNext) {
       const {
         data: { user },
       } = await supabase.auth.getUser();
-      if (await isFreshOAuthSignup(supabase, user)) {
+      if (mode !== "signup" && (await isFreshOAuthSignup(supabase, user))) {
         next = "/auth/confirm-account";
       } else {
         next = await authedRedirectTarget(supabase);
-        // Existing account reached via "Create account" → a friendly note.
+        // Existing account reached via "Create account" → sign them in with a
+        // gentle "you already have an account" note instead of an error.
         if (mode === "signup" && next.startsWith("/dashboard")) {
           next += (next.includes("?") ? "&" : "?") + "auth=welcomeBack";
         }

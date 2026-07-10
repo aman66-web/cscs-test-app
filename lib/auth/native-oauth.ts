@@ -85,9 +85,10 @@ async function nativeRedirect(
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    // A brand-new OAuth account goes to the confirm-account interstitial first
-    // (same as the web callback) — never a silent sign-up.
-    if (await isFreshOAuthSignup(supabase, user)) {
+    // The confirm-account interstitial is ONLY for the SIGN IN path (tapped
+    // "Sign in" but no account yet). A "Create account" tap already asked for an
+    // account, so skip it and go straight to onboarding (same as the web callback).
+    if (mode !== "signup" && (await isFreshOAuthSignup(supabase, user))) {
       return "/auth/confirm-account";
     }
     let onboarded = false;
