@@ -49,7 +49,7 @@ const STEP_EMOJI: Record<StepId, string> = {
 function NotificationPreview({ body, time }: { body: string; time: string }) {
   return (
     <div className="mt-2.5 flex items-start gap-3 rounded-[18px] border border-white/70 bg-white/90 p-3.5 shadow-[0_12px_26px_-14px_rgba(28, 25, 23,0.35)] backdrop-blur">
-      <BrandLogo className="h-[38px] w-[38px] flex-none rounded-[10px]" withWordmark={false} />
+      <BrandLogo className="h-[38px] w-[38px] flex-none rounded-[10px]" />
       <div className="min-w-0 flex-1">
         <div className="flex items-baseline justify-between gap-2">
           <span className="text-[13px] font-extrabold text-ink">

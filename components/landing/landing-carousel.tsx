@@ -3,32 +3,15 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/language-provider";
+import { BrandLogo } from "@/components/brand/logo";
 
 // Signed-out landing carousel. Cloned in structure from the My Life in the UK
 // Test app's landing-carousel.tsx and re-themed for CSCS (construction palette,
 // hard-hat logo, HS&E slides). UI strings are translated via t(); the sample
-// question stays English (it represents real test content).
+// question stays English (it represents real test content). The hard-hat logo
+// is the shared BrandLogo so it matches the app icon and every other screen.
 
 const N = 4;
-
-// ---- Hard-hat logo (matches the app icon) ----------------------------------
-function Logo({ className, big }: { className?: string; big?: boolean }) {
-  const id = big ? "lgBig" : "lgSmall";
-  return (
-    <svg viewBox="0 0 44 44" className={className} aria-hidden="true">
-      <rect width="44" height="44" rx="13" fill={`url(#${id})`} />
-      <rect x="7.5" y="27.5" width="29" height="5" rx="2.5" fill="#F97316" />
-      <path d="M12.5 28a9.5 9.5 0 0 1 19 0z" fill="#F97316" />
-      <rect x="14" y="21" width="16" height="3.4" rx="1.7" fill="#FACC15" />
-      <defs>
-        <linearGradient id={id} x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#292524" />
-          <stop offset="1" stopColor="#1C1917" />
-        </linearGradient>
-      </defs>
-    </svg>
-  );
-}
 
 const CHIPS = [
   { top: "10%", left: "50%", size: 58, fs: 30, bg: "#fff", d: 6, e: "👷" },
@@ -139,7 +122,7 @@ export function LandingCarousel({
                 </svg>
               </button>
             ) : null}
-            <Logo className="h-[26px] w-[26px] flex-none" />
+            <BrandLogo className="h-[26px] w-[26px] flex-none" />
             <span
               className="min-w-0 truncate text-[15px] font-extrabold tracking-[-0.3px]"
               style={{ color: "#1C1917" }}
@@ -206,7 +189,7 @@ export function LandingCarousel({
                     filter: "drop-shadow(0 12px 24px rgba(249,115,22,.4))",
                   }}
                 >
-                  <Logo big className="h-[78px] w-[78px]" />
+                  <BrandLogo className="h-[78px] w-[78px]" />
                 </span>
 
                 {CHIPS.map((c, i) => (

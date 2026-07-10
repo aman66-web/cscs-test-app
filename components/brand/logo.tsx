@@ -1,53 +1,32 @@
-// The app logo (white safety check on the purple gradient tile), shared by
-// the splash animations, notification previews and future landing page.
-// Same tile/gradient as the My Life in the UK Test app's BrandLogo; the
-// sunrise-crown artwork is swapped for the CSCS safety check.
+// The app logo — the CSCS hard-hat icon: a charcoal rounded tile, a
+// safety-orange hard hat, and a hi-vis yellow reflective stripe. This is the
+// SINGLE source of truth for the in-app logo (same artwork as the app icon in
+// public/icon.svg), shared by the splash, auth screens, landing page,
+// onboarding, the language gate and notification previews — so every screen
+// matches. Pure inline SVG: no image file to 404, scales to any size via
+// className.
 
-export function BrandLogo({
-  className,
-  withWordmark = true,
-}: {
-  className?: string;
-  withWordmark?: boolean;
-}) {
-  const id = withWordmark ? "brandLgBig" : "brandLgSmall";
+export function BrandLogo({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 44 44" className={className} aria-hidden="true">
-      <rect width="44" height="44" rx="13" fill={`url(#${id})`} />
-      {withWordmark ? (
-        <>
-          <path
-            d="M15 20.5l5 5L30 15"
-            stroke="#fff"
-            strokeWidth="3.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <text
-            x="22"
-            y="38.5"
-            textAnchor="middle"
-            fontWeight="800"
-            fontSize="8"
-            letterSpacing="1"
-            fill="#fff"
-          >
-            CSCS
-          </text>
-        </>
-      ) : (
-        <path
-          d="M14 23l5.5 5.5L31 16"
-          stroke="#fff"
-          strokeWidth="4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      )}
+      <rect width="44" height="44" rx="13" fill="url(#brandHat)" />
+      {/* hard-hat brim */}
+      <rect x="7.5" y="27.5" width="29" height="5" rx="2.5" fill="#F97316" />
+      {/* hard-hat dome */}
+      <path d="M12.5 28a9.5 9.5 0 0 1 19 0z" fill="#F97316" />
+      {/* hi-vis reflective stripe across the dome */}
+      <rect x="14" y="21" width="16" height="3.4" rx="1.7" fill="#FACC15" />
       <defs>
-        <linearGradient id={id} x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#F97316" />
-          <stop offset="1" stopColor="#C2410C" />
+        <linearGradient
+          id="brandHat"
+          x1="0"
+          y1="0"
+          x2="44"
+          y2="44"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#292524" />
+          <stop offset="1" stopColor="#1C1917" />
         </linearGradient>
       </defs>
     </svg>

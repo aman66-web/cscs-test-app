@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { BrandLogo } from "@/components/brand/logo";
 
 // The auth screens share a self-contained look (purple + warm gradient +
 // Plus Jakarta Sans), mirroring the My Life in the UK Test app's auth shell.
@@ -39,35 +40,6 @@ export type FloatingDot = {
   size: number;
   bg: string;
 };
-
-// ---- App logo: brand-purple rounded square with a safety check -------------
-function Logo({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 44 44" className={className} aria-hidden="true">
-      <rect width="44" height="44" rx="13" fill="url(#lgAuth)" />
-      <path
-        d="M14 23l5.5 5.5L31 16"
-        stroke="#fff"
-        strokeWidth="4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <defs>
-        <linearGradient
-          id="lgAuth"
-          x1="0"
-          y1="0"
-          x2="44"
-          y2="44"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#F97316" />
-          <stop offset="1" stopColor="#C2410C" />
-        </linearGradient>
-      </defs>
-    </svg>
-  );
-}
 
 /**
  * Full-screen scaffold for the auth pages: warm gradient background, floating
@@ -174,7 +146,7 @@ export function AuthShell({
               filter: "drop-shadow(0 12px 24px rgba(249, 115, 22,.4))",
             }}
           >
-            <Logo className="h-[62px] w-[62px]" />
+            <BrandLogo className="h-[62px] w-[62px]" />
           </span>
           <h1 className="mt-3.5 text-[27px] font-extrabold tracking-[-0.8px]">
             {title}
