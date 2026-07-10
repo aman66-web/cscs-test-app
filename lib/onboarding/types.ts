@@ -76,30 +76,29 @@ export function mapRowToInitialAnswers(row: ProfileRow | null): Answers {
 
 export type StepId =
   | "firstName"
-  | "meetCoach"
-  | "dob"
   | "email"
   | "takenBefore"
   | "hardest"
-  | "notifications";
+  | "notifications"
+  | "meetCoach";
 
 /**
  * The ordered list of steps. The previous-score question is an inline reveal
  * within the "takenBefore" step (when the user answers Yes), not a separate
- * step. "meetCoach" introduces David (the AI coach) right after we learn the
- * user's name — client-only, nothing saved server-side. "notifications" is
- * the closing stage: turn on study reminders (with example notifications) —
- * device-local, nothing saved server-side.
+ * step. "notifications" (turn on study reminders, with example notifications)
+ * is device-local and "meetCoach" (say hello to David, the AI coach) is
+ * client-only — neither saves anything server-side. "meetCoach" is
+ * intentionally the FINAL step, so the user meets their coach right before
+ * landing on the dashboard.
  */
 export function getSteps(_answers: Answers): StepId[] {
   return [
     "firstName",
-    "meetCoach",
-    "dob",
     "email",
     "takenBefore",
     "hardest",
     "notifications",
+    "meetCoach",
   ];
 }
 
@@ -108,12 +107,11 @@ export function firstUnansweredIndex(answers: Answers): number {
   const steps = getSteps(answers);
   const isAnswered: Record<StepId, boolean> = {
     firstName: answers.firstName.trim() !== "",
-    meetCoach: true, // optional — never blocks resume
-    dob: answers.dateOfBirth !== null,
     email: answers.email.trim() !== "",
     takenBefore: answers.takenBefore !== null,
     hardest: true, // optional — never blocks resume
     notifications: true, // optional — never blocks resume
+    meetCoach: true, // optional — never blocks resume
   };
   const idx = steps.findIndex((step) => !isAnswered[step]);
   return idx === -1 ? steps.length - 1 : idx;
@@ -124,7 +122,6 @@ export function firstUnansweredIndex(answers: Answers): number {
 /** Discriminated union so each step only carries its own fields. */
 export type SaveOnboardingInput =
   | { step: "firstName"; firstName: string }
-  | { step: "dob"; dateOfBirth: string }
   | { step: "email"; email: string }
   | { step: "takenBefore"; takenBefore: boolean }
   | { step: "score"; previousScore: number | null }

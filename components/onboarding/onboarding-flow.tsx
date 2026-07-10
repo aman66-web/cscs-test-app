@@ -12,7 +12,6 @@ import {
   type TopicKey,
 } from "@/lib/onboarding/types";
 import {
-  DobStep,
   HardestStep,
   MeetCoachStep,
   ScoreStep,
@@ -39,12 +38,11 @@ const SPLASH_MS = 2400;
 // Per-step emoji, shown in a rounded white tile (prototype .emoji-badge).
 const STEP_EMOJI: Record<StepId, string> = {
   firstName: "👋",
-  meetCoach: "🎓",
-  dob: "🎂",
   email: "✉️",
   takenBefore: "📚",
   hardest: "🧠",
   notifications: "🔔",
+  meetCoach: "🎓",
 };
 
 /** iOS-style example notification card (what a daily nudge looks like). */
@@ -141,8 +139,6 @@ export function OnboardingFlow({
       case "meetCoach":
         // Client-only stage (David's hello) — nothing to persist.
         return null;
-      case "dob":
-        return { step: "dob", dateOfBirth: answers.dateOfBirth ?? "" };
       case "email":
         return { step: "email", email: answers.email };
       case "takenBefore":
@@ -165,8 +161,6 @@ export function OnboardingFlow({
         return answers.firstName.trim() !== "";
       case "meetCoach":
         return true;
-      case "dob":
-        return !!answers.dateOfBirth;
       case "email":
         return EMAIL_RE.test(answers.email.trim());
       case "takenBefore":
@@ -208,7 +202,9 @@ export function OnboardingFlow({
     // request on the web (see lib/notifications/local-notifications.ts).
     updateSettings({ remindersEnabled: true });
     void enableDailyReminder(REMINDER_TITLE, REMINDER_BODY);
-    void finish();
+    // Reminders are no longer the final step — advance to "meet your coach"
+    // (the last step), which finishes onboarding.
+    goTo(safeIndex + 1, 1);
   }
 
   async function handleNext() {
@@ -368,7 +364,7 @@ export function OnboardingFlow({
             <>
               <button
                 type="button"
-                onClick={() => void finish()}
+                onClick={() => goTo(safeIndex + 1, 1)}
                 disabled={pending}
                 className="flex h-12 w-full items-center justify-center rounded-full text-sm font-semibold text-ink-soft transition hover:text-ink disabled:opacity-50"
               >
@@ -447,21 +443,6 @@ export function OnboardingFlow({
           <>
             <StepHeader title="Meet your coach" />
             <MeetCoachStep name={answers.firstName.trim()} />
-          </>
-        );
-      case "dob":
-        return (
-          <>
-            <StepHeader
-              title="When were you born?"
-              subtitle="This helps us tailor your study plan."
-            />
-            <DobStep
-              value={answers.dateOfBirth}
-              onChange={(v) =>
-                setAnswers((a) => ({ ...a, dateOfBirth: v || null }))
-              }
-            />
           </>
         );
       case "email":
@@ -544,7 +525,7 @@ export function OnboardingFlow({
         return (
           <>
             <StepHeader
-              title="One last thing — stay on track"
+              title="Stay on track"
               subtitle="Learners with a daily reminder are far more likely to pass first time. Here's the kind of nudge you'd get:"
             />
             <div className="mt-5">
