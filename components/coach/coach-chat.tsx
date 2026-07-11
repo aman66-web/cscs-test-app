@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { CoachAvatar } from "@/components/coach/coach-avatar";
 import { coachSummary } from "@/lib/progress/local-progress";
+import { QUESTION_BANK } from "@/lib/question-bank";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
@@ -38,7 +39,10 @@ export function CoachChat({ greetingName }: { greetingName: string }) {
       const res = await fetch("/api/coach", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: history, progress: coachSummary() }),
+        body: JSON.stringify({
+          messages: history,
+          progress: coachSummary(QUESTION_BANK.length),
+        }),
       });
       const data = (await res.json()) as { reply?: string; error?: string; code?: string };
       if (!res.ok || !data.reply) {

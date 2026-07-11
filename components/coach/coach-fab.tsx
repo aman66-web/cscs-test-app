@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { CoachAvatar } from "@/components/coach/coach-avatar";
 import { coachSummary } from "@/lib/progress/local-progress";
+import { QUESTION_BANK } from "@/lib/question-bank";
 
 // Cloned from the My Life in the UK Test app's coach-fab.tsx, minus i18n.
 
@@ -63,7 +64,10 @@ export function CoachFab({
         headers: { "Content-Type": "application/json" },
         // Study progress lives on-device; send a compact summary so the
         // coach can personalise (readiness, weakest modules).
-        body: JSON.stringify({ messages: wire, progress: coachSummary() }),
+        body: JSON.stringify({
+          messages: wire,
+          progress: coachSummary(QUESTION_BANK.length),
+        }),
       });
       const data = (await res.json()) as {
         reply?: string;

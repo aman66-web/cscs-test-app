@@ -9,6 +9,7 @@ import {
   distinctAttempted,
   getProgress,
   moduleAccuracyPct,
+  questionMastery,
   readinessSamples,
   recentMockPercents,
   type LocalProgress,
@@ -87,7 +88,7 @@ export function HomeStats({
     ? computeReadinessV2({
         samples: readinessSamples(progress),
         mockPercents: recentMockPercents(progress),
-        distinctAttempted: attempted,
+        masteryByQuestion: questionMastery(progress),
         bankTotal,
       })
     : null;

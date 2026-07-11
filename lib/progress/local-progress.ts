@@ -12,6 +12,8 @@
 // best-effort (try/catch) — storage being unavailable must never break a quiz.
 // =============================================================
 
+import { computeReadinessV2, type Band } from "@/lib/readiness/readiness";
+
 const LEGACY_KEY = "cscs-progress-v1";
 /** Which signed-in user this device's progress belongs to (set by
     ProgressScope on every authed screen). */
@@ -351,6 +353,39 @@ export function distinctAttempted(p = getProgress()): number {
   return new Set(p.answerLog.map((a) => a.qid)).size;
 }
 
+/**
+ * Per-question mastery in [0,1] for readiness v2 — one value per distinct
+ * question the user has attempted. Mirrors the Mistakes-deck "cleared after
+ * two in a row" rule:
+ *   • last answer wrong        → 0.0 (not learned yet)
+ *   • right ≥2 times in a row  → 1.0 (mastered)
+ *   • right once, never missed → 0.8 (promising, not proven)
+ *   • recovered after a miss   → 0.5 (shaky)
+ * The readiness engine divides the SUM by the whole bank size, so you have to
+ * master most of the bank to move the number.
+ */
+export function questionMastery(p = getProgress()): number[] {
+  const byQid = new Map<string, boolean[]>();
+  for (const a of p.answerLog) {
+    const list = byQid.get(a.qid);
+    if (list) list.push(a.correct);
+    else byQid.set(a.qid, [a.correct]);
+  }
+
+  const out: number[] = [];
+  for (const answers of byQid.values()) {
+    if (!answers[answers.length - 1]) {
+      out.push(0);
+      continue;
+    }
+    let trailing = 0;
+    for (let i = answers.length - 1; i >= 0 && answers[i]; i--) trailing++;
+    if (trailing >= 2) out.push(1);
+    else out.push(answers.includes(false) ? 0.5 : 0.8);
+  }
+  return out;
+}
+
 /** Answer samples newest-first, for the readiness engine. */
 export function readinessSamples(p = getProgress()): { correct: boolean; isMock: boolean }[] {
   return [...p.answerLog].reverse().map((a) => ({ correct: a.correct, isMock: a.isMock }));
@@ -374,10 +409,14 @@ export function moduleAccuracy(p = getProgress()): Record<string, { correct: num
 }
 
 /** Compact progress summary sent to the AI coach for personalisation. */
-export function coachSummary(p = getProgress()): {
+export function coachSummary(
+  bankTotal: number,
+  p = getProgress()
+): {
   samples: { correct: boolean; isMock: boolean }[];
   byModule: Record<string, { answered: number; correct: number }>;
   mocksTaken: number;
+  readiness: { score: number | null; band: Band };
 } {
   const byModule: Record<string, { answered: number; correct: number }> = {};
   for (const a of p.answerLog) {
@@ -386,10 +425,19 @@ export function coachSummary(p = getProgress()): {
     if (a.correct) c.correct += 1;
     byModule[a.module] = c;
   }
+  // The exact predicted grade shown on the Home gauge, so the coach's
+  // "am I ready to book?" advice never contradicts it (or over-promises).
+  const readiness = computeReadinessV2({
+    samples: readinessSamples(p),
+    mockPercents: recentMockPercents(p),
+    masteryByQuestion: questionMastery(p),
+    bankTotal,
+  });
   return {
     samples: [...p.answerLog].reverse().slice(0, 100).map((a) => ({ correct: a.correct, isMock: a.isMock })),
     byModule,
     mocksTaken: p.mocksTaken,
+    readiness: { score: readiness.score, band: readiness.band },
   };
 }
 

@@ -6,6 +6,7 @@ import {
   READINESS_COPY,
   BOOK_READY_PERCENT,
   type AnswerSample,
+  type Band,
 } from "@/lib/readiness/readiness";
 import {
   topicStats,
@@ -182,7 +183,10 @@ export async function POST(req: Request) {
     answers.length > 0
       ? answers.map((a) => ({ correct: a.correct, isMock: a.is_mock }))
       : local.samples;
-  const readiness = computeReadiness(samples);
+  // Prefer the exact predicted grade the client computed for the Home gauge
+  // (whole-bank mastery) so the coach can't over-promise readiness; fall back
+  // to a recency-weighted accuracy when the client didn't send it.
+  const readiness = local.readiness ?? computeReadiness(samples);
 
   const counts: Partial<Record<TopicKey, TopicCount>> = {};
   if (answers.length > 0) {
@@ -290,12 +294,18 @@ type LocalSummary = {
   samples: AnswerSample[];
   byModule: Record<string, { answered: number; correct: number }>;
   mocksTaken: number;
+  readiness: { score: number; band: Band } | null;
 };
 
 /** Clamp + sanitise the client-sent progress summary (coaching context only —
     never used for authorization). Malformed input degrades to empty. */
 function parseLocalProgress(input: unknown): LocalSummary {
-  const empty: LocalSummary = { samples: [], byModule: {}, mocksTaken: 0 };
+  const empty: LocalSummary = {
+    samples: [],
+    byModule: {},
+    mocksTaken: 0,
+    readiness: null,
+  };
   if (!input || typeof input !== "object") return empty;
   const o = input as Record<string, unknown>;
 
@@ -324,7 +334,28 @@ function parseLocalProgress(input: unknown): LocalSummary {
   }
 
   const mocksTaken = clampCount(o.mocksTaken);
-  return { samples, byModule, mocksTaken };
+
+  let readiness: LocalSummary["readiness"] = null;
+  if (o.readiness && typeof o.readiness === "object") {
+    const r = o.readiness as Record<string, unknown>;
+    if (
+      typeof r.score === "number" &&
+      Number.isFinite(r.score) &&
+      isReadinessBand(r.band)
+    ) {
+      readiness = {
+        score: Math.max(0, Math.min(100, Math.round(r.score))),
+        band: r.band,
+      };
+    }
+  }
+
+  return { samples, byModule, mocksTaken, readiness };
+}
+
+const READINESS_BANDS: Band[] = ["empty", "not-ready", "getting-there", "ready"];
+function isReadinessBand(v: unknown): v is Band {
+  return typeof v === "string" && (READINESS_BANDS as string[]).includes(v);
 }
 
 function clampCount(v: unknown): number {
