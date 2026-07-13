@@ -2,6 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { CoachAvatar } from "@/components/coach/coach-avatar";
+import {
+  CoachConsentNotice,
+  useCoachConsent,
+} from "@/components/coach/coach-consent";
+import { hasCoachConsent } from "@/lib/coach/consent";
 import { coachSummary } from "@/lib/progress/local-progress";
 import { QUESTION_BANK } from "@/lib/question-bank";
 
@@ -38,6 +43,7 @@ export function CoachFab({
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [limitReached, setLimitReached] = useState(false);
+  const { consented, ready, accept } = useCoachConsent();
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -99,6 +105,9 @@ export function CoachFab({
   function send(text: string) {
     const content = text.trim();
     if (!content || pending || limitReached) return;
+    // Hard gate: never reach Anthropic before the data-sharing notice is
+    // accepted (the composer/suggestions are disabled until then).
+    if (!hasCoachConsent()) return;
     const next: Msg[] = [...messages, { role: "user", content }];
     setMessages(next);
     setInput("");
@@ -194,21 +203,25 @@ export function CoachFab({
                     Stuck on something? Ask me anything — I know the HS&amp;E
                     material and your progress.
                   </p>
-                  <div className="mt-3 space-y-2">
-                    {SUGGESTIONS.map((s) => (
-                      <button
-                        key={s}
-                        type="button"
-                        onClick={() => send(s)}
-                        className="flex w-full items-center justify-between rounded-2xl border-[1.5px] border-ink/10 bg-white px-4 py-3 text-start text-[13.5px] font-bold text-ink transition hover:border-purple/40"
-                      >
-                        {s}
-                        <span className="inline-block text-purple-deep" aria-hidden="true">
-                          →
-                        </span>
-                      </button>
-                    ))}
-                  </div>
+                  {ready && !consented ? (
+                    <CoachConsentNotice onAccept={accept} className="mt-3" />
+                  ) : (
+                    <div className="mt-3 space-y-2">
+                      {SUGGESTIONS.map((s) => (
+                        <button
+                          key={s}
+                          type="button"
+                          onClick={() => send(s)}
+                          className="flex w-full items-center justify-between rounded-2xl border-[1.5px] border-ink/10 bg-white px-4 py-3 text-start text-[13.5px] font-bold text-ink transition hover:border-purple/40"
+                        >
+                          {s}
+                          <span className="inline-block text-purple-deep" aria-hidden="true">
+                            →
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div className="space-y-2.5">
@@ -259,12 +272,13 @@ export function CoachFab({
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Type your question…"
-                className="input-boxed !h-12 flex-1"
+                disabled={ready && !consented}
+                placeholder={ready && !consented ? "Accept the notice above to chat" : "Type your question…"}
+                className="input-boxed !h-12 flex-1 disabled:opacity-60"
               />
               <button
                 type="submit"
-                disabled={pending || limitReached || input.trim() === ""}
+                disabled={pending || limitReached || input.trim() === "" || (ready && !consented)}
                 aria-label="Send"
                 className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-[linear-gradient(180deg,#F97316,#C2410C)] text-white shadow-[0_10px_20px_-8px_rgba(249, 115, 22,0.7)] transition active:scale-95 disabled:opacity-40"
               >

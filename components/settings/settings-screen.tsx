@@ -6,6 +6,7 @@ import { signOut } from "@/app/onboarding/actions";
 import { deleteAccount, updateFirstName } from "@/app/settings/actions";
 import { wipeAllLocalData } from "@/lib/progress/local-progress";
 import { clearSettings } from "@/lib/settings/local-settings";
+import { clearCoachConsent } from "@/lib/coach/consent";
 import { disableDailyReminder } from "@/lib/notifications/local-notifications";
 
 // Cloned from the My Life in the UK Test app's settings-screen.tsx, minus
@@ -59,6 +60,7 @@ export function SettingsScreen({
         // and the scheduled native reminder.
         wipeAllLocalData();
         clearSettings();
+        clearCoachConsent();
         void disableDailyReminder();
         router.replace("/");
         router.refresh();

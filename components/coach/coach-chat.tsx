@@ -3,6 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { CoachAvatar } from "@/components/coach/coach-avatar";
+import {
+  CoachConsentNotice,
+  useCoachConsent,
+} from "@/components/coach/coach-consent";
+import { hasCoachConsent } from "@/lib/coach/consent";
 import { coachSummary } from "@/lib/progress/local-progress";
 import { QUESTION_BANK } from "@/lib/question-bank";
 
@@ -26,6 +31,7 @@ export function CoachChat({ greetingName }: { greetingName: string }) {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [limitReached, setLimitReached] = useState(false);
+  const { consented, ready, accept } = useCoachConsent();
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -65,6 +71,10 @@ export function CoachChat({ greetingName }: { greetingName: string }) {
   function send(text: string) {
     const content = text.trim();
     if (!content || pending || limitReached) return;
+    // Hard gate: never reach Anthropic before the data-sharing notice is
+    // accepted (the composer/suggestions are disabled until then, this is a
+    // belt-and-braces guard).
+    if (!hasCoachConsent()) return;
     const next: Msg[] = [...messages, { role: "user", content }];
     setMessages(next);
     setInput("");
@@ -106,20 +116,29 @@ export function CoachChat({ greetingName }: { greetingName: string }) {
               <p className="mt-1.5 max-w-[280px] text-sm font-medium text-ink-soft">
                 Ask me anything about your CSCS Health, Safety &amp; Environment revision.
               </p>
-              <p className="mt-7 text-[12px] font-extrabold uppercase tracking-[0.6px] text-ink-soft">Try asking:</p>
-              <div className="mt-2 w-full space-y-2">
-                {SUGGESTIONS.map((s) => (
-                  <button
-                    key={s}
-                    type="button"
-                    onClick={() => send(s)}
-                    className="flex w-full items-center justify-between rounded-full border border-ink/10 bg-white py-3 pe-4 ps-5 text-start text-sm font-bold text-ink shadow-[0_10px_22px_-18px_rgba(28, 25, 23,0.4)] transition hover:border-purple/40"
-                  >
-                    {s}
-                    <span className="inline-block text-purple-deep">→</span>
-                  </button>
-                ))}
-              </div>
+              {ready && !consented ? (
+                <CoachConsentNotice
+                  onAccept={accept}
+                  className="mt-6 w-full text-start"
+                />
+              ) : (
+                <>
+                  <p className="mt-7 text-[12px] font-extrabold uppercase tracking-[0.6px] text-ink-soft">Try asking:</p>
+                  <div className="mt-2 w-full space-y-2">
+                    {SUGGESTIONS.map((s) => (
+                      <button
+                        key={s}
+                        type="button"
+                        onClick={() => send(s)}
+                        className="flex w-full items-center justify-between rounded-full border border-ink/10 bg-white py-3 pe-4 ps-5 text-start text-sm font-bold text-ink shadow-[0_10px_22px_-18px_rgba(28, 25, 23,0.4)] transition hover:border-purple/40"
+                      >
+                        {s}
+                        <span className="inline-block text-purple-deep">→</span>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           </div>
         ) : (
@@ -178,14 +197,14 @@ export function CoachChat({ greetingName }: { greetingName: string }) {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            disabled={limitReached}
-            placeholder="Ask your coach anything…"
+            disabled={limitReached || (ready && !consented)}
+            placeholder={ready && !consented ? "Accept the notice above to chat" : "Ask your coach anything…"}
             className="h-12 flex-1 rounded-full border border-ink/10 bg-white px-5 text-[16px] text-ink shadow-[0_10px_22px_-18px_rgba(28, 25, 23,0.4)] outline-none transition focus:border-purple focus:ring-2 focus:ring-purple/30 disabled:opacity-60"
           />
           <button
             type="submit"
             aria-label="Send"
-            disabled={pending || limitReached || input.trim() === ""}
+            disabled={pending || limitReached || input.trim() === "" || (ready && !consented)}
             className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#F97316,#C2410C)] text-white shadow-[0_10px_20px_-8px_rgba(249, 115, 22,0.7)] transition hover:brightness-110 active:scale-[0.97] disabled:opacity-40"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">

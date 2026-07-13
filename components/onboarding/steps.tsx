@@ -2,6 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { TOPICS, type TopicKey } from "@/lib/onboarding/types";
+import {
+  CoachConsentNotice,
+  useCoachConsent,
+} from "@/components/coach/coach-consent";
+import { hasCoachConsent } from "@/lib/coach/consent";
 
 // Cloned from the My Life in the UK Test app's components/onboarding/steps.tsx.
 // Adaptations: i18n t() calls replaced with English literals (this app is
@@ -201,6 +206,7 @@ export function MeetCoachStep({ name }: { name: string }) {
   const [messages, setMessages] = useState<CoachMsg[]>([]);
   const [input, setInput] = useState("");
   const [pending, setPending] = useState(false);
+  const { consented, ready, accept } = useCoachConsent();
 
   // A short "typing…" beat before the greeting appears, so it feels like
   // David is really saying hello rather than a wall of text popping in.
@@ -212,6 +218,9 @@ export function MeetCoachStep({ name }: { name: string }) {
   async function send() {
     const content = input.trim();
     if (!content || pending) return;
+    // Hard gate: no message may reach Anthropic before the data-sharing notice
+    // is accepted (the input only appears after acceptance; this is a guard).
+    if (!hasCoachConsent()) return;
     const next: CoachMsg[] = [...messages, { role: "user", content }];
     setMessages(next);
     setInput("");
@@ -309,8 +318,12 @@ export function MeetCoachStep({ name }: { name: string }) {
         </div>
       ) : null}
 
-      {/* Ask David something (optional) */}
-      {greeted ? (
+      {/* Ask David something (optional) — gated by the one-time data notice, so
+          nothing is sent to Anthropic until it's accepted. */}
+      {greeted && ready && !consented ? (
+        <CoachConsentNotice onAccept={accept} className="mt-3" />
+      ) : null}
+      {greeted && consented ? (
         <form
           className="mt-3 flex items-center gap-2"
           onSubmit={(e) => {
