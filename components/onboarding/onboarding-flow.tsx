@@ -401,6 +401,12 @@ export function OnboardingFlow({
               )}
             </button>
           )}
+          {safeIndex === 0 ? (
+            <p className="pt-1 text-center text-[11px] font-medium leading-relaxed text-ink-soft">
+              Independent study aid — not affiliated with or endorsed by CITB or
+              the CSCS scheme.
+            </p>
+          ) : null}
         </div>
       </div>
 

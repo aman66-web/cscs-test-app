@@ -115,8 +115,15 @@ export function SettingsScreen({
         <Section title="About">
           <p className="text-sm leading-relaxed text-ink-soft">
             A calm, focused way to prepare for the CITB Health, Safety &amp;
-            Environment (HS&amp;E) test. Practice questions and mock tests are
-            original study material and are not the official CITB questions.
+            Environment (HS&amp;E) test.
+          </p>
+          <p className="mt-2 rounded-xl bg-ink/5 px-3 py-2.5 text-[12.5px] font-semibold leading-relaxed text-ink-soft">
+            This app is an independent study aid. It is{" "}
+            <span className="text-ink">
+              not affiliated with, or endorsed by, CITB or the CSCS scheme
+            </span>
+            . Practice questions and mock tests are original study material and
+            are not the official CITB questions.
           </p>
           <a
             href={CITB_BOOKING}
