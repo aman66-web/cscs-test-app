@@ -291,7 +291,7 @@ export function EmailOtp({
             maxLength={6}
             aria-label="6-digit code"
             placeholder="——————"
-            className="h-[62px] w-full rounded-[15px] border-[1.5px] border-transparent bg-[#FBF5EE] text-center text-[28px] font-extrabold tracking-[0.5em] text-ink outline-none transition placeholder:text-[#C9C4DC] placeholder:tracking-[0.3em] focus:border-[#F97316] focus:bg-white focus:shadow-[0_0_0_3px_rgba(249, 115, 22,0.12)]"
+            className="h-[62px] w-full rounded-[15px] border-[1.5px] border-transparent bg-[#FBF5EE] text-center text-[28px] font-extrabold tracking-[0.5em] text-ink outline-none transition placeholder:text-[#C9C4DC] placeholder:tracking-[0.3em] focus:border-[#F97316] focus:bg-white focus:shadow-[0_0_0_3px_rgba(249,115,22,0.12)]"
           />
 
           {error ? <ErrorBanner message={error} /> : null}
