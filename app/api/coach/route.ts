@@ -156,9 +156,9 @@ export async function POST(req: Request) {
   // ----- Build personalised context from the user's data -----
   const { data: profile } = await supabase
     .from("profiles")
-    .select("first_name, hardest_topics")
+    .select("hardest_topics")
     .eq("id", user.id)
-    .maybeSingle<{ first_name: string | null; hardest_topics: unknown }>();
+    .maybeSingle<{ hardest_topics: unknown }>();
 
   const { data: answersRaw } = await supabase
     .from("user_answers")
@@ -227,15 +227,17 @@ export async function POST(req: Request) {
     answers.length > 0
       ? answers.filter((a) => a.is_mock).length
       : local.mocksTaken;
-  const firstName = profile?.first_name?.trim() || "there";
 
+  // NOTE: we deliberately do NOT send the user's name (or email/any other
+  // identifying detail) to Anthropic — only anonymous study stats below. This
+  // keeps the payload consistent with the privacy policy ("we do not send
+  // Anthropic your name or contact details").
   const system = [
     `You are David, the app's friendly, encouraging study coach for the official CITB Health, Safety & Environment (HS&E) test — the test needed for a CSCS card. Introduce yourself as David when greeting someone or if asked your name.`,
     `Help the user revise: explain answers, quiz them, suggest what to study next, and advise on readiness. Keep replies concise, warm and specific to the HS&E test and UK construction-site safety. Use British English. If asked about something unrelated, gently steer back to their study.`,
     `Test facts: ${MOCK_CONFIG.questionCount} multiple-choice questions in ${MOCK_CONFIG.durationMinutes} minutes, pass mark ${MOCK_CONFIG.passMark}/${MOCK_CONFIG.questionCount} (${MOCK_CONFIG.passPercentage}%). Advise booking only once they are consistently scoring ${BOOK_READY_PERCENT}%+.`,
     ``,
-    `About the person you're helping:`,
-    `- First name: ${firstName}`,
+    `About the person you're helping (anonymous study stats only):`,
     `- Readiness score: ${
       readiness.score == null ? "not enough data yet" : `${readiness.score}%`
     } (${READINESS_COPY[readiness.band].label})`,
