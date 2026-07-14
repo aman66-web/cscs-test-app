@@ -32,6 +32,13 @@ export function QuestionCard({
 }) {
   const isMulti = question.question_type === "multiple_answer";
   const isHotspot = question.question_type === "hotspot";
+  // "Click the correct sign" questions: the options are sign-image paths
+  // (all under /signs). Render them as a grid of tappable images rather than
+  // text. Grading is unchanged — still by option index.
+  const imageOptions =
+    !isHotspot &&
+    question.options.length > 0 &&
+    question.options.every((o) => o.startsWith("/signs/"));
 
   return (
     <div className="relative mt-[22px] rounded-[22px] bg-white p-[18px] pt-5 shadow-[0_18px_40px_-18px_rgba(28, 25, 23,0.35)]">
@@ -74,6 +81,40 @@ export function QuestionCard({
           onTap={onHotspotTap}
           revealed={revealed}
         />
+      ) : imageOptions ? (
+        <div className="mt-4 grid grid-cols-2 gap-[10px]">
+          {question.options.map((opt, i) => {
+            const selected = choiceSelected.includes(i);
+            const isRight = question.correct_answer.includes(i);
+            let cls = "border-transparent bg-[#FBF3EA] hover:border-purple/30";
+            if (revealed) {
+              if (isRight) cls = "border-[rgba(34,178,104,0.55)] bg-[#E3F8EA]";
+              else if (selected) cls = "border-[rgba(224,85,85,0.55)] bg-[#FDEAEA]";
+              else cls = "border-transparent bg-[#FBF3EA] opacity-60";
+            } else if (selected) {
+              cls = "border-purple bg-white";
+            }
+            return (
+              <button
+                key={i}
+                type="button"
+                disabled={revealed}
+                onClick={() => onToggleChoice(i)}
+                aria-label={`Sign option ${i + 1}`}
+                className={`relative flex aspect-square items-center justify-center rounded-[14px] border-2 p-3 transition ${cls}`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={opt} alt={`Safety sign option ${i + 1}`} className="h-full w-full object-contain" />
+                {revealed && isRight ? (
+                  <span className="absolute right-1.5 top-1.5 text-[#137A3B]" aria-hidden="true">✓</span>
+                ) : null}
+                {revealed && !isRight && selected ? (
+                  <span className="absolute right-1.5 top-1.5 text-[#B93B3B]" aria-hidden="true">✕</span>
+                ) : null}
+              </button>
+            );
+          })}
+        </div>
       ) : (
         <div className="mt-4 flex flex-col gap-[9px]">
           {question.options.map((opt, i) => {

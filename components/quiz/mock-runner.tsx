@@ -427,16 +427,18 @@ function MockResults({
                   </p>
                 ) : (
                   <>
-                    <p className="mt-2 text-[12.5px] font-bold text-[#B93B3B]">
-                      ✕ Your answer:{" "}
-                      {selected.length > 0
-                        ? selected.map((i) => q.options[i]).join(" + ")
-                        : "not answered"}
-                    </p>
-                    <p className="mt-1 text-[12.5px] font-bold text-[#137A3B]">
-                      ✓ Correct:{" "}
-                      {q.correct_answer.map((i) => q.options[i]).join(" + ")}
-                    </p>
+                    <div className="mt-2 flex flex-wrap items-center gap-1.5 text-[12.5px] font-bold text-[#B93B3B]">
+                      <span>✕ Your answer:</span>
+                      {selected.length > 0 ? (
+                        <AnswerOptions q={q} idxs={selected} />
+                      ) : (
+                        <span>not answered</span>
+                      )}
+                    </div>
+                    <div className="mt-1 flex flex-wrap items-center gap-1.5 text-[12.5px] font-bold text-[#137A3B]">
+                      <span>✓ Correct:</span>
+                      <AnswerOptions q={q} idxs={q.correct_answer} />
+                    </div>
                   </>
                 )}
                 <div className="mt-2.5 rounded-[14px] bg-lilac p-3 text-[12.5px] font-semibold leading-[1.45] text-ink">
@@ -462,5 +464,31 @@ function MockResults({
         </div>
       </div>
     </main>
+  );
+}
+
+/**
+ * Renders a set of answer options in the wrong-answers review — either the
+ * option text joined with " + ", or, for "click the correct sign" questions
+ * (image-path options), small sign thumbnails.
+ */
+function AnswerOptions({ q, idxs }: { q: Question; idxs: number[] }) {
+  const isImage =
+    q.options.length > 0 && q.options.every((o) => o.startsWith("/signs/"));
+  if (!isImage) {
+    return <span>{idxs.map((i) => q.options[i]).join(" + ")}</span>;
+  }
+  return (
+    <>
+      {idxs.map((i) => (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          key={i}
+          src={q.options[i]}
+          alt="Safety sign"
+          className="inline-block h-9 w-9 rounded border border-ink/10 bg-white object-contain p-0.5 align-middle"
+        />
+      ))}
+    </>
   );
 }
