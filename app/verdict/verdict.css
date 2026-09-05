@@ -42,6 +42,26 @@ body:has(.vd) {
   background-color: #0d0c11;
 }
 
+/* Let the document grow.
+ *
+ * The shared app shell pins `html, body { height: 100% }` with
+ * `overflow-x: hidden`, which forces overflow-y to `auto` and makes BODY the
+ * scroll container while the document itself stays stuck at viewport height.
+ * Touch and wheel scrolling still work, but everything that reads the document
+ * scrolls does not: `scrollIntoView` (the cross-examination auto-scrolls to
+ * each new answer), scroll restoration, and any full-page capture — the docket
+ * silently cut off two of its five cases, and the scorecard rendered the
+ * "what the jury said" heading with nothing under it.
+ *
+ * Verdict's screens are long by design, so give them ordinary document
+ * scrolling. Scoped so the CSCS app's shell is untouched, and where `:has()`
+ * is unsupported this falls back to the shell's body scrolling, which works. */
+html:has(.vd),
+body:has(.vd) {
+  height: auto;
+  min-height: 100%;
+}
+
 .vd ::selection {
   background: rgba(201, 162, 39, 0.3);
 }
@@ -127,6 +147,29 @@ body:has(.vd) {
   border-color: var(--vd-hair);
   background: var(--vd-panel-high);
   transform: translateY(-2px);
+}
+
+/* Difficulty pips. At label size, filled and empty diamonds sitting flush
+   against each other read as one smudge — the spacing and the colour split are
+   what make the rating countable at a glance. */
+.vd .vd-pips {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+  flex: none;
+}
+
+.vd .vd-pip {
+  width: 7px;
+  height: 7px;
+  border-radius: 1.5px;
+  transform: rotate(45deg);
+  background: var(--vd-brass);
+}
+
+.vd .vd-pip[data-on="false"] {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px rgba(237, 231, 220, 0.22);
 }
 
 /* ------------------------------------------------------------- buttons ---- */

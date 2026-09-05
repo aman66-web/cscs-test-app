@@ -42,12 +42,18 @@ export default function DocketPage() {
                   {c.title}
                 </h2>
                 <span
-                  className="vd-faint shrink-0 rounded-full border px-2 py-0.5 text-[11px] font-bold"
-                  style={{ borderColor: "var(--vd-hair)" }}
+                  className="vd-pips mt-1.5"
                   title={`Difficulty ${c.difficulty} of 5`}
+                  aria-label={`Difficulty ${c.difficulty} of 5`}
                 >
-                  {"◆".repeat(c.difficulty)}
-                  <span className="opacity-25">{"◆".repeat(5 - c.difficulty)}</span>
+                  {[1, 2, 3, 4, 5].map((pip) => (
+                    <span
+                      key={pip}
+                      className="vd-pip"
+                      data-on={pip <= c.difficulty}
+                      aria-hidden
+                    />
+                  ))}
                 </span>
               </div>
 

@@ -65,7 +65,7 @@ export function CaseNotes({
 
       <div className="flex flex-col gap-4">
         <section className="vd-card">
-          <p className="vd-eyebrow mb-2">You act for</p>
+          <p className="vd-eyebrow mb-2">Your client</p>
           <p className="text-[15px] font-semibold leading-relaxed">
             {publicCase.side}
           </p>
