@@ -1,3 +1,8 @@
+> **Also in this repo:** [**Verdict**](VERDICT.md) — a courtroom game at
+> `/verdict`, where you cross-examine AI witnesses who lie until they break.
+> Separate routes, separate data layer, separate look; shares only the Next.js +
+> Capacitor + Anthropic scaffolding. See [VERDICT.md](VERDICT.md).
+
 # CSCS Test App
 
 Practice app for the UK **CITB Health, Safety & Environment (HS&E) test** — the

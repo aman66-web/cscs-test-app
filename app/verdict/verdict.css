@@ -1,0 +1,469 @@
+/* ============================================================================
+   VERDICT — courtroom theme.
+
+   Entirely separate from the CSCS app's white/safety-orange system, and scoped
+   under `.vd` so the two can share a codebase without sharing a look. Nothing
+   in this file may leak: every selector is a descendant of `.vd`.
+
+   The room is dark on purpose. Low light, wood, brass, and one warm pool over
+   the witness stand — everything on screen is either the person you are
+   questioning or out of the way.
+   ============================================================================ */
+
+.vd {
+  --vd-ground: #0d0c11;
+  --vd-panel: #17151d;
+  --vd-panel-high: #201d29;
+  --vd-hair: rgba(201, 162, 39, 0.18);
+  --vd-hair-soft: rgba(237, 231, 220, 0.09);
+
+  --vd-brass: #c9a227;
+  --vd-brass-bright: #e6c65a;
+  --vd-oxblood: #7a1f2b;
+
+  --vd-bone: #ede7dc;
+  --vd-muted: #9d9486;
+  --vd-faint: #6b6459;
+
+  --vd-won: #4fa96c;
+  --vd-lost: #c4514f;
+
+  min-height: 100dvh;
+  background:
+    radial-gradient(120% 60% at 50% -10%, rgba(201, 162, 39, 0.08) 0, transparent 60%),
+    radial-gradient(90% 50% at 50% 110%, rgba(122, 31, 43, 0.14) 0, transparent 60%),
+    var(--vd-ground);
+  color: var(--vd-bone);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* The page ground behind the wrapper, so overscroll doesn't flash white. */
+body:has(.vd) {
+  background-color: #0d0c11;
+}
+
+.vd ::selection {
+  background: rgba(201, 162, 39, 0.3);
+}
+
+/* ---------------------------------------------------------------- type ---- */
+
+.vd .vd-display {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.08;
+}
+
+.vd .vd-eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--vd-brass);
+}
+
+.vd .vd-muted {
+  color: var(--vd-muted);
+}
+
+.vd .vd-faint {
+  color: var(--vd-faint);
+}
+
+/* --------------------------------------------------------------- shell ---- */
+
+.vd .vd-wrap {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 720px;
+  padding: 0 20px;
+}
+
+.vd .vd-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--vd-hair) 20%,
+    var(--vd-hair) 80%,
+    transparent
+  );
+  border: 0;
+}
+
+/* --------------------------------------------------------------- cards ---- */
+
+.vd .vd-card {
+  border: 1px solid var(--vd-hair-soft);
+  border-radius: 14px;
+  background: var(--vd-panel);
+  padding: 18px;
+}
+
+.vd .vd-card-brass {
+  border-color: var(--vd-hair);
+  background: linear-gradient(180deg, var(--vd-panel-high), var(--vd-panel));
+}
+
+/* A docket entry. The premise is the hook, so it gets the room. */
+.vd .vd-docket-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--vd-hair-soft);
+  border-radius: 16px;
+  background: var(--vd-panel);
+  padding: 20px;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    border-color 0.18s,
+    transform 0.18s,
+    background 0.18s;
+}
+
+.vd .vd-docket-item:hover {
+  border-color: var(--vd-hair);
+  background: var(--vd-panel-high);
+  transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------------- buttons ---- */
+
+.vd .vd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition:
+    transform 0.14s,
+    opacity 0.14s,
+    background 0.18s;
+}
+
+.vd .vd-btn-primary {
+  background: linear-gradient(180deg, #d8b23a, #a8801a);
+  color: #17130a;
+  box-shadow: 0 12px 26px -14px rgba(201, 162, 39, 0.9);
+}
+
+.vd .vd-btn-ghost {
+  background: transparent;
+  border: 1.5px solid var(--vd-hair);
+  color: var(--vd-bone);
+}
+
+.vd .vd-btn:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+.vd .vd-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+/* --------------------------------------------------------------- input ---- */
+
+.vd .vd-input {
+  width: 100%;
+  min-height: 96px;
+  resize: vertical;
+  border: 1.5px solid var(--vd-hair-soft);
+  border-radius: 12px;
+  background: #100e15;
+  padding: 14px;
+  color: var(--vd-bone);
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+  outline: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.vd .vd-input::placeholder {
+  color: var(--vd-faint);
+}
+
+.vd .vd-input:focus {
+  border-color: rgba(201, 162, 39, 0.5);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.12);
+}
+
+/* Mic button — the state is the whole affordance, so make it loud. */
+.vd .vd-mic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 0 20px;
+  border-radius: 999px;
+  border: 1.5px solid var(--vd-hair);
+  background: transparent;
+  color: var(--vd-bone);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s;
+}
+
+.vd .vd-mic[data-live="true"] {
+  border-color: rgba(196, 81, 79, 0.8);
+  background: rgba(196, 81, 79, 0.16);
+  color: #f4c9c8;
+}
+
+.vd .vd-mic-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.vd .vd-mic[data-live="true"] .vd-mic-dot {
+  animation: vdPulse 1.1s ease-in-out infinite;
+}
+
+@keyframes vdPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.78);
+  }
+}
+
+/* -------------------------------------------------------- witness stand ---- */
+
+.vd .vd-stand {
+  position: relative;
+  border: 1px solid var(--vd-hair);
+  border-radius: 16px;
+  padding: 18px;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(201, 162, 39, 0.1) 0, transparent 62%),
+    linear-gradient(180deg, var(--vd-panel-high), var(--vd-panel));
+}
+
+/* Pressure meter. Tells the player they are onto something — never what. */
+.vd .vd-pressure {
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(237, 231, 220, 0.08);
+  overflow: hidden;
+}
+
+.vd .vd-pressure-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #a8801a, #e6c65a);
+  transition: width 0.7s cubic-bezier(0.22, 0.7, 0.3, 1);
+}
+
+.vd .vd-pressure-fill[data-cracked="true"] {
+  background: linear-gradient(90deg, #c4514f, #e88b6a);
+}
+
+/* ---------------------------------------------------------- transcript ---- */
+
+.vd .vd-q {
+  border-left: 2px solid var(--vd-hair);
+  padding: 2px 0 2px 14px;
+  color: var(--vd-bone);
+}
+
+.vd .vd-a {
+  padding: 2px 0 2px 14px;
+  border-left: 2px solid transparent;
+  color: var(--vd-muted);
+}
+
+.vd .vd-a[data-mode="crack"] {
+  border-left-color: var(--vd-lost);
+  color: #f0dcd6;
+}
+
+.vd .vd-a[data-mode="rattled"] {
+  border-left-color: rgba(201, 162, 39, 0.5);
+}
+
+/* The crack itself. It gets an entrance — this is the moment. */
+.vd .vd-crack-flash {
+  animation: vdCrack 1.6s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+@keyframes vdCrack {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+    box-shadow: 0 0 0 0 rgba(196, 81, 79, 0);
+  }
+  22% {
+    opacity: 1;
+    transform: translateY(0);
+    box-shadow: 0 0 34px -6px rgba(196, 81, 79, 0.6);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    box-shadow: 0 0 0 0 rgba(196, 81, 79, 0);
+  }
+}
+
+/* ------------------------------------------------------------- thinking ---- */
+
+/* Filler beat that covers generation time — the witness shifts, glances at the
+   judge. Cross-examination loses its tension if the room simply freezes. */
+.vd .vd-beat {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.vd .vd-beat span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--vd-brass);
+  animation: vdBeat 1.25s ease-in-out infinite;
+}
+
+.vd .vd-beat span:nth-child(2) {
+  animation-delay: 0.16s;
+}
+.vd .vd-beat span:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+@keyframes vdBeat {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+/* --------------------------------------------------------- deliberation ---- */
+
+.vd .vd-juror-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--vd-hair-soft);
+  border-radius: 10px;
+  background: var(--vd-panel);
+  padding: 10px 12px;
+}
+
+.vd .vd-lean {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--vd-faint);
+  transition: background 0.5s;
+  flex: none;
+}
+
+.vd .vd-lean[data-lean="for"] {
+  background: var(--vd-won);
+  box-shadow: 0 0 10px rgba(79, 169, 108, 0.6);
+}
+
+.vd .vd-lean[data-lean="against"] {
+  background: var(--vd-lost);
+  box-shadow: 0 0 10px rgba(196, 81, 79, 0.6);
+}
+
+.vd .vd-lean[data-lean="thinking"] {
+  animation: vdThinking 1.4s ease-in-out infinite;
+}
+
+@keyframes vdThinking {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* -------------------------------------------------------------- verdict ---- */
+
+.vd .vd-verdict-word {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(3rem, 16vw, 5.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  animation: vdStamp 0.5s cubic-bezier(0.2, 1.3, 0.4, 1);
+}
+
+@keyframes vdStamp {
+  0% {
+    opacity: 0;
+    transform: scale(1.35) rotate(-3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.vd .vd-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(237, 231, 220, 0.08);
+  overflow: hidden;
+}
+
+.vd .vd-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #a8801a, #e6c65a);
+  transition: width 0.9s cubic-bezier(0.22, 0.7, 0.3, 1);
+}
+
+/* ------------------------------------------------------------ countdown ---- */
+
+.vd .vd-clock {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.vd .vd-clock[data-low="true"] {
+  color: var(--vd-lost);
+}
+
+/* ------------------------------------------------------ reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .vd *,
+  .vd *::before,
+  .vd *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
