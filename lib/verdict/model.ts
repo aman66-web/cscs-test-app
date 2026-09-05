@@ -142,32 +142,54 @@ export async function generateJSON<T>(args: GenerateArgs): Promise<T> {
   }
 }
 
-/** Map an SDK error to a status code and a line the player should actually see. */
+/**
+ * Map an SDK error to a status code and a line the player should actually see.
+ *
+ * `log` marks the genuinely unexpected. A missing or bad API key is a setup
+ * step, not a fault — someone running this for the first time should get the
+ * sentence telling them what to do, not a stack trace suggesting the app broke.
+ */
 export function modelErrorResponse(err: unknown): {
   status: number;
   error: string;
+  log: boolean;
 } {
   if (err instanceof ModelNotConfiguredError) {
     return {
       status: 503,
       error:
-        "The court isn't in session — this build has no ANTHROPIC_API_KEY configured.",
+        "The court isn't in session — add ANTHROPIC_API_KEY to .env.local and restart.",
+      log: false,
+    };
+  }
+  if (err instanceof Anthropic.AuthenticationError) {
+    return {
+      status: 503,
+      error:
+        "The court isn't in session — ANTHROPIC_API_KEY was rejected. Check the key.",
+      log: false,
     };
   }
   if (err instanceof Anthropic.RateLimitError) {
     return {
       status: 429,
       error: "The court is busy. Give it a moment and ask again.",
+      log: false,
     };
   }
-  if (err instanceof Anthropic.AuthenticationError) {
-    return { status: 503, error: "The court isn't in session — bad API key." };
-  }
   if (err instanceof ModelRefusedError || err instanceof ModelShapeError) {
-    return { status: 502, error: "The witness didn't answer. Try that again." };
+    return {
+      status: 502,
+      error: "The witness didn't answer. Try that again.",
+      log: true,
+    };
   }
   if (err instanceof Anthropic.APIError) {
-    return { status: 502, error: "The witness didn't answer. Try that again." };
+    return {
+      status: 502,
+      error: "The witness didn't answer. Try that again.",
+      log: true,
+    };
   }
-  return { status: 500, error: "Something went wrong in there. Try again." };
+  return { status: 500, error: "Something went wrong in there. Try again.", log: true };
 }

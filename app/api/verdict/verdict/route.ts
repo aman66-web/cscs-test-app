@@ -179,8 +179,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ scorecard, overreach: judgement.overreach ?? [] });
   } catch (err) {
-    const { status, error } = modelErrorResponse(err);
-    if (status >= 500) console.error("[verdict/verdict]", err);
+    const { status, error, log } = modelErrorResponse(err);
+    if (log) console.error("[verdict/verdict]", err);
     return NextResponse.json({ error }, { status });
   }
 }

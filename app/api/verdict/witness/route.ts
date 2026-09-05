@@ -172,8 +172,8 @@ export async function POST(req: Request) {
       questionsLeft: TRIAL_LIMITS.maxQuestions - (exchanges.length + 1),
     });
   } catch (err) {
-    const { status, error } = modelErrorResponse(err);
-    if (status >= 500) console.error("[verdict/witness]", err);
+    const { status, error, log } = modelErrorResponse(err);
+    if (log) console.error("[verdict/witness]", err);
     return NextResponse.json({ error }, { status });
   }
 }
