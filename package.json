@@ -12,7 +12,8 @@
     "cap:sync": "cap sync",
     "cap:ios": "cap open ios",
     "cap:android": "cap open android",
-    "cap:assets": "capacitor-assets generate --iconBackgroundColor \"#7C3AED\" --splashBackgroundColor \"#F1EAFE\""
+    "cap:assets": "capacitor-assets generate --iconBackgroundColor \"#7C3AED\" --splashBackgroundColor \"#F1EAFE\"",
+    "setup": "node scripts/setup-verdict.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.107.0",

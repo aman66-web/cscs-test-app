@@ -37,20 +37,34 @@ Everything below exists to make that moment land.
 
 ## Run it
 
+Needs **Node.js 18.17 or newer** ([nodejs.org](https://nodejs.org), take the LTS
+build) and nothing else — no Supabase, no accounts, no database.
+
 ```bash
 npm install
+npm run setup        # asks for your Anthropic key, writes .env.local for you
 npm run dev          # http://localhost:3000/verdict
 ```
 
-Add `ANTHROPIC_API_KEY` to `.env.local` first. Without it the app still renders
-and the docket, case notes and case data all work — the witness simply tells you
-the court isn't in session.
+`npm run setup` is there because the two steps that usually go wrong are
+invisible ones: the wrong Node version (npm install half-works and the error
+surfaces much later) and hand-creating a dotfile (Finder hides it, Notepad
+appends `.txt`). It checks the version, writes the file correctly, and leaves
+any other values in `.env.local` untouched. `npm run setup -- --replace` swaps
+the key later.
+
+Without a key the app still runs — docket, case notes, exhibits and jury all
+work — and the witness tells you the court isn't in session.
 
 ```bash
 npm run verify:verdict   # fairness invariants (no API key needed, no cost)
 npm run typecheck
 npm run build
 ```
+
+Roughly **$0.12 per 12-question trial** on Opus 5 with caching on. Setting
+`VERDICT_STRONG_MODEL=claude-sonnet-5` takes it to about $0.05 if you want to
+play cheaply while testing.
 
 ---
 
